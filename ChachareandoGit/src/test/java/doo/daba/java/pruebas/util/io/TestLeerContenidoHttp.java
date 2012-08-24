@@ -5,7 +5,6 @@ package doo.daba.java.pruebas.util.io;
 import doo.daba.java.util.io.LeerContenidoHttp;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.UnknownHostException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.Assert;
