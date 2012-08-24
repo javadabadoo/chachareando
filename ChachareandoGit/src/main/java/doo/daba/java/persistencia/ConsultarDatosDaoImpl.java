@@ -37,9 +37,30 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 
 
 
+	/**
+	 * Agrega un registro a la base de datos en la tabla de usuarios de la aplicación.
+	 * La informacion del registro es tomada del parametro {@code usuario}
+	 * 
+	 * @param usuario	Objeto que encapsula la informacion del usuario que se registra
+	 *					en base de datos
+	 * 
+	 * @return	Numero de registros nuevos en base de datos. Actualmente se espera que
+	 *			el valor de retorno cuando sea exitoso el registro sea siempre 1. Quizas
+	 *			mas adelante se requiera realziar un registro en batch (que no le veo mucho
+	 *			sentido pero en fin... usemos la imaginacion)
+	 */
 	@Override
-	public final int insert(final UsuarioBean peticionBean) {
-		throw new UnsupportedOperationException("Not supported yet.");
+	public final int insert(final UsuarioBean usuario) {
+		return this.getJdbcTemplate().update(
+			Propiedades.obtener("sql.registro.usuario"),
+			new Object[] {
+				usuario.getNombre(),
+				usuario.getApellidos(),
+				usuario.getCorreo(),
+				usuario.getAlias(),
+				usuario.getContrasena(),
+				usuario.getFechaDeRegistro(),
+			});
 	}
 
 
@@ -68,7 +89,7 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 
 
 	@Override
-	public final List<UsuarioBean> select(final UsuarioBean peticionBean) {
+	public final List<UsuarioBean> select(final UsuarioBean usuario) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -82,7 +103,17 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 
 
 	@Override
-	public final int update(final UsuarioBean elemento) {
+	public final int update(final UsuarioBean usuario) {
 		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+
+
+	public int delete(UsuarioBean elemento) {
+		return this.getJdbcTemplate().update(
+			Propiedades.obtener("sql.elimina.usuario"),
+			new Object[] {
+				elemento.getAlias()
+			});
 	}
 }
