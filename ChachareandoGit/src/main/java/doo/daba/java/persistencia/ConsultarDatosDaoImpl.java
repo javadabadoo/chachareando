@@ -51,6 +51,7 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 	 */
 	@Override
 	public final int insert(final UsuarioBean usuario) {
+		
 		return this.getJdbcTemplate().update(
 			Propiedades.obtener("sql.registro.usuario"),
 			new Object[] {
@@ -61,6 +62,7 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 				usuario.getContrasena(),
 				usuario.getFechaDeRegistro(),
 			});
+		
 	}
 
 
@@ -109,11 +111,22 @@ public class ConsultarDatosDaoImpl extends JdbcDaoSupport implements ConsultarDa
 
 
 
-	public int delete(UsuarioBean elemento) {
+	/**
+	 * Elimina el registro de un usuario en la base de datos segun su alias.
+	 * 
+	 * @param usuario	Encapsula la información del usuario a eliminar, basta
+	 *					con que se defina el alias del usuario para poder realizar
+	 *					el borrado del registro.
+	 * 
+	 * @return 
+	 */
+	public int delete(UsuarioBean usuario) {
+		
 		return this.getJdbcTemplate().update(
 			Propiedades.obtener("sql.elimina.usuario"),
 			new Object[] {
-				elemento.getAlias()
+				usuario.getAlias()
 			});
+		
 	}
 }
