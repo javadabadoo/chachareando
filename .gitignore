@@ -7,3 +7,5 @@
 *.war
 *.ear
 /ChachareandoGit/target/
+/ChachareandoGit/.gradle/
+/ChachareandoGit/.settings/
