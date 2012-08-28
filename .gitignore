@@ -1,7 +1,12 @@
-*.class
+.metadata
 
+*.class
 # Package Files #
 *.jar
 *.war
 *.ear
 /ChachareandoGit/target/
+/ChachareandoGit/.settings/
+/ChachareandoGit/Servers/
+/Servers/
+/.gradle/
