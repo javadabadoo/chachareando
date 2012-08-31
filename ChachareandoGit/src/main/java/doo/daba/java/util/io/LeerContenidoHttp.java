@@ -5,6 +5,7 @@ package doo.daba.java.util.io;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,6 +53,20 @@ public class LeerContenidoHttp {
 	public LeerContenidoHttp() {
 		super();
 	}
+	
+	
+	
+	public BufferedReader obtenerReader () throws IOException {
+		
+		BufferedReader reader = null;
+		this.codigoDeRespuestaHttp = abrirConexion();
+
+		if ((this.codigoDeRespuestaHttp = abrirConexion()) == 200) {
+			reader = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		}
+
+		return reader;
+	}
 
 
 
@@ -70,17 +85,10 @@ public class LeerContenidoHttp {
 	public String obtenerContenido() throws MalformedURLException, IOException {
 
 
-		this.codigoDeRespuestaHttp = abrirConexion();
-
-		if ((this.codigoDeRespuestaHttp = abrirConexion()) != 200) {
-			return (this.contenido = new StringBuilder()).toString();
-		}
-
-		BufferedReader buferDeRecursoWeb =
-			new BufferedReader(new InputStreamReader(conexion.getInputStream()));
-
-		String inputLine;
+		String inputLine = null;
 		contenido  = new StringBuilder();
+		
+		 BufferedReader buferDeRecursoWeb = this.obtenerReader();
 		
 		while((inputLine = buferDeRecursoWeb.readLine()) != null) {
 			contenido.append(inputLine);
@@ -121,9 +129,10 @@ public class LeerContenidoHttp {
 	 * @throws IOException  Lanzada si existe un problema de I/O
 	 * 
 	 */
-	public final void setDireccionWeb(String direccionWeb) throws MalformedURLException,
-																  IOException {
+	public final void setDireccionWeb(String direccionWeb) throws MalformedURLException {
+		
 		this.direccionWeb = new URL(direccionWeb);
+		
 	}
 
 

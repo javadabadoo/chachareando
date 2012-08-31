@@ -22,7 +22,7 @@ public class JsonReaderTest {
 	
 	@Before
 	public void init() throws FileNotFoundException {
-		contenedorPersona = new JsonReader().jsonToObject(
+		contenedorPersona = new JsonReader().jsonToObjectFromFile(
 			"C:/persona.json",
 			ContenedorPersonaBean.class
 			);

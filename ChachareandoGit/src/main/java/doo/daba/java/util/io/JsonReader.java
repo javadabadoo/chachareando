@@ -6,10 +6,10 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import java.net.MalformedURLException;
 
 
 
@@ -20,20 +20,39 @@ import lombok.Setter;
 public class JsonReader {
 
 	private Gson gson;
+
 	
-	@Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
-	private String jsonFile;
-
-
-
-	public <T>T jsonToObject(String ubicacion, Type objeto) throws FileNotFoundException {
-
+	
+	public JsonReader() {
 		gson = new Gson();
-		
-		BufferedReader archivoJsonBufferedReader = new BufferedReader(new FileReader(ubicacion));
-		return gson.fromJson(archivoJsonBufferedReader, objeto);
-		
+	}
+	
+	
 
+	public <T>T jsonToObjectFromFile(String ubicacion, Type tipo)
+				throws FileNotFoundException {
+		
+		return this.jsonToObject(new BufferedReader(new FileReader(ubicacion)), tipo);
+		
+	}
+	
+	
+
+	public <T>T jsonToObjectFromWeb(String direccion, Type tipo) 
+				throws FileNotFoundException, MalformedURLException, IOException {
+		
+		LeerContenidoHttp httpReader = new LeerContenidoHttp(direccion);
+		
+		return this.jsonToObject(new BufferedReader(httpReader.obtenerReader()), tipo);
+		
+	}
+	
+	
+
+	public <T>T jsonToObject(Reader reader, Type tipo) {
+		
+		return gson.fromJson(reader, tipo);
+		
 	}
 	
 }
