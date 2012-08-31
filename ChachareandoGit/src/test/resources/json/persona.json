@@ -1,0 +1,22 @@
+{
+	"persona":
+
+	{
+		"nombre":"Pepito",
+		"edad":99,
+		"hijos":[
+			{
+				"nombre":"hugo",
+				"edad":1
+			},
+			{
+				"nombre":"paco",
+				"edad":2
+			},
+			{
+				"nombre":"luis",
+				"edad":3
+			}
+		]
+	}
+}
