@@ -2,7 +2,7 @@ package doo.daba.java.persistencia.mapeo;
 
 
 
-import doo.daba.java.pojo.UsuarioBean;
+import doo.daba.java.beans.UsuarioBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;

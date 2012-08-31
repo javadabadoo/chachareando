@@ -3,7 +3,7 @@ package doo.daba.java.persistencia;
 
 
 import doo.daba.java.persistencia.mapeo.MapeoUsuario;
-import doo.daba.java.pojo.UsuarioBean;
+import doo.daba.java.beans.UsuarioBean;
 import doo.daba.java.util.Propiedades;
 import java.util.List;
 import javax.annotation.PostConstruct;

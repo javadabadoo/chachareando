@@ -3,7 +3,7 @@ package doo.daba.java.pruebas.persistencia;
 
 
 import doo.daba.java.persistencia.ConsultarDatosDao;
-import doo.daba.java.pojo.UsuarioBean;
+import doo.daba.java.beans.UsuarioBean;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
