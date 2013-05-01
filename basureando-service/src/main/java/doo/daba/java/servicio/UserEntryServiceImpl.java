@@ -104,6 +104,21 @@ public class UserEntryServiceImpl implements UserEntryService {
 
 
     /**
+     * @param date  Fecha de la que se obtiene el primer dia de la semana
+     *
+     * @return  Posision en la semana del primer dia. Por default la posision 1
+     *          Corresponde a Domingo, siendo 7 el valor del Sábado
+     */
+    public int getFirstDayPosition(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+
+        return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+
+    /**
      * Invoca al repositorio de datos en busca de los dias en los que se haya realizado una publicación
      *
      * @param date  Fecha de la cual se consultan los dias en los que se ha publicado alguna entrada

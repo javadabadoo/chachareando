@@ -15,6 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,5 +54,12 @@ public class EntradaServicioTest {
         userEntryPage = this.userEntryService.getAllUserEntries(1, false);
 
         assert userEntryPage != null;
+    }
+
+
+    @Test
+    public void testDayOfWeek() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-ddd");
+        assert 2 == this.userEntryService.getFirstDayPosition(df.parse("2013-07-01"));
     }
 }

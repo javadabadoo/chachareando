@@ -8,8 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="pager">
     <c:if test="${userEntryPage.currentPage > 0}">
-        <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.currentPage -1}"
-           class="button previous">Previous</a>
+        <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.currentPage -1}" class="button previous">Previous</a>
     </c:if>
     <div class="pages">
         <c:forEach
@@ -18,15 +17,17 @@
                 end="${(userEntryPage.currentPage + 3) > userEntryPage.totalPages ? userEntryPage.totalPages : userEntryPage.currentPage + 3}"
                 step="1">
             <c:choose>
-                <c:when test="${userEntryPage.currentPage == userEntryIndex}"><a
-                        class="active">${userEntryIndex}</a></c:when>
-                <c:otherwise><a
-                        href="${pageContext.request.contextPath}/consulta/entrada/${userEntryIndex}">${userEntryIndex}</a></c:otherwise>
+                <c:when test="${userEntryPage.currentPage == userEntryIndex}">
+                    <a class="active">${userEntryIndex}</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryIndex}">${userEntryIndex}</a>
+                </c:otherwise>
             </c:choose>
         </c:forEach>
-        <c:if test="${(userEntryPage.currentPage + 4) < userEntryPage.totalPages}">
+        <c:if test="${(userEntryPage.currentPage + 3) < userEntryPage.totalPages}">
             <span>&hellip;</span>
-            <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.totalPages}">${userEntryPage.totalPages - 1}</a>
+            <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.totalPages}">${userEntryPage.totalPages}</a>
         </c:if>
     </div>
 

@@ -26,6 +26,8 @@ public interface UserEntryService {
 
     int getLastDayOfMonth(Date date);
 
+    int getFirstDayPosition(Date date);
+
     List<Integer> getWhichDaysHasEntries(Date date);
 
 }

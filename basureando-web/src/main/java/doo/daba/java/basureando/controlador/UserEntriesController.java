@@ -44,7 +44,6 @@ public class UserEntriesController {
 		Page<UserEntry> userEntryPage = this.userEntryService.getAllUserEntries(page, false);
 
 		model.addAttribute("userEntryPage" , userEntryPage);
-		model.addAttribute("page", page);
 
 		return "index";
 
@@ -101,6 +100,7 @@ public class UserEntriesController {
         daysOfMonthEntries = new DaysOfMonthEntries();
         lastDayOfMonth = this.userEntryService.getLastDayOfMonth(dateToEval);
         activeDays = this.userEntryService.getWhichDaysHasEntries(dateToEval);
+        daysOfMonthEntries.setFirstDayPosition(this.userEntryService.getFirstDayPosition(dateToEval));
 
         for(int day = 1; day <= lastDayOfMonth; day++) {
             daysOfMonthEntries.addMonth(day, activeDays.contains(day));

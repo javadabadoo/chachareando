@@ -14,6 +14,9 @@ import java.util.List;
 public class DaysOfMonthEntries {
 
     @Getter @Setter
+    private int firstDayPosition;
+
+    @Getter @Setter
     private List<DayOfMonth> daysOfMonth;
 
     @NonNull
