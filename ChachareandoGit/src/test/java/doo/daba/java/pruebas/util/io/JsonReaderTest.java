@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -16,6 +17,7 @@ import org.junit.Test;
  *
  * @author Gerardo Aquino
  */
+@Ignore
 public class JsonReaderTest {
 
 	private ContenedorPersonaBean contenedorPersonaArchivo;

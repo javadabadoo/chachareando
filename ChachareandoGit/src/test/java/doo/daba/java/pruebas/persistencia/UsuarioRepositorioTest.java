@@ -2,10 +2,12 @@ package doo.daba.java.pruebas.persistencia;
 
 
 
-import doo.daba.java.persistencia.ConsultarDatosDao;
 import doo.daba.java.beans.UsuarioBean;
+import doo.daba.java.persistencia.UsuarioInterfaceDao;
 import java.util.Date;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,26 +27,29 @@ import org.springframework.util.Assert;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-    "classpath:applicationContext.xml"
+        "classpath:chachareando-context.xml"
 })
+@Ignore
 public class UsuarioRepositorioTest {
 	
 	@Autowired
-	private ConsultarDatosDao<UsuarioBean> consultarDatosDao;
+	private UsuarioInterfaceDao usuarioDao;
 	
 	private UsuarioBean usuario;
 	
 	
 	@Before
 	public void init() {
-		usuario = new UsuarioBean(
+		this.usuario = new UsuarioBean(
 			0,
 			"Pedro",
 			"Picapiedra",
-			"pedro.picapiedra@bufalosmojados",
+			"pedro.picapiedra@bufalosmojados.rock",
 			"pedro.picapiedra",
 			"rocadura",
-			new Date());
+			new Date(),
+			null,
+			true);
 	}
 	
 	
@@ -52,7 +57,7 @@ public class UsuarioRepositorioTest {
 	@Test
 	public void consultarUsuarioTest() {
 		
-		UsuarioBean otroUsuario = consultarDatosDao.select(1);
+		UsuarioBean otroUsuario = this.usuarioDao.select(1);
 		
 		Assert.notNull(otroUsuario);
 		Assert.isTrue(otroUsuario.getNombre().equals("Gerardo"));
@@ -64,7 +69,7 @@ public class UsuarioRepositorioTest {
 	@Test
 	public void eliminarUsuarioTest() {
 		
-		int registroEliminado = consultarDatosDao.delete(usuario);
+		int registroEliminado = this.usuarioDao.delete(this.usuario);
 		
 		Assert.isTrue(registroEliminado == 1);
 	}
@@ -72,7 +77,7 @@ public class UsuarioRepositorioTest {
 	
 	@Test
 	public void registrarUsuarioTest() {
-		int registro = consultarDatosDao.insert(usuario);
+		int registro = this.usuarioDao.insert(this.usuario);
 		
 		Assert.isTrue(registro == 1);
 		
@@ -81,7 +86,7 @@ public class UsuarioRepositorioTest {
 	
 	@Test (expected=DuplicateKeyException.class)
 	public void registrarUsuarioFallidoTest() {
-		consultarDatosDao.insert(usuario);
+		this.usuarioDao.insert(this.usuario);
 	}
 
 }

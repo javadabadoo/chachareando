@@ -12,7 +12,7 @@ import java.util.List;
  * @since 24/08/1012
  * @author Gerardo Aquino
  */
-public interface ConsultarDatosDao<T> {
+public interface DaoInterface<T> {
 
 	int insert(T elemento);
 
@@ -22,7 +22,7 @@ public interface ConsultarDatosDao<T> {
 
 
 
-	List<T> select(T elemento);
+	List<T> select(Object criterio, boolean mostrarDetalle);
 
 
 
