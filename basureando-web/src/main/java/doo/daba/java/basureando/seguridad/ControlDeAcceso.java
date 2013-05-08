@@ -82,7 +82,10 @@ public class  ControlDeAcceso implements AuthenticationManager {
     private UsuarioBean obtenerInformacionDeUsuario(String usuario) {
         
 		UsuarioBean usuarioBean = this.usuarioDao.select(usuario);
-		usuarioBean.setListaDeRoles(this.usuarioDao.obtenerListaDeRoles(usuarioBean.getId()));
+
+        if(usuarioBean != null){
+            usuarioBean.setListaDeRoles(this.usuarioDao.obtenerListaDeRoles(usuarioBean.getId()));
+        }
 		
 		return usuarioBean;
 		

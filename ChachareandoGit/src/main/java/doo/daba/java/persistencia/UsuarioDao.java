@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -104,13 +105,21 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 	 */
 	public UsuarioBean select(String alias) {
 
-		return super.getJdbcTemplate().queryForObject(
-			Propiedades.obtener("sql.consulta.usuario.alias"),
-			new Object[] {
-				alias
-			},
-			new MapeoUsuario(true));
-		
+        UsuarioBean usuario;
+
+        try {
+            usuario =  super.getJdbcTemplate().queryForObject(
+                Propiedades.obtener("sql.consulta.usuario.alias"),
+                new Object[] {
+                    alias
+                },
+                new MapeoUsuario(true));
+        } catch (EmptyResultDataAccessException e) {
+            usuario = null;
+        }
+
+        return usuario;
+
 	}
 	
 	
