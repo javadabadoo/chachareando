@@ -18,12 +18,11 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: XM060EF
+ * User: Gerardo Aquino
  * Date: 29/04/13
  * Time: 09:59 AM
- * To change this template use File | Settings | File Templates.
  */
-public class ControlDeAcceso implements AuthenticationManager {
+public class  ControlDeAcceso implements AuthenticationManager {
 
 
 	@Autowired

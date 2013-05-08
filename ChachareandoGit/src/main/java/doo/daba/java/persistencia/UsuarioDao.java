@@ -126,7 +126,7 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 	public List<String> obtenerListaDeRoles(int idUsuario) {
 
 		return super.getJdbcTemplate().query(
-				Propiedades.obtener(""),
+				Propiedades.obtener("sql.consulta.usuario.roles"),
 				new Object[]{
 					idUsuario
 				},

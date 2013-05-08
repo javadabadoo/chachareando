@@ -6,7 +6,7 @@ package doo.daba.java.basureando;
 
 /**
  *
- * @author XM060EF
+ * @author Gerardo Aquino
  */
 public class EliminaArchivos {
     

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author XM060EF
+ * @author Gerardo Aquino
  */
 public interface UsuarioInterfaceDao extends DaoInterface<UsuarioBean>{
 	
