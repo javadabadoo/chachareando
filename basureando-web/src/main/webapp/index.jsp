@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<spring:url value='/js/jquery-1.9.1.js' var="url_jquery" />
-<spring:url value='/js/jquery-ui.js' var="url_jquery_ui" />
-<spring:url value='/js/usuario.js' var="url_usuario_js" />
-<spring:url value='/css/principal.css' var="url_principal_css" />
-<spring:url value='/css/jquery-ui.css' var="url_jqueryUi_css" />
+<spring:url value="/js/jquery-1.9.1.js" var="url_jquery" />
+<spring:url value="/js/jquery-ui.js" var="url_jquery_ui" />
+<spring:url value="/js/usuario.js" var="url_usuario_js" />
+<spring:url value="/css/principal.css" var="url_principal_css" />
+<spring:url value="/css/jquery-ui.css" var="url_jqueryUi_css" />
+<spring:url value="/inicio" var="url_inicio" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -24,46 +26,36 @@
     </head>
     <body>
         <h2>Inicio</h2> (sin seguridad)
-        <a href="#" onclick="getSysinfo('consulta/json/usuario/javadabadoo')">Carga Informacion</a>
-
 
         <ul id="menu">
             <li class="ui-state-disabled"><a href="#">Aberdeen</a></li>
-            <li><a href="#">Ada</a></li>
-            <li><a href="#">Adamsville</a></li>
-            <li><a href="#">Addyston</a></li>
+            <li><a href="${url_inicio}">Inicio</a></li>
+            <li><a href="#">Mi blog</a></li>
+            <li><a href="#">Actualizaciones</a></li>
+            <li><a href="#">Nueva entrada</a></li>
             <li>
-                <a href="#">Delphi</a>
+                <a href="#">Perfil</a>
                 <ul>
-                    <li class="ui-state-disabled"><a href="#">Ada</a></li>
-                    <li><a href="#">Saarland</a></li>
-                    <li><a href="#">Salzburg</a></li>
+                    <li><a href="#" onclick="javascript:muestraVentana('dialog', 'Mi Perfil!')">Mi perfil</a></li>
+                    <li class="ui-state-disabled"><a href="#">Cambiar password</a></li>
+                    <li><a href="#">Bloquear cuenta</a></li>
                 </ul>
             </li>
-            <li><a href="#">Saarland</a></li>
-            <li>
-                <a href="#">Salzburg</a>
-                <ul>
-                    <li>
-                        <a href="#">Delphi</a>
-                        <ul>
-                            <li><a href="#">Ada</a></li>
-                            <li><a href="#">Saarland</a></li>
-                            <li><a href="#">Salzburg</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Delphi</a>
-                        <ul>
-                            <li><a href="#">Ada</a></li>
-                            <li><a href="#">Saarland</a></li>
-                            <li><a href="#">Salzburg</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Perch</a></li>
-                </ul>
-            </li>
-            <li class="ui-state-disabled"><a href="#">Amesville</a></li>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <li>
+                    <a href="#">Administracion</a>
+                    <ul>
+                        <li class="ui-state-disabled"><a href="#">Usuarios</a></li>
+                        <li class="ui-state-disabled"><a href="#">Entradas</a></li>
+                        <li class="ui-state-disabled"><a href="#">Foros</a></li>
+                        <li><a href="#">Bloquear cuenta</a></li>
+                    </ul>
+                </li>
+            </sec:authorize>
+            <li><a href="j_spring_security_logout">Salir</a></li>
         </ul>
+
+        <div id="dialog" title="Nueva ventana">XXXX</div>
+
     </body>
 </html>
