@@ -6,9 +6,8 @@
 *.war
 *.ear
 *.iml
-/ChachareandoGit/target/
-/ChachareandoGit/.settings/
-/ChachareandoGit/Servers/
-/Servers/
+**/target/*
+**/.settings/*
+**/Servers/*
 /.gradle/
-/.idea
+.idea/*
