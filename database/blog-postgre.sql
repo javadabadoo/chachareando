@@ -34,6 +34,29 @@ CREATE TABLE usuario_rol (
 );
 
 
+CREATE TABLE imagen
+(
+  id serial NOT NULL,
+  nombre character varying(30) NOT NULL,
+  comentario text,
+  imagen bytea NOT NULL,
+  CONSTRAINT imagen_pkey PRIMARY KEY (id)
+);
+
+
+
+
+CREATE TABLE usuario_imagen
+(
+	id serial NOT NULL,
+	id_usuario integer NOT NULL,
+	id_imagen integer NOT NULL,
+	CONSTRAINT usrimg_pkey PRIMARY KEY (id),
+	CONSTRAINT usrimg_usuario_id_fkey FOREIGN KEY (id_usuario) REFERENCES usuario (id),
+	CONSTRAINT usrimg_imagen_id_fkey FOREIGN KEY (id_imagen) REFERENCES imagen (id)
+);
+
+
 
 
 
