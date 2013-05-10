@@ -55,7 +55,7 @@
             <li><a href="j_spring_security_logout">Salir</a></li>
         </ul>
 
-        <div id="dialog" title="Nueva ventana">XXXX</div>
+        <div id="dialog" />
 
     </body>
 </html>

@@ -7,3 +7,42 @@ body {
 .ui-menu {
     width: 150px;
 }
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+
+#contenedor {
+    display: table;
+    width: 100%;
+}
+
+#fila {
+    display: table-row;
+}
+
+#columnaA, #columnaB {
+    display: table-cell;
+}
+
+#usuario-perfil-foto {
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+}
+
+#usuario-perfil-informacion {
+    vertical-align: top;
+    padding: 30px 20px 20px 20px;
+}
+
+
+#usuario-perfil-nombre,
+#usuario-perfil-alias,
+#usuario-perfil-miembroDesde,
+#usuario-perfil-correo {
+    font-weight: bold;
+}
