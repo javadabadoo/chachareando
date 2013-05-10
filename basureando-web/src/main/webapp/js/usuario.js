@@ -22,7 +22,7 @@ function muestraVentana(div, titulo) {
     });
 
     $('#' + div).dialog('open');
-    $('#' + div).load('/estatico/usuario/perfilUsuario.jsp');
+    $('#' + div).load('estatico/usuario/perfilUsuario.jsp');
 }
 
 
@@ -48,10 +48,10 @@ function consultaJson(url) {
 
 
 
-function muestraMiPerfil(){
+function muestraMiPerfil() {
     var json = consultaJson('consulta/json/usuario/javadabadoo');
     $('#informacionPerfil').html(json.alias);
-    $('#usuario-perfil-foto').css('background-image', 'url(/img/usuario.png)');
+    $('#usuario-perfil-foto').css('background-image', 'url(img/usuario.png)');
     $('#usuario-perfil-nombre').html(json.nombre + ' ' + json.apellidos);
     $('#usuario-perfil-alias').html(json.alias);
     $('#usuario-perfil-miembroDesde').html(json.fechaDeRegistro);

@@ -10,7 +10,7 @@
 <spring:url value="/inicio" var="url_inicio" />
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${url_principal_css}" />
         <link rel="stylesheet" href="${url_jqueryUi_css}" />
         <script type="text/javascript" src="${url_jquery}"></script>
@@ -28,7 +28,6 @@
         <h2>Inicio</h2> (sin seguridad)
 
         <ul id="menu">
-            <li class="ui-state-disabled"><a href="#">Aberdeen</a></li>
             <li><a href="${url_inicio}">Inicio</a></li>
             <li><a href="#">Mi blog</a></li>
             <li><a href="#">Actualizaciones</a></li>
