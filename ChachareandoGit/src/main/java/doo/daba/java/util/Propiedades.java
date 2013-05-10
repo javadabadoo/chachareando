@@ -39,8 +39,7 @@ public class Propiedades extends PropertyPlaceholderConfigurer {
      */
 	@Override
 	@SuppressWarnings("deprecation")
-    protected void processProperties (ConfigurableListableBeanFactory beanFactory,
-                                              Properties props) {
+    protected void processProperties (ConfigurableListableBeanFactory beanFactory, Properties props) {
 		super.processProperties (beanFactory, props);
 
 		mapaDePropiedades = new HashMap<String, String> ();
@@ -48,14 +47,21 @@ public class Propiedades extends PropertyPlaceholderConfigurer {
 			String keyStr = key.toString ();
 			mapaDePropiedades.put (
 					keyStr,
-					parseStringValue (props.getProperty (keyStr), props, new HashSet<String> ()));
+					parseStringValue (
+                            props.getProperty (keyStr),
+                            props, new HashSet<String> ()));
 		}
 	}
 
 
 
-	public static String obtener (String name) {
-		return mapaDePropiedades.get (name).toString ();
-	}
+	public static String obtener (String name, Object ... params) {
+
+        return (params == null || params.length == 0) ?
+                mapaDePropiedades.get(name).toString()
+                :
+                String.format(mapaDePropiedades.get(name).toString(), params);
+
+    }
 	
 }
