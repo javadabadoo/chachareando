@@ -29,7 +29,6 @@ import org.springframework.util.Assert;
 @ContextConfiguration(locations = {
         "classpath:chachareando-context.xml"
 })
-@Ignore
 public class UsuarioRepositorioTest {
 	
 	@Autowired

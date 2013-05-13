@@ -188,4 +188,11 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 			});
 		
 	}
+
+
+
+    @Override
+    public int registrarImagenPerfil(int idUsuario, int idImagen) {
+        return super.getJdbcTemplate().update(Propiedades.obtener("sql.registro.usuario.imagen"), idUsuario, idImagen);
+    }
 }

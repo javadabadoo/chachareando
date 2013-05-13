@@ -1,6 +1,8 @@
 package doo.daba.java.beans;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -8,6 +10,8 @@ import lombok.Setter;
  * User: Gerardo Aquino
  * Date: 10/05/13
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class ImagenBean {
 
     @Getter @Setter

@@ -12,5 +12,7 @@ public interface UsuarioInterfaceDao extends DaoInterface<UsuarioBean>{
 	UsuarioBean select(String alias);
 	
 	List<String> obtenerListaDeRoles(int idUsuario);
+
+    int registrarImagenPerfil(int idUsuario, int idImagen);
 	
 }

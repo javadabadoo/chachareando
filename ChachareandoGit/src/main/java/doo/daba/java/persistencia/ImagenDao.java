@@ -3,8 +3,12 @@ package doo.daba.java.persistencia;
 import doo.daba.java.beans.ImagenBean;
 import doo.daba.java.persistencia.mapeo.MapeoImagen;
 import doo.daba.java.util.Propiedades;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -12,7 +16,18 @@ import java.util.List;
  * User: Gerardo Aquino
  * Date: 10/05/13
  */
+@Repository
 public class ImagenDao extends JdbcDaoSupport implements ImagenInterfaceDao {
+
+    @Autowired
+    private DataSource dataSource;
+
+
+
+    @PostConstruct
+    void init() {
+        setDataSource(dataSource);
+    }
 
     @Override
     public int insert(ImagenBean imagen) {

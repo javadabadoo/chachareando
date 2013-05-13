@@ -5,4 +5,18 @@
 	">
 
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:properties/database.properties</value>
+                <value>classpath*:properties/sqlqueries.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="propertyPlaceholderConfigurer" class="doo.daba.java.util.Propiedades">
+        <property name="location" value="classpath:/properties/sqlqueries.properties" />
+    </bean>
+
 </beans>

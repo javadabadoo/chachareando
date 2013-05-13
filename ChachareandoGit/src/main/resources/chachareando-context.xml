@@ -10,5 +10,6 @@
     <import resource="config/ConfiguracionDeBeans.xml"/>
 	<import resource="database/DataSource.xml"/>
 
+    <context:component-scan base-package="doo.daba.java.**" />
 
 </beans>
