@@ -9,6 +9,6 @@
 </head>
 <body>
 	<h2 style="color: red">Acceso Denegado</h2>
-	<a href="./login.jsp">Inicio</a>
+	<a href="/">Inicio</a>
 </body>
 </html>
