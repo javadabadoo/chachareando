@@ -1,20 +1,21 @@
 package doo.daba.java.persistencia;
 
 
-
-import doo.daba.java.persistencia.mapeo.MapeoUsuario;
+import doo.daba.java.beans.ImagenBean;
 import doo.daba.java.beans.UsuarioBean;
+import doo.daba.java.persistencia.mapeo.MapeoUsuario;
 import doo.daba.java.util.Propiedades;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 
 
@@ -45,10 +46,11 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 	 * Agrega un registro a la base de datos en la tabla de usuarios de la aplicación.
 	 * La informacion del registro es tomada del parametro {@code usuario}
 	 * 
-	 * @param usuario	Objeto que encapsula la informacion del usuario que se registra
-	 *					en base de datos
-	 * 
-	 * @return	Numero de registros nuevos en base de datos. Actualmente se espera que
+	 *
+     * @param usuario    Objeto que encapsula la informacion del usuario que se registra
+     *					en base de datos
+     *
+     * @return	Numero de registros nuevos en base de datos. Actualmente se espera que
 	 *			el valor de retorno cuando sea exitoso el registro sea siempre 1. Quizas
 	 *			mas adelante se requiera realziar un registro en batch (que no le veo mucho
 	 *			sentido pero en fin... usemos la imaginacion)

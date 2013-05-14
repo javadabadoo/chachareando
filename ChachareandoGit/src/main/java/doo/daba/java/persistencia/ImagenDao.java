@@ -5,6 +5,7 @@ import doo.daba.java.persistencia.mapeo.MapeoImagen;
 import doo.daba.java.util.Propiedades;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -31,12 +32,16 @@ public class ImagenDao extends JdbcDaoSupport implements ImagenInterfaceDao {
 
     @Override
     public int insert(ImagenBean imagen) {
-        return super.getJdbcTemplate().update(
+        int id = super.getJdbcTemplate().queryForInt(
                 Propiedades.obtener("sql.registro.imagen"),
                 imagen.getNombre(),
                 imagen.getComentario(),
                 imagen.getImagen()
         );
+
+        imagen.setId(id);
+
+        return id;
     }
 
     @Override

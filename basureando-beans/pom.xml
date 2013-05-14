@@ -10,6 +10,14 @@
 	<name>basureando-beans</name>
 	<url>http://maven.apache.org</url>
 
+
+    <parent>
+        <groupId>doo.daba.java</groupId>
+        <artifactId>Chachareando</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

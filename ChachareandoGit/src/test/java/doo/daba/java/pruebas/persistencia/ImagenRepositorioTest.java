@@ -9,8 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Date;
@@ -55,15 +57,21 @@ public class ImagenRepositorioTest {
     @Test
     public void registrarImagen() {
         UsuarioBean usuario = this.usuarioDao.select("javadabadoo");
-        assert this.imagenDao.insert(this.imagen) == 1;
+        assert this.imagenDao.insert(this.imagen) > 0;
         assert this.usuarioDao.registrarImagenPerfil(usuario.getId(), this.imagen.getId()) == 1;
+    }
 
+
+    @Test (expected = DataIntegrityViolationException.class)
+    public void registroDeImagenPerfilInvalido() {
+        this.usuarioDao.registrarImagenPerfil(0, 0);
     }
 
 
     @Test
     public void consultaImagen() {
-        this.imagenDao.selectImagenUsuario(imagen.getId());
+        ImagenBean imagenConsulta = this.imagenDao.selectImagenUsuario(imagen.getId());
+        assert this.imagen.getImagen().equals(imagenConsulta.getImagen());
     }
 
 

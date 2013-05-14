@@ -1,14 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>doo.daba.java</groupId>
 	<artifactId>basureando-web</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
+
 	<name>basureando-web</name>
 	<url>http://maven.apache.org</url>
 
-	<properties>
+
+    <parent>
+        <groupId>doo.daba.java</groupId>
+        <artifactId>Chachareando</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
 		<spring-version>3.1.0.RELEASE</spring-version>
 		<spring-security-version>3.1.0.RELEASE</spring-security-version>
 		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
@@ -22,17 +32,11 @@
             <artifactId>javadabadoo-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>doo.daba.java</groupId>
-            <artifactId>basureando-beans</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
 		
 		<dependency>
 			<groupId>doo.daba.java</groupId>
-			<artifactId>ChachareandoGit</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<artifactId>basureando-service</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
@@ -48,13 +52,6 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.12</version>
         </dependency>
-
-		<!-- Spring 3 dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>

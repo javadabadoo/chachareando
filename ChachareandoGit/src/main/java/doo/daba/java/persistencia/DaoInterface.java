@@ -2,6 +2,8 @@ package doo.daba.java.persistencia;
 
 
 
+import doo.daba.java.beans.ImagenBean;
+
 import java.util.List;
 
 
@@ -14,7 +16,7 @@ import java.util.List;
  */
 public interface DaoInterface<T> {
 
-	int insert(T elemento);
+	int insert(T imagen);
 
 
 

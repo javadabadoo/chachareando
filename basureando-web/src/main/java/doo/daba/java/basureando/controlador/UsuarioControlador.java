@@ -1,7 +1,7 @@
 package doo.daba.java.basureando.controlador;
 
 import doo.daba.java.beans.UsuarioBean;
-import doo.daba.java.persistencia.UsuarioInterfaceDao;
+import doo.daba.java.servicio.interfaces.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UsuarioControlador {
 
     @Autowired
-    UsuarioInterfaceDao usuarioDao;
+    UsuarioServicio usuarioService;
 
 
 
@@ -28,7 +28,7 @@ public class UsuarioControlador {
     public @ResponseBody
     UsuarioBean consultaInformacionDeUsuario(@PathVariable String alias) {
 
-        UsuarioBean usuario = this.usuarioDao.select(alias);
+        UsuarioBean usuario = this.usuarioService.consultarUsuario(alias);
 
         return usuario;
 
@@ -40,7 +40,7 @@ public class UsuarioControlador {
     public @ResponseBody
     UsuarioBean ActualizaInformacionDeUsuario(@PathVariable String alias) {
 
-        UsuarioBean usuario = this.usuarioDao.select(alias);
+        UsuarioBean usuario = this.usuarioService.consultarUsuario(alias);
 
         return usuario;
 

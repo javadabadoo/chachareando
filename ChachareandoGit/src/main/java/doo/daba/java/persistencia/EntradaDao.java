@@ -1,7 +1,7 @@
 package doo.daba.java.persistencia;
 
-import doo.daba.java.persistencia.mapeo.MapeoEntrada;
 import doo.daba.java.beans.EntradaBean;
+import doo.daba.java.persistencia.mapeo.MapeoEntrada;
 import doo.daba.java.util.Propiedades;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class EntradaDao extends JdbcDaoSupport implements DaoInterface<EntradaBean> {
 	
     @Override
-    public int insert(EntradaBean elemento) {
+    public int insert(EntradaBean imagen) {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
