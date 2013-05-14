@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>doo.daba.java</groupId>
+    <artifactId>basureando-service</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>basureando-service</name>
+    <url>http://maven.apache.org</url>
+
+
+    <parent>
+        <groupId>doo.daba.java</groupId>
+        <artifactId>Chachareando</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>3.1.0.RELEASE</org.springframework.version>
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>doo.daba.java</groupId>
+            <artifactId>ChachareandoGit</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+Support for testing Spring applications with tools such as JUnit and TestNG
+This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
