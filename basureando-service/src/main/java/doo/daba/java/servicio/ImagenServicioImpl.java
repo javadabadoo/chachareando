@@ -37,6 +37,6 @@ public class ImagenServicioImpl implements ImagenServicio {
 
     @Override
     public ImagenBean consultarImagenPerfilUsuario(int idUsuario) {
-        return this.consultarImagenPerfilUsuario(idUsuario);
+        return this.imagenDao.selectImagenUsuario(idUsuario);
     }
 }

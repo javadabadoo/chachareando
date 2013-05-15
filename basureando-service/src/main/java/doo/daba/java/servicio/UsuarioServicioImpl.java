@@ -41,7 +41,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public UsuarioBean consultarUsuario(String alias) {
-        return this.consultarUsuario(alias);
+        return this.usuarioDao.select(alias);
     }
 
 
