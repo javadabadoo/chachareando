@@ -15,11 +15,12 @@
     </bean>
 
 
-    <bean id="propertyPlaceholderConfigurer" class="doo.daba.java.util.Propiedades">
+    <bean id="BasureandoCustomProperties" class="doo.daba.java.util.Propiedades">
         <property name="locations">
             <list>
                 <value>classpath:/properties/mensajes.properties</value>
                 <value>classpath:/properties/sqlqueries.properties</value>
+                <value>classpath:/properties/basureando.properties</value>
             </list>
         </property>
     </bean>
