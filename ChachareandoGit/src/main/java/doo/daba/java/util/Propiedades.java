@@ -21,6 +21,11 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 public class Propiedades extends PropertyPlaceholderConfigurer {
 
 
+    static {
+        mapaDePropiedades = new HashMap<String, String> ();
+    }
+
+
 	/**
 	 * Propiedad que almacena las propiedades leidas del archivo properties
 	 */
@@ -42,7 +47,6 @@ public class Propiedades extends PropertyPlaceholderConfigurer {
     protected void processProperties (ConfigurableListableBeanFactory beanFactory, Properties props) {
 		super.processProperties (beanFactory, props);
 
-		mapaDePropiedades = new HashMap<String, String> ();
 		for (Object key : props.keySet ()) {
 			String keyStr = key.toString ();
 			mapaDePropiedades.put (
