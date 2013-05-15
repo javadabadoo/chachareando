@@ -15,7 +15,7 @@
     </bean>
 
 
-    <bean id="propertyPlaceholderConfigurer" class="doo.daba.java.util.Propiedades">
+    <bean id="chachareandoGitCustomProperties" class="doo.daba.java.util.Propiedades">
         <property name="location" value="classpath:/properties/sqlqueries.properties" />
     </bean>
 

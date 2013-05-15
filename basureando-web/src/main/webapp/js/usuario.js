@@ -51,7 +51,7 @@ function consultaJson(url) {
 function muestraMiPerfil() {
     var json = consultaJson('consulta/json/usuario/javadabadoo');
     $('#informacionPerfil').html(json.alias);
-    $('#usuario-perfil-foto').css('background-image', 'url(img/usuario.png)');
+    $('#usuario-perfil-foto').css('background-image', 'url(consulta/imagen/usuario/perfil/' + json.id + ')');
     $('#usuario-perfil-nombre').html(json.nombre + ' ' + json.apellidos);
     $('#usuario-perfil-alias').html(json.alias);
     $('#usuario-perfil-miembroDesde').html(json.fechaDeRegistro);
