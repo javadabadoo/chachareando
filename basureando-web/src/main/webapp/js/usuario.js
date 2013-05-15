@@ -32,7 +32,7 @@ function consultaJson(url) {
     $.ajax({
         url: url,
         type: 'GET',
-        async:false,
+        async: false,
         dataType: 'json',
         success: function (data) {
             json = data;

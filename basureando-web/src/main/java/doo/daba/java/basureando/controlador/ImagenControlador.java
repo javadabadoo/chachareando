@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -36,23 +38,36 @@ public class ImagenControlador {
             method = RequestMethod.GET,
             produces = "image/png"
     )
-    public byte[] consultarImagenDePerfil(@PathVariable int idUsuario) throws IOException {
+    public byte[] consultarImagenDePerfil(@PathVariable int idUsuario,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response) {
 
         byte[] imagenUsuario = null;
         ImagenBean imagen = null;
 
+        //TODO Mejorar la carga de imagenes, no me gusta como se obtiene
         try {
             imagen = this.imagenServicio.consultarImagenPerfilUsuario(idUsuario);
             imagenUsuario = imagen.getImagen();
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
-            URL url = new URL(Propiedades.obtener("usaurio.imagen.default"));
-            BufferedImage image = ImageIO.read(url);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write( image, "png", baos );
-            baos.flush();
-            imagenUsuario = baos.toByteArray();
-            baos.close();
+            try {
+                URL url = new URL(
+                        String.format(
+                                "%s://%s:%s/%s/%s",
+                                request.getScheme(),
+                                request.getServerName(),
+                                request.getServerPort(),
+                                request.getContextPath(),
+                                Propiedades.obtener("usaurio.imagen.default")));
+                BufferedImage image = ImageIO.read(url);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write( image, "png", baos );
+                baos.flush();
+                imagenUsuario = baos.toByteArray();
+                baos.close();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
 
         return imagenUsuario;
