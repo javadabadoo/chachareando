@@ -28,15 +28,15 @@ public class MapeoEntrada implements RowMapper<EntradaBean> {
 
         EntradaBean entradaBean = new EntradaBean();
 
-        entradaBean.setId(rs.getInt("entrada"));
+        entradaBean.setId(rs.getInt("id"));
         entradaBean.setTitulo(rs.getString("titulo"));
         entradaBean.setEstado(rs.getString("estado"));
-        entradaBean.setIdUsuario(rs.getInt("id_usuario"));
+        entradaBean.setIdUsuario(rs.getInt("usuario_id"));
 
         if (mostrarDetalle) {
             entradaBean.setContenido(rs.getString("contenido"));
-            entradaBean.setFechaPublicacion(rs.getDate("fecha_de_creacion"));
-            entradaBean.setFechaModificacion(rs.getDate("fecha_de_modificacion"));
+            entradaBean.setFechaPublicacion(rs.getTimestamp("fecha_de_creacion"));
+            entradaBean.setFechaModificacion(rs.getTimestamp("fecha_de_modificacion"));
         }
 
         return entradaBean;

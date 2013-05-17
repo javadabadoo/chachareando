@@ -32,8 +32,9 @@ public class ImagenDao extends JdbcDaoSupport implements ImagenInterfaceDao {
 
     @Override
     public int insert(ImagenBean imagen) {
-        int id = super.getJdbcTemplate().queryForInt(
+        int id = super.getJdbcTemplate().queryForObject(
                 Propiedades.obtener("sql.registro.imagen"),
+                Integer.class,
                 imagen.getNombre(),
                 imagen.getComentario(),
                 imagen.getImagen()
@@ -69,7 +70,7 @@ public class ImagenDao extends JdbcDaoSupport implements ImagenInterfaceDao {
     }
 
     @Override
-    public List<ImagenBean> selectAll() {
+    public List<ImagenBean> selectAll(boolean mostrarDetalle) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

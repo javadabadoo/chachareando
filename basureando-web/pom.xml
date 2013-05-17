@@ -19,11 +19,10 @@
 
 
     <properties>
-		<spring-version>3.1.0.RELEASE</spring-version>
-		<spring-security-version>3.1.0.RELEASE</spring-security-version>
-		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+		<spring-version>3.2.2.RELEASE</spring-version>
+		<spring-security-version>3.1.4.RELEASE</spring-security-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    </properties>
 
 	<dependencies>
 

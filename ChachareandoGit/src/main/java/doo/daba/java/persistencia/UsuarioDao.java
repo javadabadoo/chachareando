@@ -159,7 +159,7 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 
 
 	@Override
-	public final List<UsuarioBean> selectAll() {
+	public final List<UsuarioBean> selectAll(boolean mostrarDetalle) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

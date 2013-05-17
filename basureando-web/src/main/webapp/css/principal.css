@@ -1,6 +1,26 @@
 body {
 	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
-	font-size: 62.5%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 30px 0px;
+	font-size: 11px;
+}
+
+
+#menuSuperior a {
+	font-weight: bold;
+	color: #DDD;
+	text-decoration: none;
+}
+
+#menuSuperior a:visited {
+	
+}
+
+#menuSuperior a:hover {
+	text-shadow: 0px 0px 10px rgba(255,255,255,0.6), 0px 0px 10px rgba(255,255,255,0.7), 0px 0px 50px rgba(255,255,255,0.7), 0px 0px 180px rgba(255,255,255,0.7);
+    color: rgba(255,255,255,1);
+
+
 }
 
 
@@ -15,9 +35,22 @@ table {
 }
 
 
-#contenedor {
+h1 {
+	font-family: fantasy;
+	font-size: 22px;
+}
+
+
+h2 {
+	font-family: fantasy;
+	font-size: 17px;
+}
+
+
+#contenedor, #principal {
     display: table;
     width: 100%;
+	font-size: 11px;
 }
 
 #fila {
@@ -34,9 +67,10 @@ table {
     width: 150px;
 }
 
-#usuario-perfil-informacion {
+#tablaInformacionDePerfil, #usuario-perfil-informacion {
     vertical-align: top;
     padding: 30px 20px 20px 20px;
+	font-size: 11px;
 }
 
 
@@ -45,4 +79,61 @@ table {
 #usuario-perfil-miembroDesde,
 #usuario-perfil-correo {
     font-weight: bold;
+}
+
+
+
+#principal {
+	border: 1px #DDD solid;
+	background-color: #FFF;
+	border-radius:3px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 400px;
+	padding: 30px 10px 30px 10px;
+	width: 900px;
+}
+
+
+
+#divBanned {
+	background-color: #000000;
+	background-image: url(../img/banned-bg-1920x1200.jpg);
+	background-position: center;
+	color: #CCCCCC;
+	min-height: 120px;
+	width: 100%;
+}
+
+
+#divMenuPrincipal {
+    display: table-cell;
+	width: 155px;
+	font-size: 9px;
+}
+
+
+
+#contenidoPrincipal {
+	display: table-cell;
+	padding: 10px 50px 50px 50px;
+	min-height: 100px;
+	width: 100%;
+	
+}
+
+
+
+.pipeSeparadorMenu {
+	padding: 0px 5px 0px 5px;
+	color: #FFF;
+}
+
+
+
+#menuSuperior {
+	background-color: #555555;
+	font-weight: bolder;
+	padding: 3px 15px 5px 15px;
+	text-align: right;
 }

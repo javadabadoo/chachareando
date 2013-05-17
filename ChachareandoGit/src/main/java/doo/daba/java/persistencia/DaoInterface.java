@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface DaoInterface<T> {
 
-	int insert(T imagen);
+	int insert(T elemento);
 
 
 
@@ -28,7 +28,7 @@ public interface DaoInterface<T> {
 
 
 
-	List<T> selectAll();
+	List<T> selectAll(boolean mostrarDetalle);
 
 
 
