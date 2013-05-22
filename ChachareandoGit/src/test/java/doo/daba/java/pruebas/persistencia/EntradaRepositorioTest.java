@@ -22,7 +22,6 @@ import java.util.List;
 @ContextConfiguration(locations = {
         "classpath:chachareando-context.xml"
 })
-@Transactional
 public class EntradaRepositorioTest {
 
     @Autowired
@@ -38,7 +37,7 @@ public class EntradaRepositorioTest {
         this.entrada.setFechaPublicacion(new Date());
         this.entrada.setContenido("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
         this.entrada.setEstado("vigente");
-        this.entrada.setIdUsuario(1);
+        this.entrada.setIdUsuario(2);
     }
 
 

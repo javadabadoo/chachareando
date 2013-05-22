@@ -1,10 +1,12 @@
 package doo.daba.java.beans;
 
+import doo.daba.java.beans.util.JsonFechaSerializador;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 import lombok.AccessLevel;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,24 +18,20 @@ import lombok.AccessLevel;
 public class EntradaBean {
 
     @Getter @Setter
-    private int id;
-
-    @Getter @Setter
-    private String titulo;
-
-    @Getter @Setter
-    private Date fechaPublicacion;
-
-    @Getter @Setter
-    private Date fechaModificacion;
+    private int
+		    id,
+		    idUsuario;
 
     @Getter @Setter(AccessLevel.PUBLIC)
-    private String estado;
+    private String
+		    estado,
+		    contenido,
+		    titulo;
 
-    @Getter @Setter
-    private String contenido;
-
-    @Getter @Setter
-    private int idUsuario;
+	@JsonSerialize(using=JsonFechaSerializador.class)
+	@Getter @Setter
+	private Date
+			fechaPublicacion,
+			fechaModificacion;
 
 }
