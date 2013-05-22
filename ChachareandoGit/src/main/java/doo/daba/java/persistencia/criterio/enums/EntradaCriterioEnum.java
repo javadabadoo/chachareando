@@ -44,7 +44,7 @@ public enum EntradaCriterioEnum implements Criterio {
 
         return  String.format(
                 " %s %s %s ?",
-                this.operador,
+                this.operador.getOperador(),
                 this.getColumna(),
                 this.comparador.getComparador());
     }
