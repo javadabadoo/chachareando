@@ -18,7 +18,7 @@ public interface EntradaServicio {
 
     List<EntradaBean> consultarEntradasDeUsuario(int idUsuario, boolean mostrarDetalle);
 
-    List<EntradaBean> consultarEntradas(boolean mostrarDetalle);
+    List<EntradaBean> consultarEntradas(String criterio, boolean mostrarDetalle);
 
 
 }

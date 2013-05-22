@@ -1,6 +1,10 @@
 package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.EntradaBean;
+import doo.daba.java.persistencia.criterio.Criterio;
+import doo.daba.java.persistencia.criterio.CriterioConsulta;
+import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.enums.EntradaCriterioEnum;
 import doo.daba.java.persistencia.mapeo.MapeoEntrada;
 import doo.daba.java.util.Propiedades;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,19 +84,22 @@ public class EntradaDao extends JdbcDaoSupport implements EntradaInterfaceDao {
      * Obtiene todas las entradas del usuario del cual su identificador en la DB sea
      * el definido en el parametro {@code idUsuario}
      *
-     * @param idUsuario         Identificador del usuario del cual se obtienen las entradas
+     * @param criterio          Define los criterios de búsqueda predefinidos para realizar la consulta
      * @param mostrarDetalle    Indica si debe mostrarse la información completa del
      *                          registro de entrada o solo se muestra el resumen
+     *@param parametros         Parametros de consulta
      *
      * @return  Lista de entradas asociadas al usuario
      */
     @Override
-    public List<EntradaBean> select(Object idUsuario, boolean mostrarDetalle) {
+    public List<EntradaBean> select(CriterioConsulta criterio, boolean mostrarDetalle, Object ... parametros) {
+
+        CriterioConsulta cirterio = new EntradaCriterio(EntradaCriterioEnum.USUARIO);
 
         return super.getJdbcTemplate().query(
-                Propiedades.obtener("sql.consulta.entrada.historial.usuario"),
+                Propiedades.obtener("sql.consulta.entrada.historial.usuario", criterio.toString()),
                 new MapeoEntrada(true),
-                idUsuario);
+                parametros);
 
     }
 

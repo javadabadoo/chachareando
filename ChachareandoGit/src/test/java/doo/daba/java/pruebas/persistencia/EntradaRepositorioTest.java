@@ -2,6 +2,8 @@ package doo.daba.java.pruebas.persistencia;
 
 import doo.daba.java.beans.EntradaBean;
 import doo.daba.java.persistencia.EntradaInterfaceDao;
+import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.enums.EntradaCriterioEnum;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +24,7 @@ import java.util.List;
 @ContextConfiguration(locations = {
         "classpath:chachareando-context.xml"
 })
+@Transactional
 public class EntradaRepositorioTest {
 
     @Autowired
@@ -63,7 +66,17 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasDeUsuarioTest() {
         this.registrarEntradaTest();
-        List<EntradaBean> entradaLista = this.entradaDao.select(1, true);
+        List<EntradaBean> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaCriterioEnum.USUARIO), true, 1);
+
+        assert ! entradaLista.isEmpty();
+    }
+
+
+
+    @Test
+    public void consultarEntradasPorTituloTest() {
+        this.registrarEntradaTest();
+        List<EntradaBean> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaCriterioEnum.TITULO), true, "%itulo%");
 
         assert ! entradaLista.isEmpty();
     }

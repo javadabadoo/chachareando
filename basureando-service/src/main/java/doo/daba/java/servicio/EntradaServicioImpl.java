@@ -3,6 +3,9 @@ package doo.daba.java.servicio;
 import doo.daba.java.beans.EntradaBean;
 import doo.daba.java.persistencia.DaoInterface;
 import doo.daba.java.persistencia.EntradaDao;
+import doo.daba.java.persistencia.criterio.CriterioConsulta;
+import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.enums.EntradaCriterioEnum;
 import doo.daba.java.servicio.interfaces.EntradaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,13 +44,14 @@ public class EntradaServicioImpl implements EntradaServicio {
 
     @Override
     public List<EntradaBean> consultarEntradasDeUsuario(int idUsuario, boolean mostrarDetalle) {
-        return this.entradaDao.select(idUsuario, mostrarDetalle);
+        CriterioConsulta criterio = new EntradaCriterio(EntradaCriterioEnum.USUARIO);
+        return this.entradaDao.select(criterio, mostrarDetalle, idUsuario);
     }
 
 
 
     @Override
-    public List<EntradaBean> consultarEntradas(boolean mostrarDetalle) {
+    public List<EntradaBean> consultarEntradas(String criterio, boolean mostrarDetalle) {
         return this.entradaDao.selectAll(mostrarDetalle);
     }
 }

@@ -3,6 +3,7 @@ package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.ImagenBean;
 import doo.daba.java.beans.UsuarioBean;
+import doo.daba.java.persistencia.criterio.CriterioConsulta;
 import doo.daba.java.persistencia.mapeo.MapeoUsuario;
 import doo.daba.java.util.Propiedades;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,7 +153,7 @@ public class UsuarioDao extends JdbcDaoSupport implements UsuarioInterfaceDao {
 
 
 	@Override
-	public final List<UsuarioBean> select(final Object criterio, boolean mostrarDetalle) {
+	public final List<UsuarioBean> select(CriterioConsulta criterio, boolean mostrarDetalle, Object ... parametros) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

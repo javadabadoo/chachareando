@@ -5,6 +5,7 @@
 function renderizaGridEntrada() {
 
     $('#datatable').dataTable({
+        bJQueryUI: true,
         bProcessing: true,
         bServerSide: true,
         sAjaxSource: 'consulta/entrada',

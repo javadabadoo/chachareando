@@ -3,6 +3,7 @@ package doo.daba.java.persistencia;
 
 
 import doo.daba.java.beans.ImagenBean;
+import doo.daba.java.persistencia.criterio.CriterioConsulta;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface DaoInterface<T> {
 
 
 
-	List<T> select(Object criterio, boolean mostrarDetalle);
+	List<T> select(CriterioConsulta criterio, boolean mostrarDetalle, Object ... parametros);
 
 
 

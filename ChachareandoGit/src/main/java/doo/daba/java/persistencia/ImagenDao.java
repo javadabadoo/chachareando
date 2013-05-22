@@ -1,6 +1,7 @@
 package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.ImagenBean;
+import doo.daba.java.persistencia.criterio.CriterioConsulta;
 import doo.daba.java.persistencia.mapeo.MapeoImagen;
 import doo.daba.java.util.Propiedades;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class ImagenDao extends JdbcDaoSupport implements ImagenInterfaceDao {
     }
 
     @Override
-    public List<ImagenBean> select(Object criterio, boolean mostrarDetalle) {
+    public List<ImagenBean> select(CriterioConsulta criterio, boolean mostrarDetalle, Object ... parametros) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

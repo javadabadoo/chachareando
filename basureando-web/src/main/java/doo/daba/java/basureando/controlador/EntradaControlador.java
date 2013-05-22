@@ -44,7 +44,7 @@ public class EntradaControlador {
 			value="/consulta/entrada",
 			method = RequestMethod.GET
 	)
-	public RespuestaJson<List<EntradaBean>> consultaEntradas() {
+	public RespuestaJson<List<EntradaBean>> consultaEntradas(@RequestParam String sSearch) {
 		RespuestaJson<List<EntradaBean>> respuesta = new RespuestaJson<List<EntradaBean>>();
 
 		respuesta.setAaData(this.entradaServicio.consultarEntradas(false));
