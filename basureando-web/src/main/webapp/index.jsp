@@ -4,6 +4,7 @@
 <spring:url value="/js/jquery-ui.js" var="url_jquery_ui" />
 <spring:url value="/js/principal.js" var="url_principal_js" />
 <spring:url value="/js/usuario.js" var="url_usuario_js" />
+<spring:url value="/js/entrada.js" var="url_entrada_js" />
 <spring:url value="/js/jquery.dataTables.js" var="url_dataTables_js" />
 <spring:url value="/css/principal.css" var="url_principal_css" />
 <spring:url value="/css/jquery-ui.css" var="url_jqueryUi_css" />
@@ -20,7 +21,8 @@
     <script type="text/javascript" src="${url_jquery_ui}"></script>
     <script type="text/javascript" src="${url_principal_js}"></script>
     <script type="text/javascript" src="${url_usuario_js}"></script>
-    <script type="text/javascript" language="javascript" src="${url_dataTables_js}"></script>
+    <script type="text/javascript" src="${url_entrada_js}"></script>
+    <script type="text/javascript" src="${url_dataTables_js}"></script>
     <title>Inicio Basureando</title>
 </head>
 <body>
