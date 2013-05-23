@@ -52,6 +52,6 @@ public class EntradaServicioImpl implements EntradaServicio {
 
     @Override
     public List<EntradaBean> consultarEntradas(String criterio, boolean mostrarDetalle) {
-        return this.entradaDao.selectAll(mostrarDetalle);
+        return this.entradaDao.select(new EntradaCriterio(EntradaCriterioEnum.TITULO), mostrarDetalle, criterio);
     }
 }

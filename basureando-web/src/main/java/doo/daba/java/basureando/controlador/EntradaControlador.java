@@ -47,7 +47,7 @@ public class EntradaControlador {
 	public RespuestaJson<List<EntradaBean>> consultaEntradas(@RequestParam String sSearch) {
 		RespuestaJson<List<EntradaBean>> respuesta = new RespuestaJson<List<EntradaBean>>();
 
-		respuesta.setAaData(this.entradaServicio.consultarEntradas(false));
+		respuesta.setAaData(this.entradaServicio.consultarEntradas(String.format("%%%s%%", sSearch), false));
 		respuesta.setITotalDisplayRecords(r.nextInt(100));
 		respuesta.setITotalRecords(r.nextInt(100));
 
