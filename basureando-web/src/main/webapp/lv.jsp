@@ -16,8 +16,12 @@
         $(document).ready(function() {
             var sayHello = new LiveValidation( "nombre", { validMessage: "Hey there!", wait: 500 } );
             var bg = '<div style="background-image: css/images/ui-icons_cd0a0a_256x240.png"> ';
-            sayHello.add( Validate.Presence,
-                    { failureMessage: '<div style="background-image: url(css/images/ui-icons_cd0a0a_256x240.png); height: 16px; width: 16px; background-position: 224px 48px;"></div>'} );
+            sayHello.add(
+                    Validate.Presence,
+                    {
+                        failureMessage: 'Campo requerido'
+                    } );
+            sayHello.add(Validate.Email);
         });
     </script>
     <style type="text/css">
@@ -50,6 +54,14 @@
         textarea.LV_invalid_field:active {
             border: 1px solid #CC0000;
         }
+
+        .imagenError {
+            height: 16px;
+            width: 16px;
+            float: left;
+            background-image: url(css/images/ui-icons_cd0a0a_256x240.png);
+            background-position: 224px 48px;
+        }
     </style>
     <title></title>
 </head>
@@ -62,7 +74,7 @@
     <table>
         <tr>
             <td><input type="text" id="nombre" required="required" /></td>
-            <td>&nbsp;...</td>
+            <td id="formulario_nombre_message">&nbsp;...</td>
         </tr>
         <tr>
             <td><input type="text" id="apellidoPaterno" required="required" /></td>

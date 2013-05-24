@@ -86,6 +86,8 @@ LiveValidation.prototype = {
         var options = optionsObj || {};
         this.validMessage = options.validMessage || 'Thankyou!';
         var node = options.insertAfterWhatNode || this.element;
+        this.idValidationMessage = this.form.id + '_' + node.id + '_message';
+        this.validationMessageNode = document.getElementById(this.idValidationMessage);
         this.insertAfterWhatNode = node.nodeType ? node : document.getElementById(node);
         this.onValid = options.onValid || function () {
             this.insertMessage(this.createMessageSpan());
@@ -392,15 +394,17 @@ LiveValidation.prototype = {
      */
     insertMessage: function (elementToInsert) {
         this.removeMessage();
-        if ((this.displayMessageWhenEmpty && (this.elementType == LiveValidation.CHECKBOX || this.element.value == ''))
-            || this.element.value != '') {
+
+
+        if ((this.displayMessageWhenEmpty && (this.elementType == LiveValidation.CHECKBOX || this.element.value == '')) || this.element.value != '') {
+            var errorIcon = document.createElement('div');
             var className = this.validationFailed ? this.invalidClass : this.validClass;
+
+            errorIcon.className = 'imagenError';
             elementToInsert.className += ' ' + this.messageClass + ' ' + className;
-            if (this.insertAfterWhatNode.nextSibling) {
-                this.insertAfterWhatNode.parentNode.insertBefore(elementToInsert, this.insertAfterWhatNode.nextSibling);
-            } else {
-                this.insertAfterWhatNode.parentNode.appendChild(elementToInsert);
-            }
+
+            this.validationMessageNode.appendChild(errorIcon);
+            this.validationMessageNode.appendChild(elementToInsert);
         }
     },
 
@@ -423,16 +427,9 @@ LiveValidation.prototype = {
      *    removes the message element if it exists, so that the new message will replace it
      */
     removeMessage: function () {
-        var nextEl;
-        var el = this.insertAfterWhatNode;
-        while (el.nextSibling) {
-            if (el.nextSibling.nodeType === 1) {
-                nextEl = el.nextSibling;
-                break;
-            }
-            el = el.nextSibling;
+        while (this.validationMessageNode.firstChild) {
+            this.validationMessageNode.removeChild(this.validationMessageNode.firstChild);
         }
-        if (nextEl && nextEl.className.indexOf(this.messageClass) != -1) this.insertAfterWhatNode.parentNode.removeChild(nextEl);
     },
 
     /**
