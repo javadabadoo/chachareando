@@ -14,14 +14,20 @@
     <script type="text/javascript" src="${url_liveValidation}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var sayHello = new LiveValidation( "nombre", { validMessage: "Hey there!", wait: 500 } );
-            var bg = '<div style="background-image: css/images/ui-icons_cd0a0a_256x240.png"> ';
-            sayHello.add(
+            var nombre = new LiveValidation( "nombre", { validMessage: "Correcto!", wait: 100 } );
+            var apellidoPaterno = new LiveValidation( "apellidoPaterno", { validMessage: "Este si es válido", wait: 100 } );
+
+            nombre.add(
                     Validate.Presence,
                     {
                         failureMessage: 'Campo requerido'
                     } );
-            sayHello.add(Validate.Email);
+
+            nombre.add(Validate.Email);
+
+            apellidoPaterno.add(
+                    Validate.Numericality, { is: 2000 }
+            );
         });
     </script>
     <style type="text/css">
@@ -29,10 +35,11 @@
         .LV_validation_message{
             font-weight:bold;
             margin:0 0 0 5px;
+            float: left;
         }
 
         .LV_valid {
-            color:#00CC00;
+            color:#8DC262;
         }
 
         .LV_invalid {
@@ -44,7 +51,7 @@
         input.LV_valid_field:active,
         textarea.LV_valid_field:hover,
         textarea.LV_valid_field:active {
-            border: 1px solid #00CC00;
+            border: 1px solid #8DC262;
         }
 
         .LV_invalid_field,
@@ -55,12 +62,20 @@
             border: 1px solid #CC0000;
         }
 
-        .imagenError {
+        .ko_validation_image {
             height: 16px;
             width: 16px;
             float: left;
             background-image: url(css/images/ui-icons_cd0a0a_256x240.png);
             background-position: 224px 48px;
+        }
+
+        .ok_validation_image {
+            height: 16px;
+            width: 16px;
+            float: left;
+            background-image: url(css/images/ui-icons_8DC262_256x240.png);
+            background-position: 192px 96px;
         }
     </style>
     <title></title>
@@ -74,11 +89,11 @@
     <table>
         <tr>
             <td><input type="text" id="nombre" required="required" /></td>
-            <td id="formulario_nombre_message">&nbsp;...</td>
+            <td id="formulario_nombre_message">&nbsp;Texto <span class="LV_valid LV_validation_message">Inicial</span></td>
         </tr>
         <tr>
             <td><input type="text" id="apellidoPaterno" required="required" /></td>
-            <td>&nbsp;</td>
+            <td id="formulario_apellidoPaterno_message"></td>
         </tr>
         <tr>
             <td><input type="text" id="apellidoMaterno"/></td>
