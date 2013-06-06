@@ -400,7 +400,7 @@ LiveValidation.prototype = {
             var errorIcon = document.createElement('div');
             var className = this.validationFailed ? this.invalidClass : this.validClass;
 
-            errorIcon.className = this.validationFailed ? 'ko_validation_image' : 'ok_validation_image';
+            errorIcon.className = 'imagenError';
             elementToInsert.className += ' ' + this.messageClass + ' ' + className;
 
             this.validationMessageNode.appendChild(errorIcon);
@@ -427,16 +427,8 @@ LiveValidation.prototype = {
      *    removes the message element if it exists, so that the new message will replace it
      */
     removeMessage: function () {
-
-        var childNodesList = this.validationMessageNode.childNodes;
-
-        for (var childIndex = childNodesList.length - 1; childIndex >= 0; childIndex--) {
-            if (
-                    childNodesList[childIndex] != undefined
-                        && childNodesList[childIndex].className != undefined
-                        && childNodesList[childIndex].className.indexOf('validation') !== -1) {
-                this.validationMessageNode.removeChild(childNodesList[childIndex]);
-            }
+        while (this.validationMessageNode.firstChild) {
+            this.validationMessageNode.removeChild(this.validationMessageNode.firstChild);
         }
     },
 
