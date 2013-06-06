@@ -20,22 +20,35 @@
             nombre.add(
                     Validate.Presence,
                     {
-                        failureMessage: 'Campo requerido'
-                    } );
+                        failureMessage: 'Requerido'
+                    });
 
-            nombre.add(Validate.Email);
+            nombre.add(
+                    Validate.Email,
+                    {
+                        failureMessage: 'Dirección inválida'
+                    });
 
             apellidoPaterno.add(
-                    Validate.Numericality, { is: 2000 }
+                    Validate.Length,
+                    {
+                        minimum: 2,
+                        maximum: 10,
+                        failureMessage: ' asd',
+                        message: 'zxczxc'
+                    }
             );
         });
     </script>
     <style type="text/css">
 
         .LV_validation_message{
+            font-size: 9px;
+            font-family: arial;
             font-weight:bold;
-            margin:0 0 0 5px;
+            margin:3px 0 0 5px;
             float: left;
+            vertical-align: bottom;
         }
 
         .LV_valid {
@@ -51,7 +64,7 @@
         input.LV_valid_field:active,
         textarea.LV_valid_field:hover,
         textarea.LV_valid_field:active {
-            border: 1px solid #8DC262;
+            border-bottom: 1px dashed #8DC262;
         }
 
         .LV_invalid_field,
@@ -59,7 +72,25 @@
         input.LV_invalid_field:active,
         textarea.LV_invalid_field:hover,
         textarea.LV_invalid_field:active {
-            border: 1px solid #CC0000;
+            border-bottom: 2px dashed #CC0000;
+        }
+
+
+
+        input,
+        input:hover,
+        input:active,
+        textarea:active {
+            border: 1px dotted #CCC;
+            border-top: 1px dotted #F1F1F1;
+            border-left: 1px dotted #F1F1F1;
+            border-right: 1px dotted #F1F1F1;
+        }
+
+
+        input:hover {
+
+            border-bottom:  1px dashed #999;
         }
 
         .ko_validation_image {
@@ -83,8 +114,8 @@
 <body>
 
 <h2>Validacion de form</h2>
+<span id="formulario_apellidoPaterno_message"></span>
 <br />
-
 <form id="formulario" method="get" action="#submited">
     <table>
         <tr>
@@ -93,10 +124,10 @@
         </tr>
         <tr>
             <td><input type="text" id="apellidoPaterno" required="required" /></td>
-            <td id="formulario_apellidoPaterno_message"></td>
+            <td id="asd"></td>
         </tr>
         <tr>
-            <td><input type="text" id="apellidoMaterno"/></td>
+            <td><input type="text" id="apellidoMaterno" name="usuario.nombre"/></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
