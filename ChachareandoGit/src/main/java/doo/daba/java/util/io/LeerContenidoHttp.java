@@ -102,6 +102,9 @@ public class LeerContenidoHttp {
 
 
 	private int abrirConexion() throws IOException {
+        if (this.conexion != null) {
+            this.conexion.disconnect();
+        }
 		this.conexion = (HttpURLConnection) this.direccionWeb.openConnection();
 		return this.conexion.getResponseCode();
 	}

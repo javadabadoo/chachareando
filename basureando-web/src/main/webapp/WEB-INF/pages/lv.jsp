@@ -6,6 +6,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <spring:url value="/js/jquery-1.9.1.js" var="url_jquery" />
 <spring:url value="/js/livevalidation_standalone.js" var="url_liveValidation" />
 <html>
@@ -97,7 +98,7 @@
             height: 16px;
             width: 16px;
             float: left;
-            background-image: url(css/images/ui-icons_cd0a0a_256x240.png);
+            background-image: url(../../css/images/ui-icons_cd0a0a_256x240.png);
             background-position: 224px 48px;
         }
 
@@ -105,7 +106,7 @@
             height: 16px;
             width: 16px;
             float: left;
-            background-image: url(css/images/ui-icons_8DC262_256x240.png);
+            background-image: url(../../css/images/ui-icons_8DC262_256x240.png);
             background-position: 192px 96px;
         }
     </style>
@@ -116,22 +117,23 @@
 <h2>Validacion de form</h2>
 <span id="formulario_apellidoPaterno_message"></span>
 <br />
-<form id="formulario" method="get" action="#submited">
+<form:form method="get" action="mail/send" id="formulario" >
+    <form:errors path="*" cssClass="errorblock" element="div" />
     <table>
         <tr>
-            <td><input type="text" id="nombre" required="required" /></td>
+            <td><form:input type="text" id="nombre" path="nombre" required="required" /></td>
             <td id="formulario_nombre_message">&nbsp;Texto <span class="LV_valid LV_validation_message">Inicial</span></td>
         </tr>
         <tr>
-            <td><input type="text" id="apellidoPaterno" required="required" /></td>
+            <td><form:input type="text" id="apellidoPaterno" path="apellidoPaterno" required="required" /></td>
             <td id="asd"></td>
         </tr>
         <tr>
-            <td><input type="text" id="apellidoMaterno" name="usuario.nombre"/></td>
+            <td><form:input type="text" id="apellidoMaterno" path="apellidoMaterno" name="usuario.nombre"/></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td><input type="text" id="edad" required="required"/></td>
+            <td><form:input type="text" id="edad" path="edad" required="required"/></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
@@ -139,7 +141,7 @@
             <td>&nbsp;</td>
         </tr>
     </table>
-</form>
+</form:form>
 
 </body>
 </html>

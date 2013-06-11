@@ -1,0 +1,63 @@
+.LV_validation_message {
+    font-size: 9px;
+    font-family: arial;
+    font-weight: bold;
+    margin: 3px 0 0 5px;
+    float: left;
+    vertical-align: bottom;
+}
+
+.LV_valid {
+    color: #8DC262;
+}
+
+.LV_invalid {
+    color: #CC0000;
+}
+
+.LV_valid_field,
+input.LV_valid_field:hover,
+input.LV_valid_field:active,
+textarea.LV_valid_field:hover,
+textarea.LV_valid_field:active {
+    border-bottom: 1px dashed #8DC262;
+}
+
+.LV_invalid_field,
+input.LV_invalid_field:hover,
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover,
+textarea.LV_invalid_field:active {
+    border-bottom: 2px dashed #CC0000;
+}
+
+input,
+input:hover,
+input:active,
+textarea:active {
+    border: 1px dotted #CCC;
+    border-top: 1px dotted #F1F1F1;
+    border-left: 1px dotted #F1F1F1;
+    border-right: 1px dotted #F1F1F1;
+}
+
+input:hover {
+
+    border-bottom: 1px dashed #999;
+}
+
+.ko_validation_image {
+    height: 16px;
+    width: 16px;
+    float: left;
+    background-image: url(../css/images/ui-icons_cd0a0a_256x240.png);
+    background-position: 224px 48px;
+}
+
+.ok_validation_image {
+    height: 16px;
+    width: 16px;
+    float: left;
+    background-image: url(../css/images/ui-icons_8DC262_256x240.png);
+    background-position: 192px 96px;
+}
