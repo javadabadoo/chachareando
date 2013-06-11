@@ -101,6 +101,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
+
         <!-- javamelody-core -->
         <dependency>
             <groupId>net.bull.javamelody</groupId>
