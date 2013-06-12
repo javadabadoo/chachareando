@@ -10,7 +10,7 @@ import lombok.Setter;
  * Date: 11/06/13
  */
 @AllArgsConstructor
-public class ErrorBean {
+public class ValidationError {
 
     @Getter @Setter
     private String

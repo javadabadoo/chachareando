@@ -1,13 +1,13 @@
 package doo.daba.java.basureando.controlador;
 
-import doo.daba.java.beans.ErrorBean;
+import doo.daba.java.beans.FormResponse;
+import doo.daba.java.beans.ValidationError;
 import doo.daba.java.beans.SendMailBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,17 +32,18 @@ public class CorreoControlador {
             value="/mail/send",
             method = RequestMethod.GET
     )
-    public List<ErrorBean> consultaEntradas(@Valid SendMailBean sendMailBean, BindingResult result) {
+    public FormResponse sendMail(@Valid SendMailBean sendMailBean, BindingResult result) {
 
-        List<ErrorBean> errorList = new ArrayList<ErrorBean>();
+        List<ValidationError> errorList = new ArrayList<ValidationError>();
+
         BeanPropertyBindingResult beanResult =
                 (BeanPropertyBindingResult) result.getModel().get("org.springframework.validation.BindingResult.sendMailBean");
 
         for(FieldError error : beanResult.getFieldErrors()){
-            errorList.add(new ErrorBean(error.getField(), error.getDefaultMessage()));
+            errorList.add(new ValidationError(error.getField(), error.getDefaultMessage()));
         }
 
-        return errorList;
+        return new FormResponse(result.hasErrors(), null, errorList);
     }
 
 
