@@ -15,6 +15,7 @@
     <modules>
         <module>basureando-beans</module>
         <module>basureando-web</module>
+        <module>basureando-web-touch</module>
         <module>basureando-service</module>
         <module>ChachareandoGit</module>
   </modules>

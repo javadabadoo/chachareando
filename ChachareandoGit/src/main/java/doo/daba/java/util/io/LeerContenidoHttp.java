@@ -113,8 +113,6 @@ public class LeerContenidoHttp {
 
 	/**
 	 * @return	Valor obtenido del recurso web consultado mediante el método {@code leerContenido}
-	 *
-	 * @see #leerContenido()
 	 */
 	public String getContenidoRecursoWeb() {
 		return contenido.toString();
