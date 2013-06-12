@@ -27,29 +27,8 @@ function muestraVentana(div, titulo) {
 
 
 
-function consultaJson(url) {
-    var json = null;
-    $.ajax({
-        url: url,
-        type: 'GET',
-        async: false,
-        dataType: 'json',
-        success: function (data) {
-            json = data;
-        },
-        error: function (request, status, error) {
-            alert("REQUEST:\t" + request + "\nSTATUS:\t" + status +
-                "\nERROR:\t" + error);
-        }
-    });
-
-    return json;
-}
-
-
-
 function muestraMiPerfil() {
-    var json = consultaJson('consulta/json/usuario/javadabadoo');
+    var json = consultaJson('consulta/json/usuario/javadabadoo', 'GET');
     $('#informacionPerfil').html(json.alias);
     $('#usuario-perfil-foto').css('background-image', 'url(consulta/imagen/usuario/perfil/' + json.id + ')');
     $('#usuario-perfil-nombre').html(json.nombre + ' ' + json.apellidos);

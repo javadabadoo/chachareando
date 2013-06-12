@@ -381,10 +381,7 @@ LiveValidation.prototype = {
      * @return {HTMLSpanObject} - a span element with the message in it
      */
     createMessageSpan: function () {
-        var span = document.createElement('span');
-        var textNode = document.createTextNode(this.message);
-        span.appendChild(textNode);
-        return span;
+        return createTextSpan(this.message)
     },
 
     /**
@@ -395,16 +392,8 @@ LiveValidation.prototype = {
     insertMessage: function (elementToInsert) {
         this.removeMessage();
 
-
         if ((this.displayMessageWhenEmpty && (this.elementType == LiveValidation.CHECKBOX || this.element.value == '')) || this.element.value != '') {
-            var errorIcon = document.createElement('div');
-            var className = this.validationFailed ? this.invalidClass : this.validClass;
-
-            errorIcon.className = this.validationFailed ? 'ko_validation_image' : 'ok_validation_image';
-            elementToInsert.className += ' ' + this.messageClass + ' ' + className;
-
-            this.validationMessageNode.appendChild(errorIcon);
-            this.validationMessageNode.appendChild(elementToInsert);
+            createValidationMessage(this.validationMessageNode, elementToInsert, this.validationFailed)
         }
     },
 
@@ -427,17 +416,7 @@ LiveValidation.prototype = {
      *    removes the message element if it exists, so that the new message will replace it
      */
     removeMessage: function () {
-
-        var childNodesList = this.validationMessageNode.childNodes;
-
-        for (var childIndex = childNodesList.length - 1; childIndex >= 0; childIndex--) {
-            if (
-                    childNodesList[childIndex] != undefined
-                        && childNodesList[childIndex].className != undefined
-                        && childNodesList[childIndex].className.indexOf('validation') !== -1) {
-                this.validationMessageNode.removeChild(childNodesList[childIndex]);
-            }
-        }
+        deleteValidationMessages(this.validationMessageNode)
     },
 
     /**
@@ -919,4 +898,52 @@ var Validate = {
         this.name = 'ValidationError';
     }
 
+}
+
+
+
+
+function createValidationMessage(validationMessageNode, messageSpan, validationFailed) {
+
+    if (validationMessageNode == undefined || validationMessageNode == null) {
+        return false;
+    }
+
+    var errorIcon = document.createElement('div');
+
+    errorIcon.className = validationFailed ? 'ko_validation_image' : 'ok_validation_image';
+    messageSpan.className = 'LV_validation_message ' + (validationFailed ? 'LV_invalid' : 'LV_valid');
+
+    validationMessageNode.appendChild(errorIcon);
+    validationMessageNode.appendChild(messageSpan);
+
+}
+
+
+
+function deleteValidationMessages(validationMessageNode) {
+
+    if (validationMessageNode == undefined || validationMessageNode == null) {
+        return false;
+    }
+
+    var childNodesList = validationMessageNode.childNodes;
+
+    for (var childIndex = childNodesList.length - 1; childIndex >= 0; childIndex--) {
+        if (
+            childNodesList[childIndex] != undefined
+                && childNodesList[childIndex].className != undefined
+                && childNodesList[childIndex].className.indexOf('validation') !== -1) {
+            validationMessageNode.removeChild(childNodesList[childIndex]);
+        }
+    }
+}
+
+
+
+function createTextSpan(message) {
+    var span = document.createElement('span');
+    var textNode = document.createTextNode(message);
+    span.appendChild(textNode);
+    return span;
 }

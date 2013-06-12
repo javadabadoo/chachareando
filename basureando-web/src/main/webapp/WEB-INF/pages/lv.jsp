@@ -9,12 +9,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <spring:url value="/js/jquery-1.9.1.js" var="url_jquery"/>
+<spring:url value="/js/principal.js" var="url_principal_js" />
 <spring:url value="/js/livevalidation_standalone.js" var="url_liveValidation"/>
 <spring:url value="/css/forms.css" var="url_forms_css" />
 
 <html>
 <head>
     <script type="text/javascript" src="${url_jquery}"></script>
+    <script type="text/javascript" src="${url_principal_js}"></script>
     <script type="text/javascript" src="${url_liveValidation}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -42,7 +44,37 @@
                         message: 'zxczxc'
                     }
             );
-        });
+
+
+
+            var automaticOnSubmit = nombre.form.onsubmit;
+
+            nombre.form.onsubmit = function() {
+
+                var localValidation = automaticOnSubmit();
+
+                if(localValidation) {
+
+                    var json = consultaJson('send', 'GET', $("#formulario").serialize());
+
+                    if(json != null && json.length > 0) {
+
+                        for(var errorIndex = 0; errorIndex < json.length; errorIndex++) {
+                            var validationMessageNode = document.getElementById('formulario_' + json[errorIndex].field + '_message');
+
+                            deleteValidationMessages(validationMessageNode);
+                            createValidationMessage(validationMessageNode, createTextSpan(json[errorIndex].errorMessage), true);
+
+                        }
+                    } else {
+                        window.alert('Form válido. Hacer algo!');
+                    }
+
+                    return false;
+                }
+            }
+
+            });
     </script>
 
     <style type="text/css" title="currentStyle">
@@ -55,7 +87,7 @@
 
 <h2>Validacion de form</h2>
 <br/>
-<form:form method="get" commandName="sendMailBean" action="send" id="formulario">
+<form:form method="get" commandName="sendMailBean" action="#" id="formulario">
     <form:errors path="*" cssClass="LV_invalid" element="div"/>
     <table>
         <tr>
