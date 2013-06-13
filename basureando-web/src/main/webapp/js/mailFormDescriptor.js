@@ -10,7 +10,6 @@ $(document).ready(function () {
 
     $('#formulario').submit(function() {
         formDefinition.formValidator.behavior();
-        alert(formDefinition.fields.length + ': ' + formDefinition.fields.nombre);
         return false;
     });
 
@@ -27,7 +26,7 @@ var init = function () {
     this.formValidator = new FormValidator(document.forms.namedItem('formulario'));
 
     this.formValidator.addFormValidationBehavior(function() {
-        alert('id: ' + this.form.id);
+        alert('Correo enviado!');
     });
 }
 
@@ -54,8 +53,8 @@ var defineValidationRules = function() {
     this.fields.title.add(
         Validate.Length,
         {
-            minimum: 2,
-            maximum: 10,
+            minimum: 5,
+            maximum: 50,
             failureMessage: 'Longitud inválida'
         }
     );

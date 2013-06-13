@@ -25,7 +25,7 @@
 
 <h2>Validacion de form</h2>
 <br/>
-<form:form method="get" commandName="sendMailBean" action="send" id="formulario">
+<form:form method="post" commandName="sendMailBean" action="send" id="formulario">
     <table>
         <tr>
             <td>
