@@ -5,6 +5,9 @@ import doo.daba.java.beans.ValidationError;
 import doo.daba.java.beans.SendMailBean;
 import doo.daba.java.util.mail.ArchivoAdjunto;
 import doo.daba.java.util.mail.CorreoElectronico;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -19,8 +22,11 @@ import javax.mail.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -31,7 +37,8 @@ import java.util.*;
 @Controller
 public class CorreoControlador {
 
-
+    @Autowired
+    ApplicationContext applicationContext;
 
 
 
@@ -54,29 +61,37 @@ public class CorreoControlador {
 
 	    if(! result.hasErrors()) {
 
-		    Session session = null;
+//		    Session session = null;
 
-		    try {
-			    Context context  = new InitialContext();
-			    session = (Session) context.lookup("mail/basureando");
-		    } catch (NamingException e) {
-			    e.printStackTrace();
-			    response.setHasError(true);
-			    response.setResponseMessage(e.getMessage());
-			    return response;
-		    }
+//		    try {
+//			    Context context  = new InitialContext();
+//			    session = (Session) context.lookup("mail/basureando");
+//		    } catch (NamingException e) {
+//			    e.printStackTrace();
+//			    response.setHasError(true);
+//			    response.setResponseMessage(e.getMessage());
+//			    return response;
+//		    }
 
-		    CorreoElectronico correo = new CorreoElectronico(session);
+            Properties mailProperties = new Properties();
+            InputStream placeHolcerInputStream = null;
+
+            try {
+                placeHolcerInputStream = applicationContext.getResource("classpath:correo.properties").getInputStream();
+                mailProperties.load(placeHolcerInputStream);
+            } catch (IOException e) {
+                response.setHasError(true);
+                response.setResponseMessage(e.getMessage());
+            }
+
+		    CorreoElectronico correo = new CorreoElectronico(mailProperties);
 		    correo.agragaReceptor(sendMailBean.getSentFrom(), CorreoElectronico.RECEPTOR);
 		    correo.setCuerpoDelCorreo("Correo de prueba enviado desde basureando-web: " + new Date());
 		    correo.setTituloDelCorreo(sendMailBean.getTitle());
 
 		    try {
 			    correo.envia();
-		    } catch (MessagingException e) {
-			    response.setHasError(true);
-			    response.setResponseMessage(e.getMessage());
-		    } catch (IOException e) {
+		    } catch (Exception e) {
 			    response.setHasError(true);
 			    response.setResponseMessage(e.getMessage());
 		    }
