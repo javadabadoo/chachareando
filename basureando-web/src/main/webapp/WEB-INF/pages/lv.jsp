@@ -25,6 +25,7 @@
 
 <h2>Validacion de form</h2>
 <br/>
+<div id="notificationArea"></div>
 <form:form method="post" commandName="sendMailBean" action="send" id="formulario">
     <table>
         <tr>

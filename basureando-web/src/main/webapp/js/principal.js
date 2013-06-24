@@ -30,6 +30,12 @@ function consultaJson(url, method, params) {
 
 
 
+function setNotification(message) {
+    $('#notificationArea').html(message);
+}
+
+
+
 function FormValidator(form) {
     this.form = form;
     this.callback = null;
@@ -53,6 +59,7 @@ FormValidator.prototype.addFormValidationBehavior = function(callback) {
                 $("#" + this.form.id).serialize());
 
             if(json.hasError) {
+                setNotification(json.responseMessage);
                 if(json.validationErrors != undefined) {
                     for(var errorIndex = 0; errorIndex < json.validationErrors.length; errorIndex++) {
                         var validationMessageNode = document.getElementById(this.form.id + '_' + json.validationErrors[errorIndex].field + '_message');
