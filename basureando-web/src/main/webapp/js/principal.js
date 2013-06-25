@@ -1,6 +1,6 @@
 $(function() {
-	$('#divMenuPrincipal').load('estatico/plantilla/menuIzquierdo.jsp');
-    $('#contenidoPrincipal').load('estatico/entradas/catalogo.jsp');
+	$('#divMenuPrincipal').load('static/template/leftMenu.jsp');
+    $('#contenidoPrincipal').load('static/entradas/catalogo.jsp');
 });
 
 

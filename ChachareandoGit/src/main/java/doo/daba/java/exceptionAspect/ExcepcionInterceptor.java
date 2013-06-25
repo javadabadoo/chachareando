@@ -17,19 +17,22 @@ import org.springframework.stereotype.Component;
 public class ExcepcionInterceptor {
 
 
-    @Pointcut("within(doo.daba.java.exceptionAspect.basura..*)")
-    public void customPointcut() { }
+    @Pointcut("@within(doo.daba.java.annotation.ExceptionAnotation)")
+    public void classExceptionPointcut() { }
+
+    @Pointcut("@annotation(doo.daba.java.annotation.ExceptionAnotation)")
+    public void methodExceptionPointcut() { }
 
 
-    @Before("doo.daba.java.exceptionAspect.ExcepcionInterceptor.customPointcut()")
-    public void doExecuteControllerAdviceUno() {
-        System.out.println("Antes de ejecutar el poincut");
+    @AfterThrowing(pointcut = "classExceptionPointcut()", throwing = "e")
+    public void afterThrowingMethod(Throwable e) {
+        System.out.println("afterThrowingMethod a nivel de clase: " + e.getMessage());
     }
 
 
-    @AfterThrowing(pointcut = "doo.daba.java.exceptionAspect.ExcepcionInterceptor.customPointcut()", throwing = "e")
-    public void afterThrowingMethod(Throwable e) {
-        System.out.println("afterThrowingMethod: " + e.getMessage());
+    @AfterThrowing(pointcut = "methodExceptionPointcut()", throwing = "e")
+    public void afterThrowingClass(Throwable e) {
+        System.out.println("afterThrowingMethod a nivel de método: " + e.getMessage());
     }
 
 }

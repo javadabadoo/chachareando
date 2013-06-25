@@ -1,7 +1,7 @@
 package doo.daba.java.basureando.doo.daba.java.basureando.validadores;
 
-import doo.daba.java.beans.UsuarioBean;
-import doo.daba.java.util.Propiedades;
+import doo.daba.java.beans.User;
+import doo.daba.java.util.PropertiesContainer;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -13,16 +13,16 @@ import org.springframework.validation.Validator;
  */
 public class UsuarioValidador implements Validator {
 
-    private UsuarioBean usuario;
+    private User usuario;
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return UsuarioBean.class.equals(clazz);
+        return User.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        this.usuario = (UsuarioBean) target;
+        this.usuario = (User) target;
     }
 
 
@@ -39,7 +39,7 @@ public class UsuarioValidador implements Validator {
         String mensajeDeError = null;
 
         if(id < 1) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.usuario.id.negativo");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.usuario.id.negativo");
         }
 
         return mensajeDeError;
@@ -61,11 +61,11 @@ public class UsuarioValidador implements Validator {
                 formatoDeTextoDelAlias = "^[a-zA-Z0-9].*$";
 
         if(alias == null || alias.trim().isEmpty()) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.campoVacio", "Alias");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.campoVacio", "Alias");
         }
 
         if(!alias.matches(formatoDeTextoDelAlias)) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.usuario.alias.formatoIncorrecto");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.usuario.alias.formatoIncorrecto");
         }
 
         return mensajeDeError;
@@ -90,19 +90,19 @@ public class UsuarioValidador implements Validator {
                 formatoDeTexto = "^[a-zA-Z].*$";
 
         if(nombre == null || nombre.trim().isEmpty()){
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.campoVacio", "ID");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.campoVacio", "ID");
         }
 
         if(apellidos == null || apellidos.trim().isEmpty()){
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.campoVacio", "Apellidos");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.campoVacio", "Apellidos");
         }
 
         if(!nombre.matches(formatoDeTexto)) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.usuario.nombre.formatoIncorrecto");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.usuario.nombre.formatoIncorrecto");
         }
 
         if(!apellidos.matches(formatoDeTexto)) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.usuario.apellidos.formatoIncorrecto");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.usuario.apellidos.formatoIncorrecto");
         }
 
         return mensajeDeError;
@@ -125,11 +125,11 @@ public class UsuarioValidador implements Validator {
                 formatoDeTexto = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
 
         if(correo == null || correo.trim().isEmpty()){
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.campoVacio", "Correo");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.campoVacio", "Correo");
         }
 
         if(!correo.matches(formatoDeTexto)) {
-            mensajeDeError = Propiedades.obtener("validaor.mensajes.error.usuario.correo.formatoIncorrecto");
+            mensajeDeError = PropertiesContainer.get("validaor.mensajes.error.usuario.correo.formatoIncorrecto");
         }
 
         return mensajeDeError;

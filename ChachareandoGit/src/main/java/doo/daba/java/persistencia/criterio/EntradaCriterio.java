@@ -1,9 +1,7 @@
 package doo.daba.java.persistencia.criterio;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,32 +11,32 @@ import java.util.List;
  * Date: 22/05/13
  * Time: 04:01 PM
  */
-public class EntradaCriterio implements CriterioConsulta {
+public class EntradaCriterio implements Criterion {
 
     @Getter
-    private List<Criterio> criterios;
+    private List<SearchCriteria> searchCriterias;
 
 
-    public EntradaCriterio(Criterio ... criterios) {
+    public EntradaCriterio(SearchCriteria... searchCriterias) {
         this.init();
-        if(criterios != null) {
-            for(Criterio criterio : criterios) this.agregaCriterio(criterio);
+        if(searchCriterias != null) {
+            for(SearchCriteria searchCriteria : searchCriterias) this.addCriterion(searchCriteria);
         }
     }
 
 
     private void init() {
-        this.criterios = new ArrayList<Criterio>();
+        this.searchCriterias = new ArrayList<SearchCriteria>();
     }
 
     @Override
-    public void agregaCriterio(Criterio criterio) {
-        this.criterios.add(criterio);
+    public void addCriterion(SearchCriteria searchCriteria) {
+        this.searchCriterias.add(searchCriteria);
     }
 
     @Override
-    public void quitaCriterio(Criterio criterio) {
-        this.criterios.remove(criterio);
+    public void deleteCriterio(SearchCriteria searchCriteria) {
+        this.searchCriterias.remove(searchCriteria);
     }
 
 
@@ -46,8 +44,8 @@ public class EntradaCriterio implements CriterioConsulta {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (Criterio criterio : this.criterios) {
-            sb.append(criterio);
+        for (SearchCriteria searchCriteria : this.searchCriterias) {
+            sb.append(searchCriteria);
         }
 
         return sb.toString();

@@ -1,9 +1,9 @@
 package doo.daba.java.test.servicio;
 
-import doo.daba.java.beans.EntradaBean;
-import doo.daba.java.persistencia.EntradaDao;
+import doo.daba.java.beans.UserEntry;
+import doo.daba.java.persistencia.UserEntryDaoImpl;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
-import doo.daba.java.persistencia.criterio.enums.EntradaCriterioEnum;
+import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ import java.util.List;
 public class EntradaServicioTest {
 
     @Autowired
-    EntradaDao entradaDao;
+    UserEntryDaoImpl userEntryDaoImpl;
 
 
     @Test
     public void consultaEntradasDeUsuarioTest() {
-        List<EntradaBean> entradas = this.entradaDao.select(
-                new EntradaCriterio(EntradaCriterioEnum.USUARIO),
+        List<UserEntry> entradas = this.userEntryDaoImpl.select(
+                new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO),
                 false,
                 1);
 

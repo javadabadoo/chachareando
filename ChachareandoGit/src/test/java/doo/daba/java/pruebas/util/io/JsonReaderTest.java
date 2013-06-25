@@ -2,7 +2,7 @@ package doo.daba.java.pruebas.util.io;
 
 
 
-import doo.daba.java.beans.ContenedorPersonaBean;
+import doo.daba.java.beans.PersonContainer;
 import doo.daba.java.util.io.JsonReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,8 +20,8 @@ import org.junit.Test;
 @Ignore
 public class JsonReaderTest {
 
-	private ContenedorPersonaBean contenedorPersonaArchivo;
-	private ContenedorPersonaBean contenedorPersonaWeb;
+	private PersonContainer personContainerFromFile;
+	private PersonContainer personContainerFromWeb;
 
 
 
@@ -30,14 +30,14 @@ public class JsonReaderTest {
 
 		JsonReader jsonReader = new JsonReader();
 
-		contenedorPersonaArchivo = jsonReader.jsonToObjectFromFile(
+        personContainerFromFile = jsonReader.jsonToObjectFromFile(
 			"C:/persona.json",
-			ContenedorPersonaBean.class);
+			PersonContainer.class);
 
-		contenedorPersonaWeb = jsonReader.
+		personContainerFromWeb = jsonReader.
 			jsonToObjectFromWeb(
 			"https://raw.github.com/javadabadoo/chachareando/master/ChachareandoGit/src/test/resources/json/persona.json",
-			ContenedorPersonaBean.class);
+			PersonContainer.class);
 	}
 
 
@@ -45,17 +45,17 @@ public class JsonReaderTest {
 	@Test
 	public void pruebaContenedorPersona() {
 
-		assert contenedorPersonaArchivo != null;
-		assert contenedorPersonaArchivo.getPersona() != null;
-		assert contenedorPersonaArchivo.getPersona().getEdad() == 99;
-		assert contenedorPersonaArchivo.getPersona().getHijos().size() == 3;
+		assert personContainerFromFile != null;
+		assert personContainerFromFile.getPerson() != null;
+		assert personContainerFromFile.getPerson().getAge() == 99;
+		assert personContainerFromFile.getPerson().getSoons().size() == 3;
 
-		assert contenedorPersonaWeb != null;
-		assert contenedorPersonaWeb.getPersona().getEdad() == contenedorPersonaArchivo.getPersona().
-			getEdad();
+		assert personContainerFromWeb != null;
+		assert personContainerFromWeb.getPerson().getAge() == personContainerFromFile.getPerson().
+                getAge();
 
-		System.out.println(contenedorPersonaArchivo);
-		System.out.println(contenedorPersonaArchivo);
+		System.out.println(personContainerFromFile);
+		System.out.println(personContainerFromWeb);
 
 	}
 }

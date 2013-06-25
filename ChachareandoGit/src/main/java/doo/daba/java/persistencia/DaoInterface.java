@@ -2,8 +2,7 @@ package doo.daba.java.persistencia;
 
 
 
-import doo.daba.java.beans.ImagenBean;
-import doo.daba.java.persistencia.criterio.CriterioConsulta;
+import doo.daba.java.persistencia.criterio.Criterion;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public interface DaoInterface<T> {
 
-	int insert(T elemento);
+	int insert(T element);
 
 
 
@@ -25,17 +24,17 @@ public interface DaoInterface<T> {
 
 
 
-	List<T> select(CriterioConsulta criterio, boolean mostrarDetalle, Object ... parametros);
+	List<T> select(Criterion criterio, boolean showDetails, Object ... params);
 
 
 
-	List<T> selectAll(boolean mostrarDetalle);
+	List<T> selectAll(boolean showDetails);
 
 
 
-	int update(T elemento);
+	int update(T element);
 
 
 
-	int delete(T elemento);
+	int delete(T element);
 }

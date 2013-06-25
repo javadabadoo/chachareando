@@ -12,17 +12,17 @@ function renderizaGridEntrada() {
         bPaginate: false,
         aoColumns: [
             {
-                mData: 'titulo',
+                mData: 'title',
                 sWidth: '400px'
             },
             {
-                mData: 'fechaPublicacion',
+                mData: 'publicationDate',
                 sType: "date",
                 dateFormat: 'Date (dd-mm-YY)',
                 sWidth: '100px',
                 sClass: 'right',
                 fnRender: function (obj) {
-                    return obj.aData.fechaPublicacion.substring(0, 10);
+                    return obj.aData.publicationDate.substring(0, 10);
                 }
             }
         ]

@@ -2,12 +2,11 @@ package doo.daba.java.pruebas.persistencia;
 
 
 
-import doo.daba.java.beans.UsuarioBean;
-import doo.daba.java.persistencia.UsuarioInterfaceDao;
+import doo.daba.java.beans.User;
+import doo.daba.java.persistencia.UserDao;
 import java.util.Date;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +31,14 @@ import org.springframework.util.Assert;
 public class UsuarioRepositorioTest {
 	
 	@Autowired
-	private UsuarioInterfaceDao usuarioDao;
+	private UserDao usuarioDao;
 	
-	private UsuarioBean usuario;
+	private User usuario;
 	
 	
 	@Before
 	public void init() {
-		this.usuario = new UsuarioBean(
+		this.usuario = new User(
 			0,
 			"Pedro",
 			"Picapiedra",
@@ -56,11 +55,11 @@ public class UsuarioRepositorioTest {
 	@Test
 	public void consultarUsuarioTest() {
 		
-		UsuarioBean otroUsuario = this.usuarioDao.select(1);
+		User otroUsuario = this.usuarioDao.select(1);
 		
 		Assert.notNull(otroUsuario);
-		Assert.isTrue(otroUsuario.getNombre().equals("Gerardo"));
-		Assert.isTrue(otroUsuario.getAlias().equals("java.daba.doo"));
+		Assert.isTrue(otroUsuario.getName().equals("Gerardo"));
+		Assert.isTrue(otroUsuario.getUserAlias().equals("java.daba.doo"));
 		
 	}
 	

@@ -1,9 +1,9 @@
 package doo.daba.java.pruebas.persistencia;
 
-import doo.daba.java.beans.ImagenBean;
-import doo.daba.java.beans.UsuarioBean;
-import doo.daba.java.persistencia.ImagenInterfaceDao;
-import doo.daba.java.persistencia.UsuarioInterfaceDao;
+import doo.daba.java.beans.Image;
+import doo.daba.java.beans.User;
+import doo.daba.java.persistencia.ImageDao;
+import doo.daba.java.persistencia.UserDao;
 import doo.daba.java.util.io.FileIO;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Date;
@@ -32,13 +31,13 @@ import java.io.File;
 public class ImagenRepositorioTest {
 
 
-    private ImagenBean imagen;
+    private Image imagen;
 
     @Autowired
-    private ImagenInterfaceDao imagenDao;
+    private ImageDao imagenDao;
 
     @Autowired
-    private UsuarioInterfaceDao usuarioDao;
+    private UserDao usuarioDao;
 
     private final File archivoImagenRegistro =  new File("C:/imagen.png");
     private final File archivoImagenConsulta =  new File("C:/imagen.png");
@@ -47,33 +46,33 @@ public class ImagenRepositorioTest {
     @Before
     public void init() throws IOException {
 
-        this.imagen = new ImagenBean();
+        this.imagen = new Image();
 
-        this.imagen.setNombre("prueba.png");
-        this.imagen.setComentario("Esta es la imagen de la prueba generada en: " + new Date());
-        this.imagen.setImagen(this.cargaImagen());
+        this.imagen.setName("prueba.png");
+        this.imagen.setComment("Esta es la imagen de la prueba generada en: " + new Date());
+        this.imagen.setByteContent(this.cargaImagen());
 
     }
 
 
     @Test
     public void registrarImagen() {
-        UsuarioBean usuario = this.usuarioDao.select("javadabadoo");
+        User usuario = this.usuarioDao.select("javadabadoo");
         assert this.imagenDao.insert(this.imagen) > 0;
-        assert this.usuarioDao.registrarImagenPerfil(usuario.getId(), this.imagen.getId()) == 1;
+        assert this.usuarioDao.linkUserProfilePicture(usuario.getId(), this.imagen.getId()) == 1;
     }
 
 
     @Test (expected = DataIntegrityViolationException.class)
     public void registroDeImagenPerfilInvalido() {
-        this.usuarioDao.registrarImagenPerfil(0, 0);
+        this.usuarioDao.linkUserProfilePicture(0, 0);
     }
 
 
     @Test
     public void consultaImagen() {
-        ImagenBean imagenConsulta = this.imagenDao.selectImagenUsuario(imagen.getId());
-        assert this.imagen.getImagen().equals(imagenConsulta.getImagen());
+        Image imagenConsulta = this.imagenDao.selectImagenUsuario(imagen.getId());
+        assert this.imagen.getByteContent().equals(imagenConsulta.getByteContent());
     }
 
 

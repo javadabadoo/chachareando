@@ -15,7 +15,7 @@
     </bean>
 
 
-    <bean id="BasureandoCustomProperties" class="doo.daba.java.util.Propiedades">
+    <bean id="BasureandoCustomProperties" class="doo.daba.java.util.PropertiesContainer">
         <property name="locations">
             <list>
                 <value>classpath:/properties/mensajes.properties</value>

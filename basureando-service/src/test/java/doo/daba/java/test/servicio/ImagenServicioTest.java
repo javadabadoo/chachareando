@@ -1,10 +1,9 @@
 package doo.daba.java.test.servicio;
 
-import doo.daba.java.beans.ImagenBean;
-import doo.daba.java.beans.UsuarioBean;
-import doo.daba.java.persistencia.ImagenInterfaceDao;
-import doo.daba.java.persistencia.UsuarioInterfaceDao;
-import doo.daba.java.servicio.interfaces.ImagenServicio;
+import doo.daba.java.beans.Image;
+import doo.daba.java.beans.User;
+import doo.daba.java.persistencia.ImageDao;
+import doo.daba.java.persistencia.UserDao;
 import doo.daba.java.util.io.FileIO;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,28 +31,28 @@ import java.util.Date;
 @Transactional
 public class ImagenServicioTest {
 
-    private ImagenBean imagen;
-    private UsuarioBean usuario;
+    private Image imagen;
+    private User usuario;
 
     @Autowired
-    private ImagenInterfaceDao imagenDao;
+    private ImageDao imagenDao;
 
     @Autowired
-    private UsuarioInterfaceDao usuarioDao;
+    private UserDao usuarioDao;
 
-    private final File archivoImagenRegistro =  new File("C:/imagen.png");
-    private final File archivoImagenConsulta =  new File("C:/imagen.png");
+    private final File registryPicture =  new File("C:/imagen.png");
+    private final File queryPicture =  new File("C:/imagen.png");
 
 
     @Before
     public void init() throws IOException {
 
-        this.imagen = new ImagenBean();
-        this.usuario = new UsuarioBean();
+        this.imagen = new Image();
+        this.usuario = new User();
 
-        this.imagen.setNombre("prueba.png");
-        this.imagen.setComentario("Esta es la imagen de la prueba generada en: " + new Date());
-        this.imagen.setImagen(this.cargaImagen());
+        this.imagen.setName("prueba.png");
+        this.imagen.setComment("Esta es la imagen de la prueba generada en: " + new Date());
+        this.imagen.setByteContent(this.loadPictureFile());
 
         this.usuario = this.usuarioDao.select("javadabadoo");
 
@@ -63,7 +62,7 @@ public class ImagenServicioTest {
     @Test
     public void registrarImagen() {
         assert this.imagenDao.insert(this.imagen) > 0;
-        assert this.usuarioDao.registrarImagenPerfil(this.usuario.getId(), this.imagen.getId()) == 1;
+        assert this.usuarioDao.linkUserProfilePicture(this.usuario.getId(), this.imagen.getId()) == 1;
     }
 
 
@@ -76,13 +75,13 @@ public class ImagenServicioTest {
     @Test
     public void consultaImagen() {
         this.registrarImagen();
-        ImagenBean imagen = this.imagenDao.selectImagenUsuario(this.usuario.getId());
-        assert Arrays.equals(this.imagen.getImagen(), imagen.getImagen());
+        Image imagen = this.imagenDao.selectImagenUsuario(this.usuario.getId());
+        assert Arrays.equals(this.imagen.getByteContent(), imagen.getByteContent());
     }
 
 
-    private byte[] cargaImagen() throws IOException {
-        return FileIO.readBytes(this.archivoImagenRegistro);
+    private byte[] loadPictureFile() throws IOException {
+        return FileIO.readBytes(this.registryPicture);
     }
 
 }

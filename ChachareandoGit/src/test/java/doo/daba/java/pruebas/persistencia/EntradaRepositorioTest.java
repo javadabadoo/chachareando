@@ -1,9 +1,9 @@
 package doo.daba.java.pruebas.persistencia;
 
-import doo.daba.java.beans.EntradaBean;
-import doo.daba.java.persistencia.EntradaInterfaceDao;
+import doo.daba.java.beans.UserEntry;
+import doo.daba.java.persistencia.UserEntryDao;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
-import doo.daba.java.persistencia.criterio.enums.EntradaCriterioEnum;
+import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,19 +28,19 @@ import java.util.List;
 public class EntradaRepositorioTest {
 
     @Autowired
-    EntradaInterfaceDao entradaDao;
-    EntradaBean entrada;
+    UserEntryDao entradaDao;
+    UserEntry entrada;
 
 
     @Before
     public void init() {
-        this.entrada = new EntradaBean();
+        this.entrada = new UserEntry();
 
-        this.entrada.setTitulo("Titulo de entrada de prueba");
-        this.entrada.setFechaPublicacion(new Date());
-        this.entrada.setContenido("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
-        this.entrada.setEstado("vigente");
-        this.entrada.setIdUsuario(2);
+        this.entrada.setTitle("Titulo de entrada de prueba");
+        this.entrada.setPublicationDate(new Date());
+        this.entrada.setContent("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
+        this.entrada.setStatus("vigente");
+        this.entrada.setUserId(2);
     }
 
 
@@ -55,10 +55,10 @@ public class EntradaRepositorioTest {
     public void consultarEntrada() {
         this.registrarEntradaTest();
 
-        EntradaBean entrada = this.entradaDao.select(this.entrada.getId());
+        UserEntry entrada = this.entradaDao.select(this.entrada.getId());
 
         assert entrada.getId() == this.entrada.getId();
-        assert entrada.getFechaPublicacion().getTime() == this.entrada.getFechaPublicacion().getTime();
+        assert entrada.getPublicationDate().getTime() == this.entrada.getPublicationDate().getTime();
     }
 
 
@@ -66,7 +66,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasDeUsuarioTest() {
         this.registrarEntradaTest();
-        List<EntradaBean> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaCriterioEnum.USUARIO), true, 1);
+        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), true, 1);
 
         assert ! entradaLista.isEmpty();
     }
@@ -76,7 +76,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasPorTituloTest() {
         this.registrarEntradaTest();
-        List<EntradaBean> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaCriterioEnum.TITULO), true, "%itulo%");
+        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), true, "%itulo%");
 
         assert ! entradaLista.isEmpty();
     }
@@ -87,7 +87,7 @@ public class EntradaRepositorioTest {
     public void consultarEntradasTest() {
         this.registrarEntradaTest();
 
-        List<EntradaBean> entradaLista = this.entradaDao.selectAll(true);
+        List<UserEntry> entradaLista = this.entradaDao.selectAll(true);
 
         assert ! entradaLista.isEmpty();
     }
