@@ -19,10 +19,30 @@
 
 
     <properties>
-		<spring-version>3.2.2.RELEASE</spring-version>
+		<spring-version>4.0.0.M1</spring-version>
 		<spring-security-version>3.1.4.RELEASE</spring-security-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <repositories>
+        <repository>
+            <id>springsource-repo</id>
+            <name>SpringSource Repository</name>
+            <url>http://repo.springsource.org/release</url>
+        </repository>
+        <repository>
+            <id>com.springsource.repository.maven.snapshot</id>
+            <url>http://maven.springframework.org/snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <url>http://repo.springsource.org/libs-milestone/</url>
+        </repository>
+    </repositories>
 
 	<dependencies>
 		
