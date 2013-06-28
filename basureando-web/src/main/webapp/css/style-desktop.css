@@ -91,14 +91,15 @@
 		{
 			position: relative;
 			height: 5.5em;
-			background-image: -moz-linear-gradient(top, rgba(59,59,59,0.9), rgba(38,38,38,0.9));
-			background-image: -webkit-linear-gradient(top, rgba(59,59,59,0.9), rgba(38,38,38,0.9));
-			background-image: -o-linear-gradient(top, rgba(59,59,59,0.9), rgba(38,38,38,0.9));
-			background-image: -ms-linear-gradient(top, rgba(59,59,59,0.9), rgba(38,38,38,0.9));
-			background-image: linear-gradient(top, rgba(59,59,59,0.9), rgba(38,38,38,0.9));
+			background-image: -moz-linear-gradient(top, rgba(59,59,59,0.4), rgba(38,38,38,0.4));
+			background-image: -webkit-linear-gradient(top, rgba(59,59,59,0.4), rgba(38,38,38,0.4));
+			background-image: -o-linear-gradient(top, rgba(59,59,59,0.4), rgba(38,38,38,0.4));
+			background-image: -ms-linear-gradient(top, rgba(59,59,59,0.4), rgba(38,38,38,0.4));
+			background-image: linear-gradient(top, rgba(59,59,59,0.4), rgba(38,38,38,0.4));
 			border-radius: 8px;
 			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5), inset 0px 2px 1px 0px rgba(255,255,255,0.2);
 			text-shadow: -1px -1px 0 rgba(0,0,0,1);
+
 		}
 	
 		#header h1
