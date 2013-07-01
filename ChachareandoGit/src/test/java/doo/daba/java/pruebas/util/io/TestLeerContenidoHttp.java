@@ -32,15 +32,19 @@ public class TestLeerContenidoHttp {
 	
 	@Test
 	public void testUbicacionVerdadera() throws MalformedURLException, IOException {
-		leerContenidoHttp.setDireccionWeb("http://google.com.mx");
-		leerContenidoHttp.obtenerContenido();
-		
-		Assert.isTrue(leerContenidoHttp.getCodigoDeRespuestaHttp() == 200);
+
+        while (true) {
+            leerContenidoHttp.setDireccionWeb("http://localhost:8181/basureando-web/consulta/entrada?sEcho=1&iColumns=2&sColumns=&iDisplayStart=0&iDisplayLength=-1&mDataProp_0=title&mDataProp_1=publicationDate&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&_=1372197056070");
+            leerContenidoHttp.obtenerContenido();
+
+            Assert.isTrue(leerContenidoHttp.getCodigoDeRespuestaHttp() == 200);
+        }
 	}
 
 	
 	
 	@Test
+    @Ignore
 	public void testUbicacionNoExiste() throws MalformedURLException, IOException {
 		leerContenidoHttp.setDireccionWeb("http://google.com.mx/javadabadoo");
 		leerContenidoHttp.obtenerContenido();

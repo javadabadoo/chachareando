@@ -17,8 +17,7 @@ public class UserEntry {
 
     @Getter @Setter
     private int
-		    id,
-		    userId;
+		    id;
 
     @Getter @Setter(AccessLevel.PUBLIC)
     private String
@@ -27,9 +26,12 @@ public class UserEntry {
 		    title;
 
 	@JsonSerialize(using=JsonFechaSerializador.class)
-	@Getter @Setter
+    @Getter @Setter
 	private Date
             publicationDate,
 			modificacionDate;
+
+    @Getter @Setter
+    private User user;
 
 }

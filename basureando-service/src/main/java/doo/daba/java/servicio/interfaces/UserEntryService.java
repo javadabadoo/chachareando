@@ -18,7 +18,10 @@ public interface UserEntryService {
 
     List<UserEntry> getUserEntries(int userId, boolean showDetails);
 
-    List<UserEntry> getUserEntries(String criterion, boolean showDetails);
+	List<UserEntry> getUserEntries(String criterion, boolean showDetails);
+
+
+	List<UserEntry> getAllUserEntries(int startPage, boolean showDetails);
 
 
 }

@@ -63,7 +63,7 @@
 													</li>
 													<li><a href="left-sidebar.html">Left Sidebar</a></li>
 													<li><a href="right-sidebar.html">Right Sidebar</a></li>
-													<li class="current_page_item"><a href="no-sidebar.html">No Sidebar</a></li>
+													<li class="current_page_item"><a href="no-sidebar.jsp">No Sidebar</a></li>
 												</ul>
 											</nav>
 									

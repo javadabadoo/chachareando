@@ -53,4 +53,9 @@ public class UserEntryServiceImpl implements UserEntryService {
     public List<UserEntry> getUserEntries(String criterion, boolean showDetails) {
         return this.userEntryDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), showDetails, criterion);
     }
+
+
+	public List<UserEntry> getAllUserEntries(int startPage, boolean showDetails) {
+		return this.userEntryDao.selectAll(startPage, showDetails);
+	}
 }

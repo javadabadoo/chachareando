@@ -50,7 +50,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
                 element.getModificacionDate(),
                 element.getStatus(),
                 element.getContent(),
-                element.getUserId()
+                element.getUser().getId()
         );
 
         element.setId(id);
@@ -100,8 +100,13 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
     }
 
+	@Override
+	public List<UserEntry> selectAll(boolean showDetails) {
+		return null;  //To change body of implemented methods use File | Settings | File Templates.
+	}
 
-    /**
+
+	/**
      * Obtiene todas las entradas registradas de todos los usuarios
      *
      * @param showDetails    Indica si debe mostrarse la información completa del
@@ -110,7 +115,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      * @return  Lista de entradas
      */
     @Override
-    public List<UserEntry> selectAll(boolean showDetails) {
+    public List<UserEntry> selectAll(int startPage, boolean showDetails) {
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial"),

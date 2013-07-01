@@ -1,5 +1,6 @@
 package doo.daba.java.pruebas.persistencia;
 
+import doo.daba.java.beans.User;
 import doo.daba.java.beans.UserEntry;
 import doo.daba.java.persistencia.UserEntryDao;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
@@ -40,7 +41,7 @@ public class EntradaRepositorioTest {
         this.entrada.setPublicationDate(new Date());
         this.entrada.setContent("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
         this.entrada.setStatus("vigente");
-        this.entrada.setUserId(2);
+        this.entrada.setUser(new User(2));
     }
 
 

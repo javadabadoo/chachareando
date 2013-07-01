@@ -42,6 +42,9 @@ public class EntradaCriterio implements Criterion {
 
     @Override
     public String toString() {
+
+        if(this.searchCriterias == null || this.searchCriterias.isEmpty()) return "";
+
         StringBuilder sb = new StringBuilder();
 
         for (SearchCriteria searchCriteria : this.searchCriterias) {

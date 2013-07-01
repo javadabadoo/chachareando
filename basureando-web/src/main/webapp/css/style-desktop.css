@@ -127,7 +127,7 @@
 		#nav > ul > li
 		{
 			float: left;
-			padding: 0 0.8em 0 0.8em;
+			padding: 0 0.6em 0 0.6em;
 		}
 		
 			#nav > ul > li > a,
@@ -137,7 +137,7 @@
 				text-decoration: none;
 				text-transform: uppercase;
 				font-weight: 800;
-				font-size: 0.95em;
+				font-size: 0.75em;
 				letter-spacing: 0.075em;
 				padding: 0.5em 0.8em 0.5em 0.8em;
 				border-radius: 6px;
@@ -219,6 +219,7 @@
 	
 		#banner h2
 		{
+            color: rgba(255,255,255,0.7);
 		}
 		
 		#banner p

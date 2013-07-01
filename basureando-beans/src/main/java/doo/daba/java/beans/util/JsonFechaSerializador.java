@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class JsonFechaSerializador extends JsonSerializer<Date> {
 
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss");
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
 
 	@Override
 	public void serialize(Date date, JsonGenerator gen, SerializerProvider provider)

@@ -14,7 +14,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public enum EntradaSearchCriteriaEnum implements SearchCriteria {
 
-    USUARIO(Operator.AND, PropertiesContainer.get("sql.tabla.entrada.usuario")),
+    USUARIO(Operator.AND, Comparator.EQUAL, PropertiesContainer.get("sql.tabla.entrada.usuario")),
     TITLE(Operator.AND, Comparator.LIKE, PropertiesContainer.get("sql.tabla.entrada.titulo"));
 
     @NonNull
@@ -44,10 +44,10 @@ public enum EntradaSearchCriteriaEnum implements SearchCriteria {
     public String toString() {
 
         return  String.format(
-                " %s %s %s ?",
+                " %s %s %s",
                 this.operator.getOperador(),
                 this.getColumna(),
-                this.comparator.getComparator());
+                this.comparator == null ? "" : this.comparator.getComparator()) + " ?";
     }
 
 }

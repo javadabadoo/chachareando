@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>ZeroFour by HTML5 UP</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800" rel="stylesheet" type="text/css" />
@@ -30,6 +30,9 @@
 		<!-- Header Wrapper -->
 			<div id="header-wrapper">
 				<div class="container">
+                    <div style="text-align: right; color: #ffffff">
+                        Usuario: <strong>java.daba.doo</strong>
+                    </div>
 					<div class="row">
 						<div class="12u">
 						
@@ -38,33 +41,11 @@
 									<div class="inner">
 									
 										<!-- Logo -->
-											<h1><a href="#" id="logo">ZeroFour</a></h1>
+											<h1><a href="#" id="logo">java.daba.doo</a></h1>
 										
 										<!-- Nav -->
 											<nav id="nav">
-												<ul>
-													<li class="current_page_item"><a href="index.jsp">Home</a></li>
-													<li>
-														<span>Dropdown</span>
-														<ul>
-															<li><a href="#">Lorem ipsum dolor</a></li>
-															<li><a href="#">Magna phasellus</a></li>
-															<li>
-																<span>Phasellus consequat</span>
-																<ul>
-																	<li><a href="#">Lorem ipsum dolor</a></li>
-																	<li><a href="#">Phasellus consequat</a></li>
-																	<li><a href="#">Magna phasellus</a></li>
-																	<li><a href="#">Etiam dolore nisl</a></li>
-																</ul>
-															</li>
-															<li><a href="#">Veroeros feugiat</a></li>
-														</ul>
-													</li>
-													<li><a href="left-sidebar.html">Left Sidebar</a></li>
-													<li><a href="right-sidebar.html">Right Sidebar</a></li>
-													<li><a href="no-sidebar.html">No Sidebar</a></li>
-												</ul>
+												<jsp:include page="/static/template/head-menu.jsp"></jsp:include>
 											</nav>
 									
 									</div>
@@ -188,50 +169,9 @@
 
 									<!-- Article list -->
 										<section class="box-article-list">
-											<h2 class="icon icon-news">From the blog</h2>
+											<h2 class="icon icon-news">Entradas recientes</h2>
 											
-											<!-- Excerpt -->
-												<article class="box-excerpt">
-													<a href="#" class="image image-left"><img src="img/pic04.jpg" alt="" /></a>
-													<div>
-														<header>
-															<span class="date">December 20, 2012</span>
-															<h3><a href="#">On the eve of the Mayanocalypse</a></h3>
-														</header>
-														<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-														semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-														feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-													</div>
-												</article>
-
-											<!-- Excerpt -->
-												<article class="box-excerpt">
-													<a href="#" class="image image-left"><img src="img/pic05.jpg" alt="" /></a>
-													<div>
-														<header>
-															<span class="date">December 15, 2012</span>
-															<h3><a href="#">Life as a self-aware meme</a></h3>
-														</header>
-														<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-														semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-														feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-													</div>
-												</article>
-
-											<!-- Excerpt -->
-												<article class="box-excerpt">
-													<a href="#" class="image image-left"><img src="img/pic06.jpg" alt="" /></a>
-													<div>
-														<header>
-															<span class="date">December 12, 2012</span>
-															<h3><a href="#">Facepalm moments in history</a></h3>
-														</header>
-														<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus 
-														semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis, 
-														feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-													</div>
-												</article>
-
+                                            <jsp:include page="consulta/entrada/1"></jsp:include>
 										</section>
 								</div>
 								<div class="4u">

@@ -1,10 +1,7 @@
 package doo.daba.java.beans;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -20,8 +17,10 @@ import java.util.List;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class User {
-	
+
+    @NonNull
 	@Getter @Setter 
 	private int id;
 	
