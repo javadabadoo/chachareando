@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import java.io.File;
 
@@ -27,17 +29,18 @@ import java.io.File;
 @ContextConfiguration(locations = {
         "classpath:chachareando-context.xml"
 })
-@Ignore
 public class ImagenRepositorioTest {
 
 
     private Image imagen;
 
-    @Autowired
-    private ImageDao imagenDao;
+    private User usuario;
 
     @Autowired
-    private UserDao usuarioDao;
+    private ImageDao imageDao;
+
+    @Autowired
+    private UserDao userDao;
 
     private final File archivoImagenRegistro =  new File("C:/imagen.png");
     private final File archivoImagenConsulta =  new File("C:/imagen.png");
@@ -52,27 +55,28 @@ public class ImagenRepositorioTest {
         this.imagen.setComment("Esta es la imagen de la prueba generada en: " + new Date());
         this.imagen.setByteContent(this.cargaImagen());
 
+        this.usuario = this.userDao.select("javadabadoo");
+
     }
 
 
     @Test
     public void registrarImagen() {
-        User usuario = this.usuarioDao.select("javadabadoo");
-        assert this.imagenDao.insert(this.imagen) > 0;
-        assert this.usuarioDao.linkUserProfilePicture(usuario.getId(), this.imagen.getId()) == 1;
+        assert this.imageDao.insert(this.imagen) > 0;
+        assert this.userDao.linkUserProfilePicture(this.usuario.getId(), this.imagen.getId()) == 1;
     }
 
 
     @Test (expected = DataIntegrityViolationException.class)
     public void registroDeImagenPerfilInvalido() {
-        this.usuarioDao.linkUserProfilePicture(0, 0);
+        this.userDao.linkUserProfilePicture(0, 0);
     }
 
 
     @Test
     public void consultaImagen() {
-        Image imagenConsulta = this.imagenDao.selectImagenUsuario(imagen.getId());
-        assert this.imagen.getByteContent().equals(imagenConsulta.getByteContent());
+        Image imagenConsulta = this.imageDao.selectImagenUsuario(this.usuario.getId());
+        assert Arrays.equals(this.imagen.getByteContent(), imagenConsulta.getByteContent());
     }
 
 

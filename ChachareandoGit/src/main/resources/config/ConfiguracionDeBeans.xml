@@ -20,6 +20,7 @@
             <list>
                 <value>classpath:/properties/sqlqueries.properties</value>
                 <value>classpath:/properties/criterion.properties</value>
+                <value>classpath*:properties/basureando.properties</value>
             </list>
         </property>
     </bean>

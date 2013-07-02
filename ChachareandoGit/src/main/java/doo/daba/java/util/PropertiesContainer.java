@@ -59,13 +59,25 @@ public class PropertiesContainer extends PropertyPlaceholderConfigurer {
 
 
 
-	public static String get(String name, Object... params) {
+    public static String get(String name, Object... params) {
 
         return (params == null || params.length == 0) ?
                 propertiesMap.get(name).toString()
                 :
                 String.format(propertiesMap.get(name).toString(), params);
 
+    }
+
+
+
+    public static int getInt(String name, Object... params) {
+        return Integer.parseInt(get(name, params));
+    }
+
+
+
+    public static boolean getBoolean(String name, Object... params) {
+        return Boolean.parseBoolean(get(name, params));
     }
 	
 }

@@ -67,7 +67,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasDeUsuarioTest() {
         this.registrarEntradaTest();
-        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), true, 1);
+        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), false, 1);
 
         assert ! entradaLista.isEmpty();
     }
@@ -77,7 +77,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasPorTituloTest() {
         this.registrarEntradaTest();
-        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), true, "%itulo%");
+        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
 
         assert ! entradaLista.isEmpty();
     }

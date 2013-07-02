@@ -2,6 +2,7 @@ package doo.daba.java.persistencia.persitenceMapping;
 
 import doo.daba.java.beans.User;
 import doo.daba.java.beans.UserEntry;
+import doo.daba.java.util.PropertiesContainer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,10 @@ public class UserEntryObjectMapping implements RowMapper<UserEntry> {
     @Getter @Setter
     private boolean showDetails;
 
+    public final static int CONTENT_MAX_LENGTH = PropertiesContainer.getInt("validation.entry.contentMaxLength");
+
+
+
     public UserEntry mapRow(ResultSet rs, int i) throws SQLException {
 
         UserEntry userEntry = new UserEntry();
@@ -38,6 +43,17 @@ public class UserEntryObjectMapping implements RowMapper<UserEntry> {
             userEntry.setContent(rs.getString("contenido"));
             userEntry.setPublicationDate(rs.getTimestamp("fecha_de_creacion"));
             userEntry.setModificacionDate(rs.getTimestamp("fecha_de_modificacion"));
+        } else {
+            String content = rs.getString("contenido");
+            int contentLength = content.length();
+
+            if(contentLength > CONTENT_MAX_LENGTH) {
+                content = content.substring(0, CONTENT_MAX_LENGTH);
+                content = content.substring(0, content.lastIndexOf(' '));
+            }
+
+            userEntry.setContent(content + " ...");
+            System.out.println(userEntry.getContent());
         }
 
         return userEntry;

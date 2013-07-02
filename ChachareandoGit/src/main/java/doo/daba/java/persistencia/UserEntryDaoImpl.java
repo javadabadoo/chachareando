@@ -95,7 +95,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial.usuario", criterio.toString()),
-                new UserEntryObjectMapping(true),
+                new UserEntryObjectMapping(showDetails),
                 params);
 
     }
@@ -119,7 +119,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial"),
-                new UserEntryObjectMapping(true));
+                new UserEntryObjectMapping(showDetails));
     }
 
     @Override
