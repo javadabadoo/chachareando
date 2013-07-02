@@ -9,7 +9,7 @@
 
 <c:forEach items="${userEntries}" var="entries" varStatus="status">
     <article class="box-excerpt">
-        <a href="#" class="image image-left"><img src="http://localhost:8181/basureando-web/consulta/imagen/usuario/perfil/75/75/${entries.user.id}" alt="" /></a>
+        <a href="#" class="image image-left"><img src="consulta/imagen/usuario/perfil/75/75/${entries.user.id}" alt="" /></a>
         <div>
             <header>
                 <h3><a href="#">${entries.title}</a></h3>

@@ -102,7 +102,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
 	@Override
 	public List<UserEntry> selectAll(boolean showDetails) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return this.selectAll(1, showDetails);
 	}
 
 

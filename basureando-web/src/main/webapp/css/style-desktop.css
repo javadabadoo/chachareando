@@ -149,8 +149,8 @@
 				#nav > ul > li.active > span,
 				#nav > ul > li.current_page_item > span
 				{
-					background: rgba(0,0,0,0.15);
-					box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,0.025), 1px 1px 0px 0px rgba(255,255,255,0.025);
+					background: rgba(255,255,255,0.15);
+                    box-shadow: 0 0 5px rgba(255,255,255,0.15), 0 0 5px rgba(255,255,255,0.15);
 				}
 
 			#nav > ul > li:last-child
