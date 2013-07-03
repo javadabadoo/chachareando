@@ -69,11 +69,5 @@ This artifact is generally always defined with a 'test' scope for the integratio
             <version>${org.springframework.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-            <version>3.1.2</version>
-        </dependency>
     </dependencies>
 </project>

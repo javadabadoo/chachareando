@@ -1,15 +1,21 @@
 package doo.daba.java.servicio;
 
-import edu.uci.ics.crawler4j.crawler.Page;
-import edu.uci.ics.crawler4j.crawler.WebCrawler;
-import edu.uci.ics.crawler4j.parser.HtmlParseData;
-import edu.uci.ics.crawler4j.url.WebURL;
-
-import java.util.List;
-import java.util.regex.Pattern;
-
-import org.apache.http.Header;
+import doo.daba.java.servicio.interfaces.JavaMexicoCrawlerService;
+import doo.daba.java.util.io.HttpContentReader;
+import doo.daba.java.util.io.XmlReader;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -18,43 +24,41 @@ import org.springframework.stereotype.Service;
  * Date: 3/07/13
  */
 @Service
-public class JavaMexicoCrawlerServiceImpl extends WebCrawler {
+@Scope("prototype")
+public class JavaMexicoCrawlerServiceImpl implements JavaMexicoCrawlerService {
 
-    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g"
-            + "|png|tiff?|mid|mp2|mp3|mp4"
-            + "|wav|avi|mov|mpeg|ram|m4v|pdf"
-            + "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
 
-    /**
-     * You should implement this function to specify whether
-     * the given url should be crawled or not (based on your
-     * crawling logic).
-     */
+    HttpContentReader httpReader = new HttpContentReader();
+
+
     @Override
-    public boolean shouldVisit(WebURL url) {
-        String href = url.getURL().toLowerCase();
-        return !FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/");
+    public String crawl(String url) throws IOException {
+        this.httpReader.setUrlLocation(url);
+        return this.httpReader.getTextContent();
+
     }
 
-    /**
-     * This function is called when a page is fetched and ready
-     * to be processed by your program.
-     */
+
+
     @Override
-    public void visit(Page page) {
-        String url = page.getWebURL().getURL();
-        System.out.println("URL: " + url);
+    public void getObjects() throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
+        DocumentBuilderFactory builderfactory = DocumentBuilderFactory.newInstance();
+        builderfactory.setNamespaceAware(true);
 
-        if (page.getParseData() instanceof HtmlParseData) {
-            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-            String text = htmlParseData.getText();
-            String html = htmlParseData.getHtml();
-            List<WebURL> links = htmlParseData.getOutgoingUrls();
+        DocumentBuilder builder = builderfactory.newDocumentBuilder();
+//        XmlReader xmlReader = new XmlReader(new File("C:\\Users\\xm060ef\\Desktop\\tracker-lite.htm"));
+        Document xmlDocument = builder.parse(new File("C:\\Users\\xm060ef\\Desktop\\tracker-lite.htm"));
 
-            System.out.println("Text length: " + text.length());
-            System.out.println("Html length: " + html.length());
-            System.out.println("Number of outgoing links: " + links.size());
+        XPathFactory factory = XPathFactory.newInstance();
+        XPath xPath = factory.newXPath();
+
+        XPathExpression xPathExpression = xPath.compile("//html//body//div//div//div//div//div//div[@id='tracker']//table//tbody//tr");
+        NodeList nodeElements =  (NodeList) xPathExpression.evaluate(xmlDocument,XPathConstants.NODESET);
+
+        for(int nodeIndex = 0; nodeIndex < nodeElements.getLength(); nodeIndex++) {
+            System.out.println(nodeElements.item(nodeIndex).getBaseURI());
         }
     }
+
 
 }
