@@ -2,7 +2,7 @@ package doo.daba.java.pruebas.util.io;
 
 
 
-import doo.daba.java.util.io.LeerContenidoHttp;
+import doo.daba.java.util.io.HttpContentReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import org.junit.Before;
@@ -19,13 +19,13 @@ import org.springframework.util.Assert;
 @Ignore
 public class TestLeerContenidoHttp {
 	
-	LeerContenidoHttp leerContenidoHttp;
+	HttpContentReader httpContentReader;
 	
 	
 	
 	@Before
 	public void init(){
-		leerContenidoHttp = new LeerContenidoHttp();
+		httpContentReader = new HttpContentReader();
 	}
 
 	
@@ -34,10 +34,10 @@ public class TestLeerContenidoHttp {
 	public void testUbicacionVerdadera() throws MalformedURLException, IOException {
 
         while (true) {
-            leerContenidoHttp.setDireccionWeb("http://localhost:8181/basureando-web/consulta/entrada?sEcho=1&iColumns=2&sColumns=&iDisplayStart=0&iDisplayLength=-1&mDataProp_0=title&mDataProp_1=publicationDate&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&_=1372197056070");
-            leerContenidoHttp.obtenerContenido();
+            httpContentReader.setUrlLocation("http://localhost:8181/basureando-web/consulta/entrada?sEcho=1&iColumns=2&sColumns=&iDisplayStart=0&iDisplayLength=-1&mDataProp_0=title&mDataProp_1=publicationDate&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&_=1372197056070");
+            httpContentReader.getTextContent();
 
-            Assert.isTrue(leerContenidoHttp.getCodigoDeRespuestaHttp() == 200);
+            Assert.isTrue(httpContentReader.getResponseCode() == 200);
         }
 	}
 
@@ -46,17 +46,17 @@ public class TestLeerContenidoHttp {
 	@Test
     @Ignore
 	public void testUbicacionNoExiste() throws MalformedURLException, IOException {
-		leerContenidoHttp.setDireccionWeb("http://google.com.mx/javadabadoo");
-		leerContenidoHttp.obtenerContenido();
+		httpContentReader.setUrlLocation("http://google.com.mx/javadabadoo");
+		httpContentReader.getTextContent();
 		
-		Assert.isTrue(leerContenidoHttp.getCodigoDeRespuestaHttp() == 404);
+		Assert.isTrue(httpContentReader.getResponseCode() == 404);
 	}
 
 	
 	
 	@Test(expected=MalformedURLException.class)
 	public void testUbicacionUrlMalformada() throws MalformedURLException, IOException {
-		leerContenidoHttp.setDireccionWeb("javadabadoo");
+		httpContentReader.setUrlLocation("javadabadoo");
 	}
 	
 }

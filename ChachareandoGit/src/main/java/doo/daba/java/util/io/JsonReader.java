@@ -41,9 +41,9 @@ public class JsonReader {
 	public <T>T jsonToObjectFromWeb(String direccion, Type tipo) 
 				throws FileNotFoundException, MalformedURLException, IOException {
 		
-		LeerContenidoHttp httpReader = new LeerContenidoHttp(direccion);
+		HttpContentReader httpReader = new HttpContentReader(direccion);
 		
-		return this.jsonToObject(new BufferedReader(httpReader.obtenerReader()), tipo);
+		return this.jsonToObject(new BufferedReader(httpReader.getReader()), tipo);
 		
 	}
 	
