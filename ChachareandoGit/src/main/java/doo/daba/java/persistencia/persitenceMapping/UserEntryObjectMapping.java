@@ -36,7 +36,7 @@ public class UserEntryObjectMapping implements RowMapper<UserEntry> {
         userEntry.setStatus(rs.getString("estado"));
 
         user.setId(rs.getInt("usuario_id"));
-        user.setName(rs.getString("nombre"));
+        user.setUserAlias(rs.getString("alias"));
         userEntry.setUser(user);
 
         if (this.showDetails) {
@@ -53,7 +53,6 @@ public class UserEntryObjectMapping implements RowMapper<UserEntry> {
             }
 
             userEntry.setContent(content + " ...");
-            System.out.println(userEntry.getContent());
         }
 
         return userEntry;

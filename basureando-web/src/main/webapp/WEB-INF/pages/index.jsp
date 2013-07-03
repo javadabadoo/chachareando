@@ -1,4 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
+
+<spring:url value="/css/skel-noscript.css" var="css__skel_noscript" />
+<spring:url value="/css/style.css" var="css__style" />
+<spring:url value="/css/style-desktop.css" var="css__style_desktop" />
+<spring:url value="/css/style-wide.css" var="css__style_wide" />
 <!--
 Striped 2.0 by HTML5 UP
 html5up.net | @n33co
@@ -11,19 +19,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
-    <script src="js/jquery.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/skel-panels.min.js"></script>
-    <noscript>
-        <link rel="stylesheet" href="css/skel-noscript.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-desktop.css" />
-        <link rel="stylesheet" href="css/style-wide.css" />
-    </noscript>
-    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/config.js"></script>
+    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/skel-panels.min.js"></script>
+    <style type="text/css" title="currentStyle">
+        @import "${css__skel_noscript}";
+        @import "${css__style}";
+        @import "${css__style_desktop}";
+        @import "${css__style_wide}";
+    </style>
+    <!--[if lte IE 9]><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="${pageContext.request.contextPath}/js/html5shiv.js"></script><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie7.css" /><![endif]-->
 </head>
 <!--
     Note: Set the body element's class to "left-sidebar" to position the sidebar on the left.
@@ -37,9 +45,29 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Content -->
     <div id="content">
         <div id="content-inner">
+            <c:forEach items="${userEntries}" var="entries" varStatus="status">
 
-            <!-- Post -->
-            <jsp:include page="/consulta/entrada/1"></jsp:include>
+                <article class="is-post is-post-excerpt">
+                    <header>
+                        <h2><a href="${pageContext.request.contextPath}/consulta/entrada/${entries.user.userAlias}/${entries.title}/${entries.id}">${entries.title}</a></h2>
+                        <div style="float: left"><img src="${pageContext.request.contextPath}/consulta/imagen/usuario/perfil/60/60/${entries.user.id}" alt="" /></div>
+                        <span class="byline">${entries.title}</span>
+                        <a href="#PerfilDeUsuario">${entries.user.name}</a>: <span class="date">${entries.publicationDate}</span>
+                    </header>
+                    <p>${entries.content}</p>
+
+                    <div class="info">
+                        <span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
+                        <ul class="stats">
+                            <li><a href="#" class="link-icon24 link-icon24-1">12</a></li>
+                            <li><a href="#" class="link-icon24 link-icon24-2">24</a></li>
+                            <li><a href="#" class="link-icon24 link-icon24-3">48</a></li>
+                            <li><a href="#" class="link-icon24 link-icon24-4">96</a></li>
+                        </ul>
+                    </div>
+                </article>
+
+            </c:forEach>
 
             <!-- Pager -->
             <div class="pager">

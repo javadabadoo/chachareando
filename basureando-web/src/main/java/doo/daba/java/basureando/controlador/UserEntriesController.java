@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -38,13 +39,12 @@ public class UserEntriesController {
 
 		model.addAttribute("userEntries" , userEntries);
 
-		return "/entries/displayUserEntries";
+		return "index";
 
 	}
 
 
 
-	@ResponseBody
 	@RequestMapping(
 			value="/consulta/entrada/{userAlias}/{entryName}/{entryId}",
 			method = RequestMethod.GET
@@ -55,20 +55,22 @@ public class UserEntriesController {
 			@PathVariable int entryId,
 			ModelMap model) {
 
-		model.addAttribute("userEntry", this.userEntryService.getUserEntry(entryId));
+        List<UserEntry> userEntries = new ArrayList<UserEntry>();
+        userEntries.add(this.userEntryService.getUserEntry(entryId));
+        model.addAttribute("userEntries", userEntries);
 
-		return "";
+		return "index";
 	}
 
 
 
 
-	@RequestMapping(value="/entries", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
 		model.addAttribute("mensajito", "Accesando a las: " + new SimpleDateFormat("hh:mm:ss").format(new Date()));
 
-		return "inicio";
+		return this.displayAllEntries(1, model);
 
 	}
 
