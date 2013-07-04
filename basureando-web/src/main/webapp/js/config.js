@@ -5,7 +5,7 @@
 */
 
 window._skel_config = {
-	prefix: 'css/style',
+	prefix: '/basureando-web/css/style',
 	resetCSS: true,
 	useOrientation: true,
 	breakpoints: {
