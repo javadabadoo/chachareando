@@ -26,7 +26,7 @@
         </c:forEach>
         <c:if test="${(userEntryPage.currentPage + 4) < userEntryPage.totalPages}">
             <span>&hellip;</span>
-            <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.totalPages}">${userEntryPage.totalPages}</a>
+            <a href="${pageContext.request.contextPath}/consulta/entrada/${userEntryPage.totalPages}">${userEntryPage.totalPages - 1}</a>
         </c:if>
     </div>
 
