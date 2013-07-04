@@ -35,9 +35,12 @@ public class UserEntriesController {
 	)
 	public String displayAllEntries(@PathVariable int page, ModelMap model) {
 
+		page = page < 0 ? 0 : page;
+
 		List<UserEntry> userEntries = this.userEntryService.getAllUserEntries(page, false);
 
 		model.addAttribute("userEntries" , userEntries);
+		model.addAttribute("page", page);
 
 		return "index";
 
@@ -68,9 +71,7 @@ public class UserEntriesController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-		model.addAttribute("mensajito", "Accesando a las: " + new SimpleDateFormat("hh:mm:ss").format(new Date()));
-
-		return this.displayAllEntries(1, model);
+		return this.displayAllEntries(0, model);
 
 	}
 

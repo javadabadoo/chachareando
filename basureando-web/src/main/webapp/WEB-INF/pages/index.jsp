@@ -52,7 +52,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <h2><a href="${pageContext.request.contextPath}/consulta/entrada/${entries.user.userAlias}/${entries.title}/${entries.id}">${entries.title}</a></h2>
                         <div style="float: left"><img src="${pageContext.request.contextPath}/consulta/imagen/usuario/perfil/60/60/${entries.user.id}" alt="" /></div>
                         <span class="byline">${entries.title}</span>
-                        <a href="#PerfilDeUsuario">${entries.user.name}</a>: <span class="date">${entries.publicationDate}</span>
+                        <a href="#PerfilDeUsuario">${entries.user.userAlias}</a>: <span class="date">${entries.publicationDate}</span>
                     </header>
                     <p>${entries.content}</p>
 
@@ -73,14 +73,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="pager">
                 <!--<a href="#" class="button previous">Previous Page</a>-->
                 <div class="pages">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
+                    <c:forEach var="i" begin="${requestScope.page > 3 ? requestScope.page - 3 : 0}" end="${requestScope.page + 3}" step="1">
+                        <c:choose>
+                            <c:when test="${requestScope.page == i}"><a class="active">${i}</a></c:when>
+                            <c:otherwise><a href="${pageContext.request.contextPath}/consulta/entrada/${i}">${i}</a></c:otherwise>
+                        </c:choose>
+                    </c:forEach>
                     <span>&hellip;</span>
-                    <a href="#">20</a>
+                    <a href="${pageContext.request.contextPath}/consulta/entrada/${requestScope.page + 4}">${requestScope.page + 4}</a>
                 </div>
-                <a href="#" class="button next">Next Page</a>
+                <a href="${pageContext.request.contextPath}/consulta/entrada/${requestScope.page + 1}" class="button next">Next Page</a>
             </div>
 
         </div>

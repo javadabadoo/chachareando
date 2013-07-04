@@ -12,5 +12,6 @@ import java.util.List;
  */
 public interface UserEntryDao extends DaoInterface<UserEntry> {
 
-	public List<UserEntry> selectAll(int startPage, boolean showDetails);
+	List<UserEntry> selectAll(int startPage, boolean showDetails);
+
 }

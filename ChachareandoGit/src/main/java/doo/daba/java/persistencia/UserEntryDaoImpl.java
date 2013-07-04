@@ -25,6 +25,8 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
     @Autowired
     private DataSource dataSource;
 
+	public final static int PAGINATION_SIZE = PropertiesContainer.getInt("entries.pagination.size");
+
 
 
     @PostConstruct
@@ -119,7 +121,9 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial"),
-                new UserEntryObjectMapping(showDetails));
+                new UserEntryObjectMapping(showDetails),
+		        PAGINATION_SIZE,
+		        PAGINATION_SIZE * startPage);
     }
 
     @Override
