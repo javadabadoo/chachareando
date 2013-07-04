@@ -59,10 +59,13 @@ public class UserEntriesController {
 			@PathVariable int entryId,
 			ModelMap model) {
 
+        Page<UserEntry> userEntryPage = new Page<UserEntry>();
         List<UserEntry> userEntries = new ArrayList<UserEntry>();
         userEntries.add(this.userEntryService.getUserEntry(entryId));
-        model.addAttribute("userEntries", userEntries);
+        userEntryPage.setItems(userEntries);
 
+        model.addAttribute("userEntryPage", userEntryPage);
+        
 		return "index";
 	}
 
