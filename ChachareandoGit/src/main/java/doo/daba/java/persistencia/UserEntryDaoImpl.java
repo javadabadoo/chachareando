@@ -4,6 +4,7 @@ import doo.daba.java.beans.UserEntry;
 import doo.daba.java.persistencia.criterio.Criterion;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.UserEntryObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,11 +103,6 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 
     }
 
-	@Override
-	public List<UserEntry> selectAll(boolean showDetails) {
-		return this.selectAll(1, showDetails);
-	}
-
 
 	/**
      * Obtiene todas las entradas registradas de todos los usuarios
@@ -117,13 +113,30 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      * @return  Lista de entradas
      */
     @Override
-    public List<UserEntry> selectAll(int startPage, boolean showDetails) {
+    public Page<UserEntry> selectAll(int currentPage, boolean showDetails) {
 
-        return super.getJdbcTemplate().query(
+        Page<UserEntry> userEntriesPage = new Page<UserEntry>(currentPage, PAGINATION_SIZE);
+
+        List<UserEntry> userEntries = super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial"),
                 new UserEntryObjectMapping(showDetails),
 		        PAGINATION_SIZE,
-		        PAGINATION_SIZE * startPage);
+		        PAGINATION_SIZE * currentPage);
+
+        int totalItems = super.getJdbcTemplate().queryForObject(
+                PropertiesContainer.get("sql.consulta.entrada.historial.count"),
+                Integer.class);
+
+        int totalPages = totalItems / PAGINATION_SIZE;
+        if(totalItems % PAGINATION_SIZE != 0){
+            totalItems++;
+        }
+
+        userEntriesPage.setItems(userEntries);
+        userEntriesPage.setTotalRecords(totalItems);
+        userEntriesPage.setTotalPages(totalPages);
+
+        return userEntriesPage;
     }
 
     @Override

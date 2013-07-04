@@ -5,6 +5,7 @@ import doo.daba.java.persistencia.UserEntryDao;
 import doo.daba.java.persistencia.criterio.Criterion;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +56,8 @@ public class UserEntryServiceImpl implements UserEntryService {
     }
 
 
-	public List<UserEntry> getAllUserEntries(int startPage, boolean showDetails) {
+    @Override
+	public Page<UserEntry> getAllUserEntries(int startPage, boolean showDetails) {
 		return this.userEntryDao.selectAll(startPage, showDetails);
 	}
 }

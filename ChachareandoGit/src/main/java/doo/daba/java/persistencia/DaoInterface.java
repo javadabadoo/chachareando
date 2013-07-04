@@ -3,6 +3,7 @@ package doo.daba.java.persistencia;
 
 
 import doo.daba.java.persistencia.criterio.Criterion;
+import doo.daba.java.persistencia.paginator.Page;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface DaoInterface<T> {
 
 
 
-	List<T> selectAll(boolean showDetails);
+	Page<T> selectAll(int currentPage, boolean showDetails);
 
 
 

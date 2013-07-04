@@ -1,6 +1,7 @@
 package doo.daba.java.servicio.interfaces;
 
 import doo.daba.java.beans.UserEntry;
+import doo.daba.java.persistencia.paginator.Page;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface UserEntryService {
 	List<UserEntry> getUserEntries(String criterion, boolean showDetails);
 
 
-	List<UserEntry> getAllUserEntries(int startPage, boolean showDetails);
+    Page<UserEntry> getAllUserEntries(int startPage, boolean showDetails);
 
 
 }

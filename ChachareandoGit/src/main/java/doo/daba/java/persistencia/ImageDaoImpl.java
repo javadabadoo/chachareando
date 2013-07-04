@@ -2,6 +2,7 @@ package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.Image;
 import doo.daba.java.persistencia.criterio.Criterion;
+import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.ImageObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class ImageDaoImpl extends JdbcDaoSupport implements ImageDao {
     }
 
     @Override
-    public List<Image> selectAll(boolean showDetails) {
+    public Page<Image> selectAll(int currentPage, boolean showDetails) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

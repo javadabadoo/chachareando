@@ -3,6 +3,7 @@ package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.User;
 import doo.daba.java.persistencia.criterio.Criterion;
+import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.UserObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,7 +160,7 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
 
 
 	@Override
-	public final List<User> selectAll(boolean showDetails) {
+	public final Page<User> selectAll(int currentPage, boolean showDetails) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

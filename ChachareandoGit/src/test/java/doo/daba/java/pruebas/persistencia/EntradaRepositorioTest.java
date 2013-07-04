@@ -5,6 +5,7 @@ import doo.daba.java.beans.UserEntry;
 import doo.daba.java.persistencia.UserEntryDao;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.persistencia.paginator.Page;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -88,8 +89,8 @@ public class EntradaRepositorioTest {
     public void consultarEntradasTest() {
         this.registrarEntradaTest();
 
-        List<UserEntry> entradaLista = this.entradaDao.selectAll(true);
+        Page<UserEntry> userEntryPage = this.entradaDao.selectAll(1, true);
 
-        assert ! entradaLista.isEmpty();
+        assert ! userEntryPage.getItems().isEmpty();
     }
 }

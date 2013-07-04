@@ -3,6 +3,7 @@ package doo.daba.java.basureando.controlador;
 import doo.daba.java.beans.UserEntry;
 import doo.daba.java.beans.json.JsonResponse;
 import doo.daba.java.persistencia.criterio.Criterion;
+import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +38,9 @@ public class UserEntriesController {
 
 		page = page < 0 ? 0 : page;
 
-		List<UserEntry> userEntries = this.userEntryService.getAllUserEntries(page, false);
+		Page<UserEntry> userEntryPage = this.userEntryService.getAllUserEntries(page, false);
 
-		model.addAttribute("userEntries" , userEntries);
+		model.addAttribute("userEntryPage" , userEntryPage);
 		model.addAttribute("page", page);
 
 		return "index";

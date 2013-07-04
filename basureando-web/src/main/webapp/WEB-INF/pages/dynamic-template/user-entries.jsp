@@ -1,23 +1,21 @@
 <%--
   Created by IntelliJ IDEA.
-  User: java_daba_doo
-  Date: 6/30/13
+  User: XM060EF
+  Date: 4/07/13
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:forEach items="${userEntries}" var="entries" varStatus="status">
-
+<c:forEach items="${userEntryPage.items}" var="entries" varStatus="status">
     <article class="is-post is-post-excerpt">
         <header>
-            <h2><a href="#">${entries.title}</a></h2>
+            <h2><a href="${pageContext.request.contextPath}/consulta/entrada/${entries.user.userAlias}/${entries.title}/${entries.id}">${entries.title}</a></h2>
             <div style="float: left"><img src="${pageContext.request.contextPath}/consulta/imagen/usuario/perfil/60/60/${entries.user.id}" alt="" /></div>
             <span class="byline">${entries.title}</span>
-            <a href="#PerfilDeUsuario">${entries.user.name}</a>: <span class="date">${entries.publicationDate}</span>
+            <a href="#PerfilDeUsuario">${entries.user.userAlias}</a>: <span class="date">${entries.publicationDate}</span>
         </header>
         <p>${entries.content}</p>
-
         <div class="info">
             <span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
             <ul class="stats">
@@ -28,5 +26,4 @@
             </ul>
         </div>
     </article>
-
 </c:forEach>
