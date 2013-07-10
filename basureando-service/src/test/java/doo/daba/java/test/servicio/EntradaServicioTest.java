@@ -1,12 +1,16 @@
 package doo.daba.java.test.servicio;
 
 import doo.daba.java.beans.UserEntry;
+import doo.daba.java.persistencia.UserEntryDao;
 import doo.daba.java.persistencia.UserEntryDaoImpl;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.servicio.interfaces.UserEntryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,22 +24,32 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:chachareando-context.xml"
+        "classpath:chachareando-context.xml",
+        "classpath:services-applicationContext.xml"
 })
 @Transactional
 public class EntradaServicioTest {
+    @Autowired
+    private CacheManager cacheManager;
 
     @Autowired
-    UserEntryDaoImpl userEntryDaoImpl;
+    UserEntryService userEntryService;
 
 
     @Test
     public void consultaEntradasDeUsuarioTest() {
-        List<UserEntry> entradas = this.userEntryDaoImpl.select(
-                new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO),
-                false,
-                1);
+        List<UserEntry> entradas = this.userEntryService.getUserEntries(1, false);
 
         assert ! entradas.isEmpty();
+    }
+
+    @Test
+    public void selectAllTest() {
+        Page<UserEntry> userEntryPage = null;
+
+        this.userEntryService.getAllUserEntries(1, false);
+        userEntryPage = this.userEntryService.getAllUserEntries(1, false);
+
+        assert userEntryPage != null;
     }
 }

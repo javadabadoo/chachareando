@@ -14,8 +14,11 @@
     <!-- Carga de archivos de propiedades -->
     <import resource="classpath:chachareando-context.xml" />
 
-    <!-- Configuracion de SpringSecurity-->
+    <!-- Configuracion de SpringSecurity -->
 	<import resource="classpath:seguridad/springsecurity-configuration.xml" />
+
+    <!-- Configuración de los servicios -->
+    <import resource="services-applicationContext.xml" />
 
 
     <mvc:annotation-driven />

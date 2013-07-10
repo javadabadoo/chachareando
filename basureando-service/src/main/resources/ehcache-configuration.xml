@@ -1,0 +1,19 @@
+<ehcache>
+
+    <defaultCache
+            maxElementsInMemory="500"
+            eternal="true"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LFU" />
+
+    <cache
+            name="getAllUserEntries"
+            maxElementsInMemory="20"
+            eternal="true"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LFU">
+
+        <cacheEventListenerFactory class="doo.daba.java.servicio.UserEntriesEventListenerFactory" />
+    </cache>
+
+</ehcache>
