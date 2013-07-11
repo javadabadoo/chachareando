@@ -13,6 +13,6 @@ import java.util.Properties;
 public class UserEntriesEventListenerFactory extends CacheEventListenerFactory {
     @Override
     public CacheEventListener createCacheEventListener(Properties properties) {
-        return EhcacheEventListener.getInstance();
+        return UserEntriesEventListener.getInstance();
     }
 }
