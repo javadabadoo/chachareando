@@ -37,6 +37,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <!-- Wrapper -->
 <div id="wrapper">
 
+
     <!-- Content -->
     <div id="content">
         <div id="content-inner">
@@ -61,7 +62,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current_page_item"><a href="#">Latest Post</a></li>
+                <li class="current_page_item"><a href="/">Latest Post</a></li>
                 <li><a href="#">Archives</a></li>
                 <li><a href="#">About Me</a></li>
                 <li><a href="#">Contact Me</a></li>
