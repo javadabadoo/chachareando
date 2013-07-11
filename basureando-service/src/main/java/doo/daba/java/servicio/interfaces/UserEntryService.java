@@ -3,6 +3,7 @@ package doo.daba.java.servicio.interfaces;
 import doo.daba.java.beans.UserEntry;
 import doo.daba.java.persistencia.paginator.Page;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,8 +22,10 @@ public interface UserEntryService {
 
 	List<UserEntry> getUserEntries(String criterion, boolean showDetails);
 
-
     Page<UserEntry> getAllUserEntries(int startPage, boolean showDetails);
 
+    int getLastDayOfMonth(Date date);
+
+    List<Integer> getWhichDaysHasEntries(Date date);
 
 }

@@ -1,5 +1,6 @@
 package doo.daba.java.basureando.controlador;
 
+import doo.daba.java.beans.DaysOfMonthEntries;
 import doo.daba.java.beans.UserEntry;
 import doo.daba.java.beans.json.JsonResponse;
 import doo.daba.java.persistencia.criterio.Criterion;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +29,7 @@ public class UserEntriesController {
 
 	@Autowired
 	private UserEntryService userEntryService;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
@@ -78,5 +81,32 @@ public class UserEntriesController {
 		return this.displayAllEntries(0, model);
 
 	}
+
+
+
+    @ResponseBody
+    @RequestMapping(value="/consult/calendar/{year}/{month}", method = RequestMethod.GET)
+    public DaysOfMonthEntries getPostedDaysList(@PathVariable int year, @PathVariable int month) {
+        DaysOfMonthEntries daysOfMonthEntries = null;
+        List<Integer> activeDays = null;
+        Date dateToEval = null;
+        int lastDayOfMonth = 0;
+
+        try {
+            dateToEval = this.dateFormatter.parse(String.format("%04d-%02d-%02d", year, month, 1));
+        } catch (ParseException e) {
+            return new DaysOfMonthEntries(true, "El formato de fecha es incorrecto");
+        }
+
+        daysOfMonthEntries = new DaysOfMonthEntries();
+        lastDayOfMonth = this.userEntryService.getLastDayOfMonth(dateToEval);
+        activeDays = this.userEntryService.getWhichDaysHasEntries(dateToEval);
+
+        for(int day = 1; day <= lastDayOfMonth; day++) {
+            daysOfMonthEntries.addMonth(day, activeDays.contains(day));
+        }
+
+        return daysOfMonthEntries;
+    }
 
 }
