@@ -34,4 +34,9 @@ public class Page<T> {
     @Getter @Setter
     private List<T> items;
 
+
+	public boolean isEmpty() {
+		return this.items.isEmpty();
+	}
+
 }

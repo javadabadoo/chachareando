@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -115,31 +116,55 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
     @Override
     public Page<UserEntry> selectAll(int currentPage, boolean showDetails) {
 
-        Page<UserEntry> userEntriesPage = new Page<UserEntry>(currentPage, PAGINATION_SIZE);
-
-        List<UserEntry> userEntries = super.getJdbcTemplate().query(
-                PropertiesContainer.get("sql.consulta.entrada.historial"),
-                new UserEntryObjectMapping(showDetails),
-		        PAGINATION_SIZE,
-		        PAGINATION_SIZE * currentPage);
-
-        int totalItems = super.getJdbcTemplate().queryForObject(
-                PropertiesContainer.get("sql.consulta.entrada.historial.count"),
-                Integer.class);
-
-        int totalPages = totalItems / PAGINATION_SIZE;
-        if(totalItems % PAGINATION_SIZE != 0){
-            totalItems++;
-        }
-
-        userEntriesPage.setItems(userEntries);
-        userEntriesPage.setTotalRecords(totalItems);
-        userEntriesPage.setTotalPages(totalPages);
+	    Page<UserEntry> userEntriesPage = PersistenceHelper.resolveQueries(
+			    PropertiesContainer.get("sql.consulta.entrada.historial"),
+			    PropertiesContainer.get("sql.consulta.entrada.historial.count"),
+			    super.getJdbcTemplate(),
+			    new UserEntryObjectMapping(showDetails),
+			    new Object[] {
+					    PAGINATION_SIZE,
+					    currentPage
+			    },
+			    null
+	    );
 
         return userEntriesPage;
     }
 
-    @Override
+
+	/**
+	 * Obtiene las publicacioones de un día utilizando la paginación
+	 *
+	 * @param currentPage   Número de la página actual que se está consultando
+	 * @param showDetails   Indica si deben mostrarse los detalles completos de la consulta. Utilizada
+	 *                      para determinar si debe mostrarse el contenido completo de la publicación
+	 * @param date          Fecha de la cual se obtienen las publicaciones
+	 *
+	 * @return  Encapsula la información de la consulta junto con los datos informativos útiles para paginación
+	 */
+	@Override
+	public Page<UserEntry> selectDayEntries(int currentPage, boolean showDetails, Date date) {
+
+		Page<UserEntry> userEntriesPage = PersistenceHelper.resolveQueries(
+				PropertiesContainer.get("sql.consulta.entrada.historial.porDia"),
+				PropertiesContainer.get("sql.consulta.entrada.historial.porDia.count"),
+				super.getJdbcTemplate(),
+				new UserEntryObjectMapping(showDetails),
+				new Object[] {
+						date,
+						PAGINATION_SIZE,
+						currentPage
+				},
+				new Object[] {
+						date
+				}
+		);
+
+
+		return userEntriesPage;
+	}
+
+	@Override
     public int update(UserEntry element) {
         return 0;
     }

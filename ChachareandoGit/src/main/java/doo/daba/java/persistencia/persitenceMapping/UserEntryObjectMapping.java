@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * Date: 4/6/13
  */
 @AllArgsConstructor
-public class UserEntryObjectMapping implements RowMapper<UserEntry> {
+public class UserEntryObjectMapping implements ObjectMapping<UserEntry> {
 
     @Getter @Setter
     private boolean showDetails;

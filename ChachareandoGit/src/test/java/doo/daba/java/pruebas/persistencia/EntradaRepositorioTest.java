@@ -14,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class EntradaRepositorioTest {
     @Autowired
     UserEntryDao entradaDao;
     UserEntry entrada;
+	private SimpleDateFormat dateFormat;
 
 
     @Before
@@ -43,6 +46,8 @@ public class EntradaRepositorioTest {
         this.entrada.setContent("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
         this.entrada.setStatus("vigente");
         this.entrada.setUser(new User(2));
+
+	    this.dateFormat = new SimpleDateFormat("yyy-mm-dd");
     }
 
 
@@ -93,4 +98,15 @@ public class EntradaRepositorioTest {
 
         assert ! userEntryPage.getItems().isEmpty();
     }
+
+
+	@Test
+	public void testByDate() throws ParseException {
+
+		Page<UserEntry> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2003-03-12"));
+
+		assert userEntryPage != null;
+		assert ! userEntryPage.isEmpty();
+
+	}
 }
