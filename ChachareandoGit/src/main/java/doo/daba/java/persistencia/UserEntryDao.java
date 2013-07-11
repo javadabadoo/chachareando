@@ -18,4 +18,6 @@ public interface UserEntryDao extends DaoInterface<UserEntry> {
 
 	Page<UserEntry> selectDayEntries(int currentPage, boolean showDetails, Date date);
 
+    List<Integer> selectWhichDaysHasEntries(Date mounthDate);
+
 }

@@ -12,6 +12,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,4 +82,36 @@ public class UserEntryServiceImpl implements UserEntryService {
 	public Page<UserEntry> getAllUserEntries(int startPage, boolean showDetails) {
 		return this.userEntryDao.selectAll(startPage, showDetails);
 	}
+
+
+    /**
+     * @param date  Fecha de la cual se obtiene el mes para calcular su último dia
+     *
+     * @return  Número de dias en el mes que viene representando el ultimo dia
+     */
+    @Override
+    public int getLastDayOfMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+
+        return calendar.get(Calendar.DATE);
+    }
+
+
+    /**
+     * Invoca al repositorio de datos en busca de los dias en los que se haya realizado una publicación
+     *
+     * @param date  Fecha de la cual se consultan los dias en los que se ha publicado alguna entrada
+     *
+     * @return  Dias en los cuales se encontró al menos una publicación
+     */
+    @Override
+    public List<Integer> getWhichDaysHasEntries(Date date) {
+        return this.userEntryDao.selectWhichDaysHasEntries(date);
+    }
 }

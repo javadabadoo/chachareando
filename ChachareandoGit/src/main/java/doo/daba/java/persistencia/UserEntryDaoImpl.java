@@ -5,6 +5,7 @@ import doo.daba.java.persistencia.criterio.Criterion;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.persistencia.persitenceMapping.IntegerListObjectMapping;
 import doo.daba.java.persistencia.persitenceMapping.UserEntryObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,7 +165,26 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 		return userEntriesPage;
 	}
 
-	@Override
+
+    /**
+     * Busca qué dias de un més tienen publicaciones
+     *
+     * @param date    Indica la fecha en al que se buscan publicaciones, unicamente
+     *                      se considera el més y el año
+     *
+     * @return  Dias en los que se han realizado publicaciones
+     */
+    @Override
+    public List<Integer> selectWhichDaysHasEntries(Date date) {
+
+        List<Integer> days = super.getJdbcTemplate().query(PropertiesContainer.get(
+                "sql.consulta.entrada.historial.calendario"),
+                new IntegerListObjectMapping(),
+                date);
+        return days;
+    }
+
+    @Override
     public int update(UserEntry element) {
         return 0;
     }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class EntradaRepositorioTest {
         this.entrada.setStatus("vigente");
         this.entrada.setUser(new User(2));
 
-	    this.dateFormat = new SimpleDateFormat("yyy-mm-dd");
+	    this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 
 
@@ -103,10 +104,25 @@ public class EntradaRepositorioTest {
 	@Test
 	public void testByDate() throws ParseException {
 
-		Page<UserEntry> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2003-03-12"));
+		Page<UserEntry> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2013-03-12"));
 
 		assert userEntryPage != null;
 		assert ! userEntryPage.isEmpty();
 
 	}
+
+
+
+    @Test
+    public void testWhichDaysHasEntries() throws ParseException {
+        Date date = this.dateFormat.parse("2013-05-12");
+        List<Integer> days = this.entradaDao.selectWhichDaysHasEntries(date);
+
+        for (int i = 0; i <= 31; i++){
+            System.out.println(String.format("%02d", i));
+        }
+
+        assert days != null;
+        assert ! days.isEmpty();
+    }
 }

@@ -36,7 +36,7 @@ public class Page<T> {
 
 
 	public boolean isEmpty() {
-		return this.items.isEmpty();
+		return this.items == null ||this.items.isEmpty();
 	}
 
 }
