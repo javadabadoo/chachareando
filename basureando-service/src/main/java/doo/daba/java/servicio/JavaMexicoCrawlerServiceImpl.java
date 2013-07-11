@@ -2,7 +2,6 @@ package doo.daba.java.servicio;
 
 import doo.daba.java.servicio.interfaces.JavaMexicoCrawlerService;
 import doo.daba.java.util.io.HttpContentReader;
-import doo.daba.java.util.io.XmlReader;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
