@@ -26,7 +26,7 @@ public class PersistenceHelper {
 	) {
 
 		int paginationSize = Integer.parseInt(dataQueryParams[dataQueryParams.length - 2].toString());
-		int currentPage = paginationSize * Integer.parseInt(dataQueryParams[dataQueryParams.length - 1].toString());
+		int currentPage = Integer.parseInt(dataQueryParams[dataQueryParams.length - 1].toString());
 
 		Page<T> userEntriesPage = new Page<T>(currentPage, paginationSize);
 		List<T> items = null;
@@ -42,7 +42,7 @@ public class PersistenceHelper {
 					dataQuery,
 					rowMapper,
 					paginationSize,
-					currentPage);
+					paginationSize * currentPage);
 
 			totalPages = totalItems / paginationSize;
 			if(totalItems % paginationSize != 0){
