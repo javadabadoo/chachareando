@@ -9,7 +9,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 <html>
 <head>
-    <title>java.daba.doo ${pageContext.request.contextPath}</title>
+    <title>java.daba.doo</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -62,7 +62,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current_page_item"><a href="/">Latest Post</a></li>
+                <li class="current_page_item"><a href="${pageContext.request.contextPath}/consulta/entrada/0">Latest Post</a></li>
                 <li><a href="#">Archives</a></li>
                 <li><a href="#">About Me</a></li>
                 <li><a href="#">Contact Me</a></li>
