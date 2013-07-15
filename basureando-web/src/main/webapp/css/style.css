@@ -814,3 +814,23 @@
 			box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075), 0px 1px 0px 0px rgba(255,255,255,0.075);
 			display: block;
 		}
+
+
+
+/*********************************************************************************/
+/* Header                                                                       */
+/*********************************************************************************/
+
+    #header {
+        background: #364050 url('../img/banned-bg-1920x1200.jpg');
+        background-position: center;
+        margin-left: 12em;
+        margin-top: 0;
+        width: 100%;
+        height: 145px;
+        color: whitesmoke;
+        padding: 50px;
+        position: relative;
+        display: block;
+        top: 0
+    }
