@@ -15,7 +15,7 @@
     </bean>
 
 
-    <bean id="chachareandoGitCustomProperties" class="doo.daba.java.util.PropertiesContainer">
+    <bean id="persistenceCustomProperties" class="doo.daba.java.util.PropertiesContainer">
         <property name="locations">
             <list>
                 <value>classpath:/properties/sqlqueries.properties</value>

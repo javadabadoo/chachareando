@@ -17,7 +17,7 @@
         <module>basureando-web</module>
         <module>basureando-web-touch</module>
         <module>basureando-service</module>
-        <module>ChachareandoGit</module>
+        <module>basureando-persistence</module>
   </modules>
 
 </project>
