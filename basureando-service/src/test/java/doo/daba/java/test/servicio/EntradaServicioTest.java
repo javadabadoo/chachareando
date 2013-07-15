@@ -1,12 +1,8 @@
 package doo.daba.java.test.servicio;
 
-import doo.daba.java.beans.UserEntry;
-import doo.daba.java.persistencia.UserEntryDao;
-import doo.daba.java.persistencia.UserEntryDaoImpl;
-import doo.daba.java.persistencia.criterio.EntradaCriterio;
-import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.paginator.Page;
-import doo.daba.java.servicio.interfaces.UserEntryService;
+import doo.daba.java.servicio.interfaces.UserPostService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,22 +31,22 @@ public class EntradaServicioTest {
     private CacheManager cacheManager;
 
     @Autowired
-    UserEntryService userEntryService;
+    UserPostService userPostService;
 
 
     @Test
     public void consultaEntradasDeUsuarioTest() {
-        List<UserEntry> entradas = this.userEntryService.getUserEntries(1, false);
+        List<UserPost> entradas = this.userPostService.getUserPosts(1, false);
 
         assert ! entradas.isEmpty();
     }
 
     @Test
     public void selectAllTest() {
-        Page<UserEntry> userEntryPage = null;
+        Page<UserPost> userEntryPage = null;
 
-        this.userEntryService.getAllUserEntries(1, false);
-        userEntryPage = this.userEntryService.getAllUserEntries(1, false);
+        this.userPostService.getAllUserPosts(1, false);
+        userEntryPage = this.userPostService.getAllUserPosts(1, false);
 
         assert userEntryPage != null;
     }
@@ -60,6 +55,6 @@ public class EntradaServicioTest {
     @Test
     public void testDayOfWeek() throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-ddd");
-        assert 2 == this.userEntryService.getFirstDayPosition(df.parse("2013-07-01"));
+        assert 2 == this.userPostService.getFirstDayPosition(df.parse("2013-07-01"));
     }
 }

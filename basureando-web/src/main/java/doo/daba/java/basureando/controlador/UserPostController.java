@@ -1,11 +1,9 @@
 package doo.daba.java.basureando.controlador;
 
 import doo.daba.java.beans.DaysOfMonthEntries;
-import doo.daba.java.beans.UserEntry;
-import doo.daba.java.beans.json.JsonResponse;
-import doo.daba.java.persistencia.criterio.Criterion;
+import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.paginator.Page;
-import doo.daba.java.servicio.interfaces.UserEntryService;
+import doo.daba.java.servicio.interfaces.UserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,26 +21,28 @@ import java.util.Random;
  * Date: 16/05/13
  */
 @Controller
-public class UserEntriesController {
+public class UserPostController {
 
 
 	@Autowired
-	private UserEntryService userEntryService;
+	private UserPostService userPostService;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
 	@RequestMapping(
-			value="/consulta/entrada/{page}",
+			value="/post/page/{page}",
 			method = RequestMethod.GET
 	)
-	public String displayAllEntries(@PathVariable int page, ModelMap model) {
+	public String displayAllPosts(@PathVariable int page, ModelMap model) {
 
 		page = page < 0 ? 0 : page;
 
-		Page<UserEntry> userEntryPage = this.userEntryService.getAllUserEntries(page, false);
+		Page<UserPost> userEntryPage = this.userPostService.getAllUserPosts(page, false);
+        List<UserPost> recentEntries = this.userPostService.getRecentEntries();
 
-		model.addAttribute("userEntryPage" , userEntryPage);
+		model.addAttribute("userEntryPage", userEntryPage);
+		model.addAttribute("recentEntries", recentEntries);
 
 		return "index";
 
@@ -52,21 +51,25 @@ public class UserEntriesController {
 
 
 	@RequestMapping(
-			value="/consulta/entrada/{userAlias}/{entryName}/{entryId}",
+			value="/post/show/{userAlias}/{entryId}/{entryName}",
 			method = RequestMethod.GET
 	)
-	public String displayUserEntry(
-			@PathVariable String userAlias,
-			@PathVariable String entryName,
-			@PathVariable int entryId,
-			ModelMap model) {
+	public String displayUserPost(
+            @PathVariable String userAlias,
+            @PathVariable int entryId,
+            @PathVariable String entryName,
+            ModelMap model) {
 
-        Page<UserEntry> userEntryPage = new Page<UserEntry>();
-        List<UserEntry> userEntries = new ArrayList<UserEntry>();
-        userEntries.add(this.userEntryService.getUserEntry(entryId));
+        Page<UserPost> userEntryPage = new Page<UserPost>();
+        List<UserPost> userEntries = new ArrayList<UserPost>();
+
+        List<UserPost> recentEntries = this.userPostService.getRecentEntries();
+
+        userEntries.add(this.userPostService.getUserPost(entryId));
         userEntryPage.setItems(userEntries);
 
         model.addAttribute("userEntryPage", userEntryPage);
+        model.addAttribute("recentEntries", recentEntries);
         
 		return "index";
 	}
@@ -75,16 +78,16 @@ public class UserEntriesController {
 
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
+	public String getWelcomePage(ModelMap model) {
 
-		return this.displayAllEntries(0, model);
+		return this.displayAllPosts(0, model);
 
 	}
 
 
 
     @ResponseBody
-    @RequestMapping(value="/consult/calendar/{year}/{month}", method = RequestMethod.GET)
+    @RequestMapping(value="/post/calendar/{year}/{month}", method = RequestMethod.GET)
     public DaysOfMonthEntries getPostedDaysList(@PathVariable int year, @PathVariable int month) {
         DaysOfMonthEntries daysOfMonthEntries = null;
         List<Integer> activeDays = null;
@@ -98,9 +101,9 @@ public class UserEntriesController {
         }
 
         daysOfMonthEntries = new DaysOfMonthEntries();
-        lastDayOfMonth = this.userEntryService.getLastDayOfMonth(dateToEval);
-        activeDays = this.userEntryService.getWhichDaysHasEntries(dateToEval);
-        daysOfMonthEntries.setFirstDayPosition(this.userEntryService.getFirstDayPosition(dateToEval));
+        lastDayOfMonth = this.userPostService.getLastDayOfMonth(dateToEval);
+        activeDays = this.userPostService.getWhichDaysHasEntries(dateToEval);
+        daysOfMonthEntries.setFirstDayPosition(this.userPostService.getFirstDayPosition(dateToEval));
 
         for(int day = 1; day <= lastDayOfMonth; day++) {
             daysOfMonthEntries.addMonth(day, activeDays.contains(day));

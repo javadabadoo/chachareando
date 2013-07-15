@@ -7,7 +7,7 @@
             memoryStoreEvictionPolicy="LFU" />
 
     <cache
-            name="getAllUserEntries"
+            name="getAllUserPosts"
             maxElementsInMemory="20"
             eternal="true"
             overflowToDisk="false"

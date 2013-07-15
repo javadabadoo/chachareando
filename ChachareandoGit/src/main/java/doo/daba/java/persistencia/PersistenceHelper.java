@@ -1,11 +1,8 @@
 package doo.daba.java.persistencia;
 
-import doo.daba.java.beans.UserEntry;
 import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.ObjectMapping;
-import doo.daba.java.util.PropertiesContainer;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 

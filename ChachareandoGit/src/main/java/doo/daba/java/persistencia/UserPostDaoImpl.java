@@ -1,11 +1,12 @@
 package doo.daba.java.persistencia;
 
-import doo.daba.java.beans.UserEntry;
+import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.criterio.Criterion;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.IntegerListObjectMapping;
+import doo.daba.java.persistencia.persitenceMapping.RecentPostObjectMapping;
 import doo.daba.java.persistencia.persitenceMapping.UserEntryObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.List;
  * Date: 4/6/13
  */
 @Repository
-public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
+public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 
     @Autowired
     private DataSource dataSource;
@@ -46,7 +47,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      * @return  ID generado por el registro
      */
     @Override
-    public int insert(UserEntry element) {
+    public int insert(UserPost element) {
         int id =  super.getJdbcTemplate().queryForObject(
                 PropertiesContainer.get("sql.registro.entrada"),
                 Integer.class,
@@ -68,10 +69,10 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      *
      * @param id   IDentificador del registro
      *
-     * @return  Registro de element encapuslado en el objeto {@code UserEntry}
+     * @return  Registro de element encapuslado en el objeto {@code UserPost}
      */
     @Override
-    public UserEntry select(int id) {
+    public UserPost select(int id) {
 
         return super.getJdbcTemplate().queryForObject(
                 PropertiesContainer.get("sql.consulta.entrada"),
@@ -94,7 +95,7 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      * @return  Lista de entradas asociadas al usuario
      */
     @Override
-    public List<UserEntry> select(Criterion criterio, boolean showDetails, Object ... params) {
+    public List<UserPost> select(Criterion criterio, boolean showDetails, Object ... params) {
 
         Criterion cirterio = new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO);
 
@@ -115,9 +116,9 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
      * @return  Lista de entradas
      */
     @Override
-    public Page<UserEntry> selectAll(int currentPage, boolean showDetails) {
+    public Page<UserPost> selectAll(int currentPage, boolean showDetails) {
 
-	    Page<UserEntry> userEntriesPage = PersistenceHelper.resolveQueries(
+	    Page<UserPost> userEntriesPage = PersistenceHelper.resolveQueries(
 			    PropertiesContainer.get("sql.consulta.entrada.historial"),
 			    PropertiesContainer.get("sql.consulta.entrada.historial.count"),
 			    super.getJdbcTemplate(),
@@ -144,9 +145,9 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
 	 * @return  Encapsula la información de la consulta junto con los datos informativos útiles para paginación
 	 */
 	@Override
-	public Page<UserEntry> selectDayEntries(int currentPage, boolean showDetails, Date date) {
+	public Page<UserPost> selectDayEntries(int currentPage, boolean showDetails, Date date) {
 
-		Page<UserEntry> userEntriesPage = PersistenceHelper.resolveQueries(
+		Page<UserPost> userEntriesPage = PersistenceHelper.resolveQueries(
 				PropertiesContainer.get("sql.consulta.entrada.historial.porDia"),
 				PropertiesContainer.get("sql.consulta.entrada.historial.porDia.count"),
 				super.getJdbcTemplate(),
@@ -177,20 +178,34 @@ public class UserEntryDaoImpl extends JdbcDaoSupport implements UserEntryDao {
     @Override
     public List<Integer> selectWhichDaysHasEntries(Date date) {
 
-        List<Integer> days = super.getJdbcTemplate().query(PropertiesContainer.get(
-                "sql.consulta.entrada.historial.calendario"),
+        List<Integer> days = super.getJdbcTemplate().query(
+                PropertiesContainer.get("sql.consulta.entrada.historial.calendario"),
                 new IntegerListObjectMapping(),
                 date);
         return days;
     }
 
+
+    /**
+     * @return  Lista de las entradas recientes, esta consulta retorna únicamente
+     *          el id y titulo de la entrada ademas del alias del usuario.
+     */
     @Override
-    public int update(UserEntry element) {
+    public List<UserPost> selectRecentEntries() {
+        return super.getJdbcTemplate().query(
+                PropertiesContainer.get("sql.consulta.entrada.entries.recent"),
+                new RecentPostObjectMapping(),
+                PropertiesContainer.getInt("entries.recent.listSize")
+        );
+    }
+
+    @Override
+    public int update(UserPost element) {
         return 0;
     }
 
     @Override
-    public int delete(UserEntry element) {
+    public int delete(UserPost element) {
         return 0;
     }
 }

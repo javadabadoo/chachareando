@@ -1,8 +1,8 @@
 package doo.daba.java.pruebas.persistencia;
 
 import doo.daba.java.beans.User;
-import doo.daba.java.beans.UserEntry;
-import doo.daba.java.persistencia.UserEntryDao;
+import doo.daba.java.beans.UserPost;
+import doo.daba.java.persistencia.UserPostDao;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,14 +32,14 @@ import java.util.List;
 public class EntradaRepositorioTest {
 
     @Autowired
-    UserEntryDao entradaDao;
-    UserEntry entrada;
+    UserPostDao entradaDao;
+    UserPost entrada;
 	private SimpleDateFormat dateFormat;
 
 
     @Before
     public void init() {
-        this.entrada = new UserEntry();
+        this.entrada = new UserPost();
 
         this.entrada.setTitle("Titulo de entrada de prueba");
         this.entrada.setPublicationDate(new Date());
@@ -63,7 +62,7 @@ public class EntradaRepositorioTest {
     public void consultarEntrada() {
         this.registrarEntradaTest();
 
-        UserEntry entrada = this.entradaDao.select(this.entrada.getId());
+        UserPost entrada = this.entradaDao.select(this.entrada.getId());
 
         assert entrada.getId() == this.entrada.getId();
         assert entrada.getPublicationDate().getTime() == this.entrada.getPublicationDate().getTime();
@@ -74,7 +73,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasDeUsuarioTest() {
         this.registrarEntradaTest();
-        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), false, 1);
+        List<UserPost> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), false, 1);
 
         assert ! entradaLista.isEmpty();
     }
@@ -84,7 +83,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasPorTituloTest() {
         this.registrarEntradaTest();
-        List<UserEntry> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
+        List<UserPost> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
 
         assert ! entradaLista.isEmpty();
     }
@@ -95,7 +94,7 @@ public class EntradaRepositorioTest {
     public void consultarEntradasTest() {
         this.registrarEntradaTest();
 
-        Page<UserEntry> userEntryPage = this.entradaDao.selectAll(1, true);
+        Page<UserPost> userEntryPage = this.entradaDao.selectAll(1, true);
 
         assert ! userEntryPage.getItems().isEmpty();
     }
@@ -104,7 +103,7 @@ public class EntradaRepositorioTest {
 	@Test
 	public void testByDate() throws ParseException {
 
-		Page<UserEntry> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2013-03-12"));
+		Page<UserPost> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2013-03-12"));
 
 		assert userEntryPage != null;
 		assert ! userEntryPage.isEmpty();

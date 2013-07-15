@@ -1,6 +1,5 @@
 package doo.daba.java.persistencia.paginator;
 
-import doo.daba.java.beans.UserEntry;
 import lombok.*;
 
 import java.util.List;

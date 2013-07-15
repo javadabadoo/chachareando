@@ -27,7 +27,7 @@ import java.net.URL;
  * Date: 15/05/13
  */
 @Controller
-public class ImageControlador {
+public class ImageController {
 
     @Autowired
     private ImageService imageService;
@@ -35,7 +35,7 @@ public class ImageControlador {
 
     @ResponseBody
     @RequestMapping(
-            value="/consulta/imagen/usuario/perfil/{width}/{height}/{idUsuario}",
+            value="/image/resizer/{width}/{height}/{idUsuario}",
             method = RequestMethod.GET,
             produces = "image/png"
     )

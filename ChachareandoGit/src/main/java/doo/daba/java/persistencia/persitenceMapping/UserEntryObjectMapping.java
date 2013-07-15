@@ -1,12 +1,11 @@
 package doo.daba.java.persistencia.persitenceMapping;
 
 import doo.daba.java.beans.User;
-import doo.daba.java.beans.UserEntry;
+import doo.daba.java.beans.UserPost;
 import doo.daba.java.util.PropertiesContainer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ import java.sql.SQLException;
  * Date: 4/6/13
  */
 @AllArgsConstructor
-public class UserEntryObjectMapping implements ObjectMapping<UserEntry> {
+public class UserEntryObjectMapping implements ObjectMapping<UserPost> {
 
     @Getter @Setter
     private boolean showDetails;
@@ -26,23 +25,23 @@ public class UserEntryObjectMapping implements ObjectMapping<UserEntry> {
 
 
 
-    public UserEntry mapRow(ResultSet rs, int i) throws SQLException {
+    public UserPost mapRow(ResultSet rs, int i) throws SQLException {
 
-        UserEntry userEntry = new UserEntry();
+        UserPost userPost = new UserPost();
         User user = new User();
 
-        userEntry.setId(rs.getInt("id"));
-        userEntry.setTitle(rs.getString("titulo"));
-        userEntry.setStatus(rs.getString("estado"));
+        userPost.setId(rs.getInt("id"));
+        userPost.setTitle(rs.getString("titulo"));
+        userPost.setStatus(rs.getString("estado"));
+        userPost.setPublicationDate(rs.getTimestamp("fecha_de_creacion"));
 
         user.setId(rs.getInt("usuario_id"));
         user.setUserAlias(rs.getString("alias"));
-        userEntry.setUser(user);
+        userPost.setUser(user);
 
         if (this.showDetails) {
-            userEntry.setContent(rs.getString("contenido"));
-            userEntry.setPublicationDate(rs.getTimestamp("fecha_de_creacion"));
-            userEntry.setModificacionDate(rs.getTimestamp("fecha_de_modificacion"));
+            userPost.setContent(rs.getString("contenido"));
+            userPost.setModificacionDate(rs.getTimestamp("fecha_de_modificacion"));
         } else {
             String content = rs.getString("contenido");
             int contentLength = content.length();
@@ -52,10 +51,10 @@ public class UserEntryObjectMapping implements ObjectMapping<UserEntry> {
                 content = content.substring(0, content.lastIndexOf(' '));
             }
 
-            userEntry.setContent(content + " ...");
+            userPost.setContent(content + " ...");
         }
 
-        return userEntry;
+        return userPost;
     }
 
 }

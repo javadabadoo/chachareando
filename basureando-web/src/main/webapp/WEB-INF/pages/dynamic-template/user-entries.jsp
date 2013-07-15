@@ -10,8 +10,8 @@
 <c:forEach items="${userEntryPage.items}" var="entries" varStatus="status">
     <article class="is-post is-post-excerpt">
         <header>
-            <h2><a href="${pageContext.request.contextPath}/consulta/entrada/${entries.user.userAlias}/${entries.title}/${entries.id}">${entries.title}</a></h2>
-            <div style="float: left"><img src="${pageContext.request.contextPath}/consulta/imagen/usuario/perfil/60/60/${entries.user.id}" alt="" /></div>
+            <h2><a href="${pageContext.request.contextPath}/post/show/${entries.user.userAlias}/${entries.id}/${entries.encodedTitle}">${entries.title}</a></h2>
+            <div style="float: left"><img src="${pageContext.request.contextPath}/image/resizer/60/60/${entries.user.id}" alt="" /></div>
             <span class="byline">${entries.title}</span>
             <a href="#PerfilDeUsuario">${entries.user.userAlias}</a>: <span class="date">${entries.publicationDate}</span>
         </header>

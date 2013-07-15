@@ -57,15 +57,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Sidebar -->
     <div id="sidebar">
 
-        <!-- Logo -->
-        <div id="logo">
-            <h1>STRIPED</h1>
-        </div>
+        <%--<!-- Logo -->--%>
+        <%--<div id="logo">--%>
+            <%--<h1>Gerardo</h1>--%>
+        <%--</div>--%>
 
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li class="current_page_item"><a href="${pageContext.request.contextPath}/consulta/entrada/0">Latest Post</a></li>
+                <li class="current_page_item"><a href="${pageContext.request.contextPath}/post/page/0">Latest Post</a></li>
                 <li><a href="#">Archives</a></li>
                 <li><a href="#">About Me</a></li>
                 <li><a href="#">Contact Me</a></li>
@@ -90,18 +90,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         </section>
 
         <!-- Recent Posts -->
-        <section class="is-recent-posts">
-            <header>
-                <h2>Recent Posts</h2>
-            </header>
-            <ul>
-                <li><a href="#">Nothing happened</a></li>
-                <li><a href="#">My Dearest Cthulhu</a></li>
-                <li><a href="#">The Meme Meme</a></li>
-                <li><a href="#">Now Full Cyborg</a></li>
-                <li><a href="#">Temporal Flux</a></li>
-            </ul>
-        </section>
+        <jsp:include page="dynamic-template/recent-posts.jsp" />
 
         <!-- Recent Comments -->
         <section class="is-recent-comments">

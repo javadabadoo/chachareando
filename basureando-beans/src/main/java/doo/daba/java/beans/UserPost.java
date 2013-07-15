@@ -4,6 +4,8 @@ import doo.daba.java.beans.util.JsonFechaSerializador;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 import lombok.AccessLevel;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -13,7 +15,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  * User: java_daba_doo
  * Date: 4/6/13
  */
-public class UserEntry {
+public class UserPost {
 
     @Getter @Setter
     private int
@@ -33,5 +35,17 @@ public class UserEntry {
 
     @Getter @Setter
     private User user;
+
+
+    public String getEncodedTitle() {
+        String encodedTitle = null;
+        try {
+            encodedTitle = URLEncoder.encode(this.title, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedTitle;
+    }
 
 }

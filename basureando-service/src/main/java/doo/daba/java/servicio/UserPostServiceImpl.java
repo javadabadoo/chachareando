@@ -1,12 +1,12 @@
 package doo.daba.java.servicio;
 
-import doo.daba.java.beans.UserEntry;
-import doo.daba.java.persistencia.UserEntryDao;
+import doo.daba.java.beans.UserPost;
+import doo.daba.java.persistencia.UserPostDao;
 import doo.daba.java.persistencia.criterio.Criterion;
 import doo.daba.java.persistencia.criterio.EntradaCriterio;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
-import doo.daba.java.servicio.interfaces.UserEntryService;
+import doo.daba.java.servicio.interfaces.UserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -23,11 +23,11 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class UserEntryServiceImpl implements UserEntryService {
+public class UserPostServiceImpl implements UserPostService {
 
 
     @Autowired
-    private UserEntryDao userEntryDao;
+    private UserPostDao userEntryDao;
 
 
     /**
@@ -38,21 +38,21 @@ public class UserEntryServiceImpl implements UserEntryService {
      * @return  ID del registro de la entrada
      */
     @Override
-    public int saveEntry(UserEntry entry) {
+    public int savePost(UserPost entry) {
        return this.userEntryDao.insert(entry);
     }
 
 
 
     @Override
-    public UserEntry getUserEntry(int entryId) {
+    public UserPost getUserPost(int entryId) {
         return this.userEntryDao.select(entryId);
     }
 
 
 
     @Override
-    public List<UserEntry> getUserEntries(int userId, boolean showDetails) {
+    public List<UserPost> getUserPosts(int userId, boolean showDetails) {
         Criterion criterio = new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO);
         return this.userEntryDao.select(criterio, showDetails, userId);
     }
@@ -60,7 +60,7 @@ public class UserEntryServiceImpl implements UserEntryService {
 
 
     @Override
-    public List<UserEntry> getUserEntries(String criterion, boolean showDetails) {
+    public List<UserPost> getUserPosts(String criterion, boolean showDetails) {
         return this.userEntryDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), showDetails, criterion);
     }
 
@@ -78,8 +78,8 @@ public class UserEntryServiceImpl implements UserEntryService {
      * @return  Página de las entradas consultadas
      */
     @Override
-    @Cacheable("getAllUserEntries")
-	public Page<UserEntry> getAllUserEntries(int startPage, boolean showDetails) {
+    @Cacheable("getAllUserPosts")
+	public Page<UserPost> getAllUserPosts(int startPage, boolean showDetails) {
 		return this.userEntryDao.selectAll(startPage, showDetails);
 	}
 
@@ -128,5 +128,15 @@ public class UserEntryServiceImpl implements UserEntryService {
     @Override
     public List<Integer> getWhichDaysHasEntries(Date date) {
         return this.userEntryDao.selectWhichDaysHasEntries(date);
+    }
+
+
+    /**
+     * @return  Lista de entradas recientemente publicadas. La lista está planeada para mostrarse
+     *          en la página principal de la aplicación.
+     */
+    @Override
+    public List<UserPost> getRecentEntries() {
+        return this.userEntryDao.selectRecentEntries();
     }
 }

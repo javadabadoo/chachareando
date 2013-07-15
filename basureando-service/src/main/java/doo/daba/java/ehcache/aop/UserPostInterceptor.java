@@ -1,6 +1,5 @@
 package doo.daba.java.ehcache.aop;
 
-import doo.daba.java.servicio.interfaces.UserEntryService;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -18,27 +17,27 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class UserEntryInterceptor {
+public class UserPostInterceptor {
 
     @Autowired
     CacheManager cacheManager;
 
     /**
-     * Interceptando la ejecución del método {@code getUserEntry} del servicio {@code UserEntryService}
+     * Interceptando la ejecución del método {@code UserPostService#savePost} del servicio {@code UserPostService}
      *
-     * @see UserEntryService#saveEntry(doo.daba.java.beans.UserEntry)
+     * @see doo.daba.java.servicio.interfaces.UserPostService#savePost(doo.daba.java.beans.UserPost)
      */
-    @Pointcut("execution(* doo.daba.java.servicio.interfaces.UserEntryService.saveEntry(..))")
-    public void saveEntryPointcut() { }
+    @Pointcut("execution(* doo.daba.java.servicio.interfaces.UserPostService.savePost(..))")
+    public void savePostPointcut() { }
 
 
     /**
-     * Se ejecuta desdpues del método interceptado por {@link #saveEntryPointcut()}
+     * Se ejecuta desdpues del método interceptado por {@link #savePostPointcut()}
      * para limpiar el caché
      */
-    @After("saveEntryPointcut()")
+    @After("savePostPointcut()")
     public void clearCache() {
-        this.cacheManager.getCache("getAllUserEntries").clear();
+        this.cacheManager.getCache("getAllUserPosts").clear();
     }
 
 }
