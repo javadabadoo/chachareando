@@ -18,7 +18,7 @@ public class InicioControlador {
 
         model.addAttribute("mensajito", "Accesando a las: " + new SimpleDateFormat("hh:mm:ss").format(new Date()));
 
-        return "inicio";
+        return "forward:/";
 
     }
 
