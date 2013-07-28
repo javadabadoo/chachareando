@@ -73,9 +73,9 @@ CREATE TABLE usuario_imagen
 
 CREATE TABLE comentarios
 (
-	id entrada integer NOT NULL,
-	id_comentario integer NOT NULL
-	CONSTRAINT comentarios_id entrada_fkey FOREIGN KEY (entrada) REFERENCES entrada (id)
+  id_entrada integer NOT NULL references entrada(id),
+  id_comentario integer not null references entrada(id),
+  id_comentario_respuesta integer default NULL
 );
 
 
