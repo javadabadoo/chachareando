@@ -139,4 +139,17 @@ public class UserPostServiceImpl implements UserPostService {
     public List<UserPost> getRecentEntries() {
         return this.userEntryDao.selectRecentEntries();
     }
+
+
+	/**
+	 * Cosulta los comentarios que se han realizado sobre algun post de un blog/foro
+	 *
+	 * @param idPost    Post del que se realiza la consulta de comentarios
+	 *
+	 * @return  Lista de comentarios
+	 */
+	@Override
+	public List<UserPost> getPostComments(int idPost) {
+		return this.userEntryDao.selectPostComments(idPost);
+	}
 }

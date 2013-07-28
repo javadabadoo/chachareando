@@ -150,14 +150,36 @@
 	
 		form input,
 		form select,
-		form textarea
-		{
-			border-radius: 0.4em;
-			-webkit-appearance: none;
-			border: solid 1px #ddd;
-			padding: 0.5em;
-			width: 100%;
-		}
+        form textarea
+        {
+            border-radius: 0.4em;
+            -webkit-appearance: none;
+            border: solid 1px #ddd;
+            //padding: 0.5em !important;
+            width: 100% !important;
+            margin-top: 0.5em !important;
+            margin-left: 0 !important;
+        }
+
+        #user-post-editor-content
+        {
+            min-height: 250px !important;
+            padding: 0.5em;
+        }
+
+        #user-post-editor-tags
+        {
+            color: red !important;
+            margin: 0em;
+        }
+
+        form #user-post-editor-tags {
+            width: 100% !important;
+        }
+
+        .text-wrap {
+            width: 100% !important;
+        }
 
 		form input:focus,
 		form textarea:focus
@@ -824,13 +846,10 @@
     #header {
         background: #364050 url('../img/banned-bg-1920x1200.jpg');
         background-position: center;
-        margin-left: 12em;
-        margin-top: 0;
-        width: 100%;
+        margin-right: 0;
+        margin-left: 14em;
         height: 145px;
         color: whitesmoke;
         padding: 50px;
-        position: relative;
-        display: block;
-        top: 0
+        top: 0;
     }

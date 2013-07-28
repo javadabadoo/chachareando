@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,26 +50,22 @@ public class UserPostController {
 
 
 	@RequestMapping(
-			value="/post/show/{userAlias}/{entryId}/{entryName}",
+			value= "/post/show/{userAlias}/{postId}/{entryName}",
 			method = RequestMethod.GET
 	)
 	public String displayUserPost(
             @PathVariable String userAlias,
-            @PathVariable int entryId,
+            @PathVariable int postId,
             @PathVariable String entryName,
             ModelMap model) {
 
-        Page<UserPost> userEntryPage = new Page<UserPost>();
-        List<UserPost> userEntries = new ArrayList<UserPost>();
+		UserPost post = this.userPostService.getUserPost(postId);
+		List<UserPost> comments  = this.userPostService.getPostComments(postId);
 
-        List<UserPost> recentEntries = this.userPostService.getRecentEntries();
+        model.addAttribute("post", post);
+        model.addAttribute("comments", comments);
+        model.addAttribute("view", "user-post-detail");
 
-        userEntries.add(this.userPostService.getUserPost(entryId));
-        userEntryPage.setItems(userEntries);
-
-        model.addAttribute("userEntryPage", userEntryPage);
-        model.addAttribute("recentEntries", recentEntries);
-        
 		return "index";
 	}
 
@@ -111,5 +106,31 @@ public class UserPostController {
 
         return daysOfMonthEntries;
     }
+
+
+
+	@RequestMapping(value="/post/editor/new", method = RequestMethod.GET)
+	public String getPostEditor(ModelMap model) {
+
+		model.addAttribute("userPost", new UserPost());
+		model.addAttribute("view", "user-post-editor");
+
+		return "index";
+	}
+
+
+
+	@RequestMapping(value="/post/editor/{postId}", method = RequestMethod.GET)
+	public String getPostedDaysList(@PathVariable int postId, ModelMap model) {
+
+		UserPost post = new UserPost();
+
+		post.setContent("XXXXXXXX-" + postId);
+
+		model.addAttribute("view", "user-post-editor");
+		model.addAttribute("userPost", post);
+
+		return "index";
+	}
 
 }

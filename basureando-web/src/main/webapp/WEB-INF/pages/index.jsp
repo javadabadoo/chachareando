@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
 <!--
 Striped 2.0 by HTML5 UP
@@ -21,6 +22,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <script src="${pageContext.request.contextPath}/js/skel-panels.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/principal.js"></script>
     <script src="${pageContext.request.contextPath}/js/calendar.js"></script>
+    <script src="http://bundlejs.com/alexgorbatchev/products/textext/1.3.1?compress=true&bundles=core,ajax,arrow,autocomplete,filter,focus,prompt,suggestions,tags"></script>
     <noscript>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css__skel_noscript" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style-desktop.css" />
@@ -46,11 +48,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <div id="content">
         <div id="content-inner">
 
-            <!-- User Entries -->
-            <jsp:include page="dynamic-template/user-entries.jsp" />
-
-            <!-- Pager -->
-            <jsp:include page="dynamic-template/paginator.jsp" />
+            <c:choose>
+                <c:when test="${view eq 'user-post-detail'}">
+                    <jsp:include page="dynamic-template/user-post-detail.jsp" />
+                </c:when>
+                <c:when test="${view eq 'user-post-editor'}">
+                    <jsp:include page="dynamic-template/user-post-editor.jsp" />
+                </c:when>
+                <c:otherwise>
+                    <jsp:include page="dynamic-template/user-posts-list.jsp" />
+                </c:otherwise>
+            </c:choose>
 
         </div>
     </div>
@@ -58,10 +66,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- Sidebar -->
     <div id="sidebar">
 
-        <%--<!-- Logo -->--%>
-        <%--<div id="logo">--%>
-            <%--<h1>Gerardo</h1>--%>
-        <%--</div>--%>
+        <!-- Logo -->
+        <div id="logo">
+            <h1><sec:authentication property="principal" /></h1>
+        </div>
 
         <!-- Nav -->
         <nav id="nav">
@@ -70,9 +78,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <li><a href="#">Archives</a></li>
                 <li><a href="#">About Me</a></li>
                 <li><a href="#">Contact Me</a></li>
+
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li><a href="${pageContext.request.contextPath}/post/editor/new">Write a Post</a></li>
+                    <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Log out</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                    <div id="login-area">
+                        <form id="form-login" action='${pageContext.request.contextPath}/j_spring_security_check' method='POST'>
+                            <input type="text" class="text" name="j_username" placeholder="User alias" />
+                            <input type="password" class="text" name="j_password" placeholder="User password" />
+                            <input type="submit" class="button">
+                        </form>
+                    </div>
+                </sec:authorize>
             </ul>
         </nav>
-
         <!-- Search -->
         <section class="is-search">
             <form method="post" action="#">

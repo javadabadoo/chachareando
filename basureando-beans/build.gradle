@@ -1,0 +1,37 @@
+apply plugin:'java'
+
+version = '0.1'
+description = 'Ejemplo de pruebas'
+
+println ("++++++ $buildDir ++++++")
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+
+dependencies {
+    testCompile 'junit:junit:4.8.2'
+    compile(
+            'org.projectlombok:lombok:0.11.4',
+            'org.codehaus.jackson:jackson-mapper-asl:1.9.12'
+    )
+}
+
+
+tasks.javadoc.options.links=[
+        'http://download.oracle.com/javase/6/docs/api/'
+]
+
+
+task javadocJar(type:Jar, dependsOn:'javadoc') {
+    from javadoc.destinationDir
+    classifier='javadoc'
+}
+
+
+task sourcesJar(type:Jar) {
+    from sourceSets.main.allSource
+    classifier='sources'
+}

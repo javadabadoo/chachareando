@@ -9,6 +9,17 @@ CREATE TABLE usuario (
 );
 
 
+
+-- SE ALMACENAN LAS ENTRADAS DE LOS USUARIOS, PUEDEN SER DESDEPUBLICACIONES A
+-- BLOG, FOROS, O COMENTARIO SOBRE ALGUNO DE LOS ANTERIORES
+--
+--  tipo :
+--      Indica el tipo de publicacion, se establece el valor
+--        'p' -> publicación de blog o foro
+--        'c' -> comentario a publicación
+--  en_respuesta_de :
+--      En caso de ser un comentario a una publicación, se define
+--      el ID de la entrada a la que se está comentanto
 CREATE TABLE entrada (
     id serial NOT NULL primary key,
     titulo character varying(100) NOT NULL,
@@ -16,7 +27,8 @@ CREATE TABLE entrada (
     fecha_de_modificacion timestamp without time zone,
     estado character varying(20),
     contenido text NOT NULL,
-    usuario_id integer references usuario(id)
+    usuario_id integer references usuario(id),
+    tipo character varying(1) default null
 );
 
 
@@ -54,6 +66,16 @@ CREATE TABLE usuario_imagen
 	CONSTRAINT usrimg_pkey PRIMARY KEY (id),
 	CONSTRAINT usrimg_usuario_id_fkey FOREIGN KEY (id_usuario) REFERENCES usuario (id),
 	CONSTRAINT usrimg_imagen_id_fkey FOREIGN KEY (id_imagen) REFERENCES imagen (id)
+);
+
+
+
+
+CREATE TABLE comentarios
+(
+	id entrada integer NOT NULL,
+	id_comentario integer NOT NULL
+	CONSTRAINT comentarios_id entrada_fkey FOREIGN KEY (entrada) REFERENCES entrada (id)
 );
 
 
@@ -107,3 +129,19 @@ insert into rol (clave, descripcion) values ('ROLE_USER', 'Rol del usuario estan
 insert into usuario_rol (id_usuario, id_rol) values (1, 1);
 insert into usuario_rol (id_usuario, id_rol) values (1, 2);
 insert into usuario_rol (id_usuario, id_rol) values (2, 2);
+
+
+
+
+
+
+insert into entrada values(
+  null,
+  'Tengo una pregunta',
+  now(),
+  null,
+  'vigente',
+  'este es el contenido de mi comentario',
+  2,
+  'p'
+);

@@ -32,4 +32,6 @@ public interface UserPostService {
 
     List<UserPost> getRecentEntries();
 
+	List<UserPost> getPostComments(int idPost);
+
 }

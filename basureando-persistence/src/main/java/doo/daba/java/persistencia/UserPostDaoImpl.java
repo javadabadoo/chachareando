@@ -7,7 +7,7 @@ import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.IntegerListObjectMapping;
 import doo.daba.java.persistencia.persitenceMapping.RecentPostObjectMapping;
-import doo.daba.java.persistencia.persitenceMapping.UserEntryObjectMapping;
+import doo.daba.java.persistencia.persitenceMapping.UserPostObjectMapping;
 import doo.daba.java.util.PropertiesContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -76,7 +76,7 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 
         return super.getJdbcTemplate().queryForObject(
                 PropertiesContainer.get("sql.consulta.entrada"),
-                new UserEntryObjectMapping(true),
+                new UserPostObjectMapping(true),
                 id
         );
 
@@ -101,7 +101,7 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial.usuario", criterio.toString()),
-                new UserEntryObjectMapping(showDetails),
+                new UserPostObjectMapping(showDetails),
                 params);
 
     }
@@ -122,7 +122,7 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 			    PropertiesContainer.get("sql.consulta.entrada.historial"),
 			    PropertiesContainer.get("sql.consulta.entrada.historial.count"),
 			    super.getJdbcTemplate(),
-			    new UserEntryObjectMapping(showDetails),
+			    new UserPostObjectMapping(showDetails),
 			    new Object[] {
 					    PAGINATION_SIZE,
 					    currentPage
@@ -151,7 +151,7 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 				PropertiesContainer.get("sql.consulta.entrada.historial.porDia"),
 				PropertiesContainer.get("sql.consulta.entrada.historial.porDia.count"),
 				super.getJdbcTemplate(),
-				new UserEntryObjectMapping(showDetails),
+				new UserPostObjectMapping(showDetails),
 				new Object[] {
 						date,
 						PAGINATION_SIZE,
@@ -193,13 +193,26 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
     @Override
     public List<UserPost> selectRecentEntries() {
         return super.getJdbcTemplate().query(
-                PropertiesContainer.get("sql.consulta.entrada.entries.recent"),
+                PropertiesContainer.get("sql.consulta.entrada.recent"),
                 new RecentPostObjectMapping(),
                 PropertiesContainer.getInt("entries.recent.listSize")
         );
     }
 
-    @Override
+
+
+	@Override
+	public List<UserPost> selectPostComments(int idPost) {
+		return super.getJdbcTemplate().query(
+				PropertiesContainer.get("sql.consulta.entrada.comments"),
+				new UserPostObjectMapping(true),
+				idPost
+		);
+	}
+
+
+
+	@Override
     public int update(UserPost element) {
         return 0;
     }

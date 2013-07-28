@@ -33,6 +33,9 @@ public class UserPost {
             publicationDate,
 			modificacionDate;
 
+	@Getter @Setter
+	private char publicationType;
+
     @Getter @Setter
     private User user;
 
