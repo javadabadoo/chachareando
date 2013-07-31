@@ -80,15 +80,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <li><a href="#">Contact Me</a></li>
 
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <li><a href="${pageContext.request.contextPath}/post/editor/new">Write a Post</a></li>
-                    <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Log out</a></li>
+                    <li><a href="${pageContext.request.contextPath}/p ost/editor/new">Write a Post</a></li>
+                    <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Sign out</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAnonymous()">
                     <div id="login-area">
                         <form id="form-login" action='${pageContext.request.contextPath}/j_spring_security_check' method='POST'>
                             <input type="text" class="text" name="j_username" placeholder="User alias" />
                             <input type="password" class="text" name="j_password" placeholder="User password" />
-                            <input type="submit" class="button">
+                            <input type="submit" class="button" value="Sign in"/>
                         </form>
                     </div>
                 </sec:authorize>
