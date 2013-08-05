@@ -82,6 +82,33 @@ CREATE TABLE comentarios
 
 
 
+
+CREATE TABLE tag
+(
+  id serial NOT NULL,
+  nombre character varying(100) NOT NULL,
+  CONSTRAINT tag_pkey PRIMARY KEY (id)
+);
+
+
+
+
+
+
+
+
+CREATE TABLE entrada_tag
+(
+  id serial NOT NULL,
+  entrada_id integer references entrada(id),
+  tag_id integer references tag(id),
+  CONSTRAINT entrada_tag_pkey PRIMARY KEY (id)
+);
+
+
+
+
+
 INSERT INTO usuario (
   nombre,
   apellidos,
@@ -145,3 +172,42 @@ insert into entrada values(
   2,
   'p'
 );
+
+
+
+
+
+insert into tag (nombre) values ('Java');
+insert into tag (nombre) values ('Spring');
+insert into tag (nombre) values ('Hibernate');
+insert into tag (nombre) values ('Groovy');
+insert into tag (nombre) values ('Scala');
+insert into tag (nombre) values ('JEE');
+insert into tag (nombre) values ('JSE');
+insert into tag (nombre) values ('JME');
+insert into tag (nombre) values ('JSP');
+insert into tag (nombre) values ('Servlet');
+insert into tag (nombre) values ('Spring-MVC');
+insert into tag (nombre) values ('Spring-Roo');
+insert into tag (nombre) values ('Spring-Batch');
+insert into tag (nombre) values ('Spring-Security');
+
+
+
+
+insert into entrada_tag (entrada_id, tag_id) values (1, 1);
+insert into entrada_tag (entrada_id, tag_id) values (1, 4);
+insert into entrada_tag (entrada_id, tag_id) values (1, 7);
+insert into entrada_tag (entrada_id, tag_id) values (1, 8);
+insert into entrada_tag (entrada_id, tag_id) values (2, 2);
+insert into entrada_tag (entrada_id, tag_id) values (2, 3);
+insert into entrada_tag (entrada_id, tag_id) values (2, 4);
+insert into entrada_tag (entrada_id, tag_id) values (2, 9);
+insert into entrada_tag (entrada_id, tag_id) values (3, 1);
+insert into entrada_tag (entrada_id, tag_id) values (3, 2);
+insert into entrada_tag (entrada_id, tag_id) values (3, 3);
+insert into entrada_tag (entrada_id, tag_id) values (3, 4);
+insert into entrada_tag (entrada_id, tag_id) values (3, 5);
+insert into entrada_tag (entrada_id, tag_id) values (3, 10);
+insert into entrada_tag (entrada_id, tag_id) values (3, 11);
+insert into entrada_tag (entrada_id, tag_id) values (3, 12);

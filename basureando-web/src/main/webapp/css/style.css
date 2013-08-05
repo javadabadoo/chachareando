@@ -393,11 +393,11 @@
 			background-image: url('images/sprites.png');
 		}
 	
-		.link-icon24-1:before		{ background-position: 0px 0px; }
-		.link-icon24-2:before		{ background-position: -24px 0px; }
-		.link-icon24-3:before		{ background-position: -48px 0px; }
-		.link-icon24-4:before		{ background-position: -72px 0px; }
-		.link-icon24-5:before		{ background-position: -96px 0px; }
+		.link-icon24-1:before		{ background-position: 0 0; }
+		.link-icon24-2:before		{ background-position: -24px 0; }
+		.link-icon24-3:before		{ background-position: -48px 0; }
+		.link-icon24-4:before		{ background-position: -72px 0; }
+		.link-icon24-5:before		{ background-position: -96px 0; }
 
 	.pager
 	{
@@ -449,7 +449,7 @@
 				background-image: url('images/bg1.png');
 				color: #fff;
 				box-shadow: none;
-				text-shadow: -1px -1px 0px rgba(0,0,0,0.5);
+				text-shadow: -1px -1px 0 rgba(0,0,0,0.5);
 			}
 
 /*********************************************************************************/
@@ -492,7 +492,7 @@
 			cursor: default;
 			padding: 0.35em 0 0.35em 0;
 			border-top: solid 1px rgba(0,0,0,0.25);
-			box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075);
+			box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.075);
 		}
 
 		.is-calendar th
@@ -535,7 +535,7 @@
 		{
 			background-color: #c94663;
 			background-image: url('images/bg1.png');
-			box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.15), 0 0.025em 0.15em 0em rgba(0,0,0,0.25);
+			box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15), 0 0.025em 0.15em 0em rgba(0,0,0,0.25);
 			color: #fff !important;
 		}
 		
@@ -570,7 +570,7 @@
 		.is-recent-comments li
 		{
 			border-top: solid 1px rgba(0,0,0,0.25);
-			box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075);
+			box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.075);
 			padding: 0.5em 0 0.5em 0;
 		}
 
@@ -614,7 +614,7 @@
 				width: 24px;
 				height: 24px;
 				background-image: url('images/sprites.png');
-				background-position: -96px 0px;
+				background-position: -96px 0;
 			}
 
 	.is-text-style1
@@ -661,7 +661,7 @@
 		#nav li
 		{
 			border-top: solid 1px rgba(0,0,0,0.25);
-			box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075);
+			box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.075);
 			padding: 0.5em 0 0.5em 0;
 		}
 		
@@ -713,7 +713,7 @@
 	#sidebar
 	{
 		color: #929da4;
-		text-shadow: -1px -1px 0px rgba(0,0,0,0.5);
+		text-shadow: -1px -1px 0 rgba(0,0,0,0.5);
 	}
 
 		#sidebar form input,
@@ -737,7 +737,7 @@
 				border-bottom: solid 1px;
 				border-color: #171E29;
 				border-color: rgba(0,0,0,0.25);
-				box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075), 0px 1px 0px 0px rgba(255,255,255,0.075);
+				box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.075), 0 1px 0 0 rgba(255,255,255,0.075);
 				display: block;
 			}
 	
@@ -833,7 +833,7 @@
 			border-bottom: solid 1px;
 			border-color: #171E29;
 			border-color: rgba(0,0,0,0.25);
-			box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.075), 0px 1px 0px 0px rgba(255,255,255,0.075);
+			box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.075), 0 1px 0 0 rgba(255,255,255,0.075);
 			display: block;
 		}
 
@@ -852,4 +852,13 @@
         color: whitesmoke;
         padding: 50px;
         top: 0;
+    }
+
+
+    #user-post-editor-tags_tagsinput {
+        border-radius: 0.4em;
+        padding: 0.5em !important;
+        margin-top: 0.5em !important;
+        height: 60px !important;
+        min-height: 60px !important;
     }

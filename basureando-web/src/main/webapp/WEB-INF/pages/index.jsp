@@ -14,15 +14,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" href="http://xoxco.com/projects/code/tagsinput/jquery.tagsinput.css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
     <%--<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />--%>
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://xoxco.com/projects/code/tagsinput/jquery.tagsinput.js"></script>
     <script src="${pageContext.request.contextPath}/js/config.js"></script>
     <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/skel-panels.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/skel-panels.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/principal.js"></script>
     <script src="${pageContext.request.contextPath}/js/calendar.js"></script>
-    <script src="http://bundlejs.com/alexgorbatchev/products/textext/1.3.1?compress=true&bundles=core,ajax,arrow,autocomplete,filter,focus,prompt,suggestions,tags"></script>
     <noscript>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css__skel_noscript" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style-desktop.css" />
@@ -80,7 +83,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <li><a href="#">Contact Me</a></li>
 
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <li><a href="${pageContext.request.contextPath}/p ost/editor/new">Write a Post</a></li>
+                    <li><a href="${pageContext.request.contextPath}/post/editor/new">Write a Post</a></li>
                     <li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Sign out</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAnonymous()">
