@@ -7,6 +7,8 @@ import lombok.Setter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.List;
+
 import lombok.AccessLevel;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
@@ -39,6 +41,9 @@ public class UserPost {
     @Getter @Setter
     private User user;
 
+    @Getter @Setter
+    private List<TagsJsonResponse> tags;
+
 
     public String getEncodedTitle() {
         String encodedTitle = null;
@@ -49,6 +54,23 @@ public class UserPost {
         }
 
         return encodedTitle;
+    }
+
+    public String getPlainTags() {
+
+        if(this.tags == null) {
+            return null;
+        }
+
+        StringBuilder plainTags = new StringBuilder();
+
+        for (TagsJsonResponse tag  : this.tags){
+            plainTags
+                    .append(tag.getValue())
+                    .append(",");
+        }
+
+        return plainTags.substring(0, plainTags.length() - 1);
     }
 
 }
