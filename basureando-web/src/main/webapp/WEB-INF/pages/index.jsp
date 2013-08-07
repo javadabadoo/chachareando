@@ -33,7 +33,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/skel-noscript.css" />
     </noscript>
     <!--[if lte IE 9]><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><script src="${pageContext.request.contextPath}/js/html5shiv.js"></script><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie8.css" /><![endif]-->
     <!--[if lte IE 7]><link rel="stylesheet" href="${pageContext.request.contextPath}/css/ie7.css" /><![endif]-->
 </head>
 <!--
