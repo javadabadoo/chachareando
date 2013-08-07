@@ -2,7 +2,7 @@ package doo.daba.java.persistencia;
 
 import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.criterio.Criterion;
-import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.CriterionImpl;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.persistencia.persitenceMapping.IntegerListObjectMapping;
@@ -96,8 +96,6 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
      */
     @Override
     public List<UserPost> select(Criterion criterio, boolean showDetails, Object ... params) {
-
-        Criterion cirterio = new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO);
 
         return super.getJdbcTemplate().query(
                 PropertiesContainer.get("sql.consulta.entrada.historial.usuario", criterio.toString()),

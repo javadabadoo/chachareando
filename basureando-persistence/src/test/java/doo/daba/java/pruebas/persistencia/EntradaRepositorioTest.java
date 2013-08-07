@@ -3,7 +3,7 @@ package doo.daba.java.pruebas.persistencia;
 import doo.daba.java.beans.User;
 import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.UserPostDao;
-import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.CriterionImpl;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
 import org.junit.Before;
@@ -73,7 +73,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasDeUsuarioTest() {
         this.registrarEntradaTest();
-        List<UserPost> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO), false, 1);
+        List<UserPost> entradaLista = this.entradaDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.USUARIO), false, 1);
 
         assert ! entradaLista.isEmpty();
     }
@@ -83,7 +83,7 @@ public class EntradaRepositorioTest {
     @Test
     public void consultarEntradasPorTituloTest() {
         this.registrarEntradaTest();
-        List<UserPost> entradaLista = this.entradaDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
+        List<UserPost> entradaLista = this.entradaDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
 
         assert ! entradaLista.isEmpty();
     }

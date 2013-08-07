@@ -82,29 +82,7 @@ CREATE TABLE comentarios
 
 
 
-
-CREATE TABLE tag
-(
-  id serial NOT NULL,
-  nombre character varying(100) NOT NULL,
-  CONSTRAINT tag_pkey PRIMARY KEY (id)
-);
-
-
-
-
-
-
-
-
-CREATE TABLE entrada_tag
-(
-  id serial NOT NULL,
-  entrada_id integer references entrada(id),
-  tag_id integer references tag(id),
-  CONSTRAINT entrada_tag_pkey PRIMARY KEY (id)
-);
-
+º
 
 
 

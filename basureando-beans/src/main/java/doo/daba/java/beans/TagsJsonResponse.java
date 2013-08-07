@@ -15,7 +15,7 @@ import lombok.Setter;
 public class TagsJsonResponse {
 
     @Getter @Setter
-    private String id;
+    private int id;
 
     @Getter @Setter
     private String

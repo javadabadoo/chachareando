@@ -9,15 +9,14 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: Gerardo Aquino
  * Date: 22/05/13
- * Time: 04:01 PM
  */
-public class EntradaCriterio implements Criterion {
+public class CriterionImpl implements Criterion {
 
     @Getter
     private List<SearchCriteria> searchCriterias;
 
 
-    public EntradaCriterio(SearchCriteria... searchCriterias) {
+    public CriterionImpl(SearchCriteria... searchCriterias) {
         this.init();
         if(searchCriterias != null) {
             for(SearchCriteria searchCriteria : searchCriterias) this.addCriterion(searchCriteria);

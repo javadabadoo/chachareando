@@ -3,7 +3,7 @@ package doo.daba.java.servicio;
 import doo.daba.java.beans.UserPost;
 import doo.daba.java.persistencia.UserPostDao;
 import doo.daba.java.persistencia.criterio.Criterion;
-import doo.daba.java.persistencia.criterio.EntradaCriterio;
+import doo.daba.java.persistencia.criterio.CriterionImpl;
 import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
 import doo.daba.java.persistencia.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserPostService;
@@ -53,7 +53,7 @@ public class UserPostServiceImpl implements UserPostService {
 
     @Override
     public List<UserPost> getUserPosts(int userId, boolean showDetails) {
-        Criterion criterio = new EntradaCriterio(EntradaSearchCriteriaEnum.USUARIO);
+        Criterion criterio = new CriterionImpl(EntradaSearchCriteriaEnum.USUARIO);
         return this.userEntryDao.select(criterio, showDetails, userId);
     }
 
@@ -61,7 +61,7 @@ public class UserPostServiceImpl implements UserPostService {
 
     @Override
     public List<UserPost> getUserPosts(String criterion, boolean showDetails) {
-        return this.userEntryDao.select(new EntradaCriterio(EntradaSearchCriteriaEnum.TITLE), showDetails, criterion);
+        return this.userEntryDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.TITLE), showDetails, criterion);
     }
 
 
