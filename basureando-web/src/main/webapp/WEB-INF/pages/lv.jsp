@@ -2,7 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<spring:url value="/js/jquery-1.9.1.js" var="url_jquery"/>
 <spring:url value="/js/principal.js" var="url_principal_js" />
 <spring:url value="/js/mailFormDescriptor.js" var="url_mailFormDescriptor_js" />
 <spring:url value="/js/livevalidation_standalone.js" var="url_liveValidation"/>
@@ -10,7 +9,7 @@
 
 <html>
 <head>
-    <script type="text/javascript" src="${url_jquery}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="${url_principal_js}"></script>
     <script type="text/javascript" src="${url_liveValidation}"></script>
     <script type="text/javascript" src="${url_mailFormDescriptor_js}"></script>

@@ -1,9 +1,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<spring:url value='/js/jquery-1.9.1.js' var="url_jquery" />
 <html>
     <head>
-        <script type="text/javascript" src="${url_jquery}"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     </head>
     <body>
         <h2>Message : ${mensajito}</h2>	(con seguridad)

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<spring:url value="/js/jquery-1.9.1.js" var="url_jquery" />
-<spring:url value="/js/jquery-ui.js" var="url_jquery_ui" />
 <spring:url value="/js/principal.js" var="url_principal_js" />
 <spring:url value="/js/usuario.js" var="url_usuario_js" />
 <spring:url value="/js/entrada.js" var="url_entrada_js" />
@@ -17,8 +15,8 @@
         @import "${url_jqueryUi_css}";
         @import "${url_table_css}";
     </style>
-    <script type="text/javascript" src="${url_jquery}"></script>
-    <script type="text/javascript" src="${url_jquery_ui}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${url_principal_js}"></script>
     <script type="text/javascript" src="${url_usuario_js}"></script>
     <script type="text/javascript" src="${url_entrada_js}"></script>
