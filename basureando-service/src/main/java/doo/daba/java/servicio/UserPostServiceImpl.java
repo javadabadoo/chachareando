@@ -141,7 +141,18 @@ public class UserPostServiceImpl implements UserPostService {
     }
 
 
-	/**
+    /**
+     * @return  Lista de los comentarios recientes. La lista está planeada para mostrarse
+     *          en la página principal de la aplicación.
+     */
+    @Override
+    public List<UserPost> getRecentComments() {
+        return this.userEntryDao.selectRecentComments();
+    }
+
+
+
+    /**
 	 * Cosulta los comentarios que se han realizado sobre algun post de un blog/foro
 	 *
 	 * @param idPost    Post del que se realiza la consulta de comentarios
@@ -152,4 +163,11 @@ public class UserPostServiceImpl implements UserPostService {
 	public List<UserPost> getPostComments(int idPost) {
 		return this.userEntryDao.selectPostComments(idPost);
 	}
+
+
+
+    @Override
+    public boolean isPostOwner(int idPost, int idUser) {
+        return this.userEntryDao.isPostOwner(idPost, idUser);
+    }
 }

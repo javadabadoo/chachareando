@@ -23,6 +23,8 @@ public interface UserPostDao extends DaoInterface<UserPost> {
 
     List<UserPost> selectRecentEntries();
 
+    List<UserPost> selectRecentComments();
+
 	List<UserPost> selectPostComments(int idPost);
 
     List<TagsJsonResponse> selectPostTags(int idPost);

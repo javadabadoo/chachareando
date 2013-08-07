@@ -193,15 +193,24 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
     @Override
     public List<UserPost> selectRecentEntries() {
         return super.getJdbcTemplate().query(
-                PropertiesContainer.get("sql.select.post.recents"),
+                PropertiesContainer.get("sql.select.post.recents.shortList"),
                 new RecentPostObjectMapping(),
-                PropertiesContainer.getInt("post.recent.listSize")
+                PropertiesContainer.getInt("post.recent.shortListSize")
         );
     }
 
 
+    @Override
+    public List<UserPost> selectRecentComments() {
+        return super.getJdbcTemplate().query(
+                PropertiesContainer.get("sql.select.post.comments.recents.shortList"),
+                new RecentPostObjectMapping(),
+                PropertiesContainer.getInt("post.recent.shortListSize")
+        );
+    }
 
-	@Override
+
+    @Override
 	public List<UserPost> selectPostComments(int idPost) {
 		return super.getJdbcTemplate().query(
 				PropertiesContainer.get("sql.select.post.comments"),
@@ -221,7 +230,12 @@ public class UserPostDaoImpl extends JdbcDaoSupport implements UserPostDao {
 
     @Override
     public boolean isPostOwner(int idPost, int idUser) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return super.getJdbcTemplate().queryForObject(
+                PropertiesContainer.get("sql.select.post.verifyOwner"),
+                Boolean.class,
+                idPost,
+                idUser
+        );
     }
 
     @Override

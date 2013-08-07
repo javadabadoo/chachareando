@@ -118,17 +118,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <jsp:include page="dynamic-template/recent-posts.jsp" />
 
         <!-- Recent Comments -->
-        <section class="is-recent-comments">
-            <header>
-                <h2>Recent Comments</h2>
-            </header>
-            <ul>
-                <li>case on <a href="#">Now Full Cyborg</a></li>
-                <li>molly on <a href="#">Untitled Post</a></li>
-                <li>case on <a href="#">Temporal Flux</a></li>
-            </ul>
-        </section>
+        <jsp:include page="dynamic-template/recent-comments.jsp" />
 
+        <!-- Posts Calendar -->
         <jsp:include page="dynamic-template/calendar.jsp" />
 
         <!-- Copyright -->

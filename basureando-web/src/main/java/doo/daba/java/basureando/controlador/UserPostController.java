@@ -39,9 +39,11 @@ public class UserPostController {
 
 		Page<UserPost> userEntryPage = this.userPostService.getAllUserPosts(page, false);
         List<UserPost> recentEntries = this.userPostService.getRecentEntries();
+        List<UserPost> recentComments = this.userPostService.getRecentComments();
 
 		model.addAttribute("userEntryPage", userEntryPage);
 		model.addAttribute("recentEntries", recentEntries);
+		model.addAttribute("recentComments", recentComments);
 
 		return "index";
 

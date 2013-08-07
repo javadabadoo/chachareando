@@ -120,4 +120,20 @@ public class PostRepositoryTest {
         assert days != null;
         assert ! days.isEmpty();
     }
+
+
+
+    @Test
+    public void recentCommentsTest() {
+        List<UserPost> userPosts = this.userPostDao.selectRecentComments();
+        assert userPosts != null;
+        assert ! userPosts.isEmpty();
+        assert ! userPosts.contains(null);
+    }
+
+
+    @Test
+    public void checkPostOwnerTest() {
+        assert this.userPostDao.isPostOwner(1, 1);
+    }
 }

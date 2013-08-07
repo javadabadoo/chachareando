@@ -67,9 +67,9 @@ public class UserRepositoryTest {
 	@Test
 	public void deleteUserTest() {
 		
-		int affectedRows = this.userDao.delete(this.user);
+		int registroEliminado = this.userDao.delete(this.user);
 		
-		Assert.isTrue(affectedRows == 1);
+		Assert.isTrue(registroEliminado == 1);
 	}
 	
 	
@@ -83,7 +83,7 @@ public class UserRepositoryTest {
 	
 	
 	@Test (expected=DuplicateKeyException.class)
-	public void insertUserFailureTest() {
+	public void registrarUsuarioFallidoTest() {
 		this.userDao.insert(this.user);
 	}
 

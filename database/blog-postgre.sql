@@ -140,15 +140,42 @@ insert into usuario_rol (id_usuario, id_rol) values (2, 2);
 
 
 
-insert into entrada values(
-  null,
+
+insert into entrada(
+  titulo,
+  fecha_de_creacion,
+  fecha_de_modificacion,
+  estado,
+  contenido,
+  usuario_id,
+  tipo
+) values(
   'Tengo una pregunta',
   now(),
   null,
   'vigente',
   'este es el contenido de mi comentario',
   2,
-  'p'
+  'c'
+);
+
+
+insert into entrada(
+  titulo,
+  fecha_de_creacion,
+  fecha_de_modificacion,
+  estado,
+  contenido,
+  usuario_id,
+  tipo
+) values(
+  'Pos esta es la respuesta',
+  now(),
+  null,
+  'vigente',
+  'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ',
+  1,
+  'c'
 );
 
 

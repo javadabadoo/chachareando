@@ -32,6 +32,10 @@ public interface UserPostService {
 
     List<UserPost> getRecentEntries();
 
+    List<UserPost> getRecentComments();
+
 	List<UserPost> getPostComments(int idPost);
+
+    boolean isPostOwner(int idPost, int idUser);
 
 }

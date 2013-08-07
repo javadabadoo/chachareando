@@ -7,15 +7,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:forEach items="${userEntryPage.items}" var="post" varStatus="status">
+<c:forEach items="${userEntryPage.items}" var="comment" varStatus="status">
     <article class="is-post is-post-excerpt">
         <header>
-            <h2><a href="${pageContext.request.contextPath}/post/show/${post.user.userAlias}/${post.id}/${post.encodedTitle}">${post.title}</a></h2>
-            <div style="float: left"><img src="${pageContext.request.contextPath}/image/resizer/60/60/${post.user.id}" alt="" /></div>
-            <span class="byline">${post.title}</span>
-            <a href="#PerfilDeUsuario">${post.user.userAlias}</a>: <span class="date">${post.publicationDate}</span>
+            <h2><a href="${pageContext.request.contextPath}/post/show/${comment.user.userAlias}/${comment.id}/${comment.encodedTitle}">${comment.title}</a></h2>
+            <div style="float: left"><img src="${pageContext.request.contextPath}/image/resizer/60/60/${comment.user.id}" alt="" /></div>
+            <span class="byline">${comment.title}</span>
+            <a href="#PerfilDeUsuario">${comment.user.userAlias}</a>: <span class="date">${comment.publicationDate}</span>
         </header>
-        <p>${post.content}</p>
+        <p>${comment.content}</p>
         <div class="info">
             <span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">8</span><span class="year">, 2013</span></span>
             <ul class="stats">
