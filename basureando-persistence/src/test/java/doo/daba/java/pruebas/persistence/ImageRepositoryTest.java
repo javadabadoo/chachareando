@@ -40,8 +40,8 @@ public class ImageRepositoryTest {
     @Autowired
     private UserDao userDao;
 
-    private final File archivoImagenRegistro =  new File("C:/imagen.png");
-    private final File archivoImagenConsulta =  new File("C:/imagen.png");
+    private final File pictureFileRead =  new File("C:/imagen.png");
+    private final File pictureFileWrite =  new File("C:/imagen.png");
 
 
     @Before
@@ -51,7 +51,7 @@ public class ImageRepositoryTest {
 
         this.imagen.setName("prueba.png");
         this.imagen.setComment("Esta es la imagen de la prueba generada en: " + new Date());
-        this.imagen.setByteContent(this.cargaImagen());
+        this.imagen.setByteContent(this.loadPicture());
 
         this.usuario = this.userDao.select("javadabadoo");
 
@@ -59,27 +59,27 @@ public class ImageRepositoryTest {
 
 
     @Test
-    public void registrarImagen() {
+    public void insertUserPicture() {
         assert this.imageDao.insert(this.imagen) > 0;
         assert this.userDao.linkUserProfilePicture(this.usuario.getId(), this.imagen.getId()) == 1;
     }
 
 
     @Test (expected = DataIntegrityViolationException.class)
-    public void registroDeImagenPerfilInvalido() {
+    public void invalidUserPictureInsertionTest() {
         this.userDao.linkUserProfilePicture(0, 0);
     }
 
 
     @Test
-    public void consultaImagen() {
-        Image imagenConsulta = this.imageDao.selectImagenUsuario(this.usuario.getId());
-        assert Arrays.equals(this.imagen.getByteContent(), imagenConsulta.getByteContent());
+    public void selectPictureTest() {
+        Image image = this.imageDao.selectImagenUsuario(this.usuario.getId());
+        assert Arrays.equals(this.imagen.getByteContent(), image.getByteContent());
     }
 
 
-    private byte[] cargaImagen() throws IOException {
-        return FileIO.readBytes(this.archivoImagenRegistro);
+    private byte[] loadPicture() throws IOException {
+        return FileIO.readBytes(this.pictureFileRead);
     }
 
 }

@@ -2,7 +2,7 @@ package doo.daba.java.persistence;
 
 
 import doo.daba.java.beans.User;
-import doo.daba.java.persistence.criterio.Criterion;
+import doo.daba.java.persistence.criteria.Criterion;
 import doo.daba.java.persistence.paginator.Page;
 import doo.daba.java.persistence.persitenceMapping.UserObjectMapping;
 import doo.daba.java.util.PropertiesContainer;

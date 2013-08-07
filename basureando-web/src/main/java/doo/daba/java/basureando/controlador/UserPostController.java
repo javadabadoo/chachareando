@@ -2,7 +2,7 @@ package doo.daba.java.basureando.controlador;
 
 import doo.daba.java.beans.DaysOfMonthEntries;
 import doo.daba.java.beans.UserPost;
-import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.persistence.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -30,7 +30,7 @@ public class TagsController {
             value="/tags/list",
             method = RequestMethod.GET
     )
-    public List<TagsJsonResponse> displayAllPosts(@RequestParam("term") String tag) {
+    public List<TagsJsonResponse> displayAllPosts(@RequestParam(value = "term", required = false, defaultValue = "") String tag) {
         return this.tagService.findRelatedTags(tag);
     }
 

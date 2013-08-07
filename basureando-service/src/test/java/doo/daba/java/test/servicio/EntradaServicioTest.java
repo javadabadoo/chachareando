@@ -1,7 +1,7 @@
 package doo.daba.java.test.servicio;
 
 import doo.daba.java.beans.UserPost;
-import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.persistence.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserPostService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

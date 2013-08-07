@@ -2,7 +2,7 @@ package doo.daba.java.persistence;
 
 import doo.daba.java.beans.TagsJsonResponse;
 import doo.daba.java.beans.UserPost;
-import doo.daba.java.persistence.criterio.Criterion;
+import doo.daba.java.persistence.criteria.Criterion;
 import doo.daba.java.persistence.paginator.Page;
 import doo.daba.java.persistence.persitenceMapping.IntegerListObjectMapping;
 import doo.daba.java.persistence.persitenceMapping.RecentPostObjectMapping;

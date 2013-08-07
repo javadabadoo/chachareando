@@ -1,7 +1,7 @@
 package doo.daba.java.servicio;
 
 import doo.daba.java.beans.User;
-import doo.daba.java.persistencia.UserDao;
+import doo.daba.java.persistence.UserDao;
 import doo.daba.java.servicio.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

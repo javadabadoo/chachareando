@@ -2,8 +2,8 @@ package doo.daba.java.test.servicio;
 
 import doo.daba.java.beans.Image;
 import doo.daba.java.beans.User;
-import doo.daba.java.persistencia.ImageDao;
-import doo.daba.java.persistencia.UserDao;
+import doo.daba.java.persistence.ImageDao;
+import doo.daba.java.persistence.UserDao;
 import doo.daba.java.util.io.FileIO;
 import org.junit.Before;
 import org.junit.Test;

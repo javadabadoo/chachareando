@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
 
 /**
  * Realizamos una prueba para verificar que nuestra configuracion de Spring esté bien realizada.
- * Este test prueba que se obtengan datos de la DB de un usuario que sabemos que ya está registrado
+ * Este test prueba que se obtengan datos de la DB de un user que sabemos que ya está registrado
  *
  * @since 24/08/1012
  * @author Gerardo Aquino
@@ -31,14 +31,14 @@ import org.springframework.util.Assert;
 public class UserRepositoryTest {
 	
 	@Autowired
-	private UserDao usuarioDao;
+	private UserDao userDao;
 	
-	private User usuario;
+	private User user;
 	
 	
 	@Before
 	public void init() {
-		this.usuario = new User(
+		this.user = new User(
 			0,
 			"Pedro",
 			"Picapiedra",
@@ -53,38 +53,38 @@ public class UserRepositoryTest {
 	
 	
 	@Test
-	public void consultarUsuarioTest() {
+	public void selectUserTest() {
 		
-		User otroUsuario = this.usuarioDao.select(1);
+		User anotherUser = this.userDao.select(1);
 		
-		Assert.notNull(otroUsuario);
-		Assert.isTrue(otroUsuario.getName().equals("Gerardo"));
-		Assert.isTrue(otroUsuario.getUserAlias().equals("java.daba.doo"));
+		Assert.notNull(anotherUser);
+		Assert.isTrue(anotherUser.getName().equals("Gerardo"));
+		Assert.isTrue(anotherUser.getUserAlias().equals("java.daba.doo"));
 		
 	}
 	
 	
 	@Test
-	public void eliminarUsuarioTest() {
+	public void deleteUserTest() {
 		
-		int registroEliminado = this.usuarioDao.delete(this.usuario);
+		int affectedRows = this.userDao.delete(this.user);
 		
-		Assert.isTrue(registroEliminado == 1);
+		Assert.isTrue(affectedRows == 1);
 	}
 	
 	
 	@Test
-	public void registrarUsuarioTest() {
-		int registro = this.usuarioDao.insert(this.usuario);
+	public void insertUserTest() {
+		int affectedRows = this.userDao.insert(this.user);
 		
-		Assert.isTrue(registro == 1);
+		Assert.isTrue(affectedRows == 1);
 		
 	}
 	
 	
 	@Test (expected=DuplicateKeyException.class)
-	public void registrarUsuarioFallidoTest() {
-		this.usuarioDao.insert(this.usuario);
+	public void insertUserFailureTest() {
+		this.userDao.insert(this.user);
 	}
 
 }

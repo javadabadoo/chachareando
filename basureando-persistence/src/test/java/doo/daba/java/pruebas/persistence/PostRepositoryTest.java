@@ -32,20 +32,20 @@ import java.util.List;
 public class PostRepositoryTest {
 
     @Autowired
-    UserPostDao entradaDao;
-    UserPost entrada;
+    UserPostDao userPostDao;
+    UserPost post;
 	private SimpleDateFormat dateFormat;
 
 
     @Before
     public void init() {
-        this.entrada = new UserPost();
+        this.post = new UserPost();
 
-        this.entrada.setTitle("Titulo de entrada de prueba");
-        this.entrada.setPublicationDate(new Date());
-        this.entrada.setContent("Este es el contenido de la entrada de prueba. Puede contener <strong>texto en HTML</strong>");
-        this.entrada.setStatus("vigente");
-        this.entrada.setUser(new User(2));
+        this.post.setTitle("Titulo de post de prueba");
+        this.post.setPublicationDate(new Date());
+        this.post.setContent("Este es el contenido de la post de prueba. Puede contener <strong>texto en HTML</strong>");
+        this.post.setStatus("vigente");
+        this.post.setUser(new User(2));
 
 	    this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
@@ -53,60 +53,60 @@ public class PostRepositoryTest {
 
 
     @Test
-    public void registrarEntradaTest() {
-        assert this.entradaDao.insert(this.entrada) > 0;
+    public void insertPostTest() {
+        assert this.userPostDao.insert(this.post) > 0;
     }
 
 
     @Test
-    public void consultarEntrada() {
-        this.registrarEntradaTest();
+    public void selectPostTest() {
+        this.insertPostTest();
 
-        UserPost entrada = this.entradaDao.select(this.entrada.getId());
+        UserPost entrada = this.userPostDao.select(this.post.getId());
 
-        assert entrada.getId() == this.entrada.getId();
-        assert entrada.getPublicationDate().getTime() == this.entrada.getPublicationDate().getTime();
-    }
-
-
-
-    @Test
-    public void consultarEntradasDeUsuarioTest() {
-        this.registrarEntradaTest();
-        List<UserPost> entradaLista = this.entradaDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.USUARIO), false, 1);
-
-        assert ! entradaLista.isEmpty();
+        assert entrada.getId() == this.post.getId();
+        assert entrada.getPublicationDate().getTime() == this.post.getPublicationDate().getTime();
     }
 
 
 
     @Test
-    public void consultarEntradasPorTituloTest() {
-        this.registrarEntradaTest();
-        List<UserPost> entradaLista = this.entradaDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
+    public void selectUserPostTest() {
+        this.insertPostTest();
+        List<UserPost> posts = this.userPostDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.USUARIO), false, 1);
 
-        assert ! entradaLista.isEmpty();
+        assert ! posts.isEmpty();
     }
 
 
 
     @Test
-    public void consultarEntradasTest() {
-        this.registrarEntradaTest();
+    public void selectPostByTitleTest() {
+        this.insertPostTest();
+        List<UserPost> posts = this.userPostDao.select(new CriterionImpl(EntradaSearchCriteriaEnum.TITLE), false, "%itulo%");
 
-        Page<UserPost> userEntryPage = this.entradaDao.selectAll(1, true);
+        assert ! posts.isEmpty();
+    }
 
-        assert ! userEntryPage.getItems().isEmpty();
+
+
+    @Test
+    public void selectPostsTest() {
+        this.insertPostTest();
+
+        Page<UserPost> page = this.userPostDao.selectAll(1, true);
+
+        assert ! page.getItems().isEmpty();
     }
 
 
 	@Test
 	public void testByDate() throws ParseException {
 
-		Page<UserPost> userEntryPage = this.entradaDao.selectDayEntries(1, false, this.dateFormat.parse("2013-03-12"));
+		Page<UserPost> posts = this.userPostDao.selectDayEntries(1, false, this.dateFormat.parse("2013-03-12"));
 
-		assert userEntryPage != null;
-		assert ! userEntryPage.isEmpty();
+		assert posts != null;
+		assert ! posts.isEmpty();
 
 	}
 
@@ -115,11 +115,7 @@ public class PostRepositoryTest {
     @Test
     public void testWhichDaysHasEntries() throws ParseException {
         Date date = this.dateFormat.parse("2013-05-12");
-        List<Integer> days = this.entradaDao.selectWhichDaysHasEntries(date);
-
-        for (int i = 0; i <= 31; i++){
-            System.out.println(String.format("%02d", i));
-        }
+        List<Integer> days = this.userPostDao.selectWhichDaysHasEntries(date);
 
         assert days != null;
         assert ! days.isEmpty();

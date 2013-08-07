@@ -1,11 +1,11 @@
 package doo.daba.java.servicio;
 
 import doo.daba.java.beans.UserPost;
-import doo.daba.java.persistencia.UserPostDao;
-import doo.daba.java.persistencia.criterio.Criterion;
-import doo.daba.java.persistencia.criterio.CriterionImpl;
-import doo.daba.java.persistencia.criterio.enums.EntradaSearchCriteriaEnum;
-import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.persistence.UserPostDao;
+import doo.daba.java.persistence.criteria.Criterion;
+import doo.daba.java.persistence.criteria.CriterionImpl;
+import doo.daba.java.persistence.criteria.enums.EntradaSearchCriteriaEnum;
+import doo.daba.java.persistence.paginator.Page;
 import doo.daba.java.servicio.interfaces.UserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,7 +31,7 @@ public class UserPostServiceImpl implements UserPostService {
 
 
     /**
-     * Invoca al objeto de persistencia para guardar la información de la entrada.
+     * Invoca al objeto de persistence para guardar la información de la entrada.
      *
      * @param entry Encapsula la información de la entrada que se debe de persistir.
      *

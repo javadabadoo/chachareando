@@ -1,7 +1,7 @@
 package doo.daba.java.servicio;
 
 import doo.daba.java.beans.Image;
-import doo.daba.java.persistencia.ImageDao;
+import doo.daba.java.persistence.ImageDao;
 import doo.daba.java.servicio.interfaces.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

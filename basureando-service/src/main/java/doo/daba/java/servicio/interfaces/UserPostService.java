@@ -1,7 +1,7 @@
 package doo.daba.java.servicio.interfaces;
 
 import doo.daba.java.beans.UserPost;
-import doo.daba.java.persistencia.paginator.Page;
+import doo.daba.java.persistence.paginator.Page;
 
 import java.util.Date;
 import java.util.List;

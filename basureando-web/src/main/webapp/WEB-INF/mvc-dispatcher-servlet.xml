@@ -9,7 +9,7 @@
 
 
     <context:component-scan base-package="doo.daba.java.basureando.controlador" />
-    <context:component-scan base-package="doo.daba.java.persistencia" />
+    <context:component-scan base-package="doo.daba.java.persistence" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,9 +1,9 @@
 package doo.daba.java.servicio;
 
 import doo.daba.java.beans.TagsJsonResponse;
-import doo.daba.java.persistencia.TagDao;
-import doo.daba.java.persistencia.criterio.CriterionImpl;
-import doo.daba.java.persistencia.criterio.enums.TagSearchCriterionEnum;
+import doo.daba.java.persistence.TagDao;
+import doo.daba.java.persistence.criteria.CriterionImpl;
+import doo.daba.java.persistence.criteria.enums.TagSearchCriterionEnum;
 import doo.daba.java.servicio.interfaces.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -16,8 +16,6 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: java_daba_doo
  * Date: 8/7/13
- * Time: 1:31 AM
- * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -32,8 +30,9 @@ public class TagRepositoryTest {
 	@Test
 	public void selectTest(){
 		List<TagsJsonResponse> tags = this.tagDao.select(new CriterionImpl(TagSearchCriterionEnum.NAME), false, "%spri%");
-		for(TagsJsonResponse tag : tags) {
-			System.out.println(tag.getLabel());
-		}
+		assert tags != null;
+        assert ! tags.isEmpty();
+
+        assert ! tags.contains(null);
 	}
 }
