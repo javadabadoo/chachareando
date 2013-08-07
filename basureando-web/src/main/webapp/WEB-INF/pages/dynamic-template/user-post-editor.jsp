@@ -9,7 +9,7 @@
 
 <form:form  action="${pageContext.request.contextPath}" method="POST" commandName="userPost" name="user-post-editor" id="user-post-editor">
     <form:input type="text" name="title" placeholder="Post title" path="title" />
-    <input type="text" name="tags" id="user-post-editor-tags" class="text" placeholder="Post tags" />
+    <form:input type="text" name="tags" id="user-post-editor-tags" class="text" placeholder="Post tags" path="plainTags" />
     <form:textarea name="content" id="user-post-editor-content" class="text" placeholder="Post content" path="content" />
     <input type="submit" />
 </form:form>
