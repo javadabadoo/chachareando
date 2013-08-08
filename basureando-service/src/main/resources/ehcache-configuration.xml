@@ -13,7 +13,27 @@
             overflowToDisk="false"
             memoryStoreEvictionPolicy="LFU">
 
-        <cacheEventListenerFactory class="doo.daba.java.servicio.UserEntriesEventListenerFactory" />
+        <cacheEventListenerFactory class="doo.daba.java.servicio.UserPostEventListenerFactory" />
+    </cache>
+
+    <cache
+            name="getRecentEntries"
+            maxElementsInMemory="1"
+            eternal="true"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LFU">
+
+        <cacheEventListenerFactory class="doo.daba.java.servicio.UserPostEventListenerFactory" />
+    </cache>
+
+    <cache
+            name="getRecentComments"
+            maxElementsInMemory="1"
+            eternal="true"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LFU">
+
+        <cacheEventListenerFactory class="doo.daba.java.servicio.UserPostEventListenerFactory" />
     </cache>
 
 </ehcache>
