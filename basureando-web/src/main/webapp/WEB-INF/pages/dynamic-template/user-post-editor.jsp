@@ -17,6 +17,6 @@
 <script type="text/javascript">
     $('#user-post-editor-tags').tagsInput({
         width: 'auto',
-        autocomplete_url:'${pageContext.request.contextPath}/tags/list'
+        autocomplete_url:'${pageContext.request.contextPath}/json/tags/list'
     });
 </script>

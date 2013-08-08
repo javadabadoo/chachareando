@@ -27,7 +27,7 @@ public class TagsController {
 
     @ResponseBody
     @RequestMapping(
-            value="/tags/list",
+            value="/json/tags/list",
             method = RequestMethod.GET
     )
     public List<TagsJsonResponse> displayAllPosts(@RequestParam(value = "term", required = false, defaultValue = "") String tag) {

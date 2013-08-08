@@ -38,6 +38,8 @@ public class UserPostInterceptor {
     @After("savePostPointcut()")
     public void clearCache() {
         this.cacheManager.getCache("getAllUserPosts").clear();
+        this.cacheManager.getCache("getRecentEntries").clear();
+        this.cacheManager.getCache("getRecentComments").clear();
     }
 
 }

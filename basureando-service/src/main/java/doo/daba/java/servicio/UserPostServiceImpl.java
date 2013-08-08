@@ -135,6 +135,7 @@ public class UserPostServiceImpl implements UserPostService {
      * @return  Lista de entradas recientemente publicadas. La lista está planeada para mostrarse
      *          en la página principal de la aplicación.
      */
+    @Cacheable("getRecentEntries")
     @Override
     public List<UserPost> getRecentEntries() {
         return this.userEntryDao.selectRecentEntries();
@@ -145,6 +146,7 @@ public class UserPostServiceImpl implements UserPostService {
      * @return  Lista de los comentarios recientes. La lista está planeada para mostrarse
      *          en la página principal de la aplicación.
      */
+    @Cacheable("getRecentComments")
     @Override
     public List<UserPost> getRecentComments() {
         return this.userEntryDao.selectRecentComments();

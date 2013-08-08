@@ -37,13 +37,9 @@ public class UserPostController {
 
 		page = page < 0 ? 0 : page;
 
-		Page<UserPost> userEntryPage = this.userPostService.getAllUserPosts(page, false);
-        List<UserPost> recentEntries = this.userPostService.getRecentEntries();
-        List<UserPost> recentComments = this.userPostService.getRecentComments();
-
-		model.addAttribute("userEntryPage", userEntryPage);
-		model.addAttribute("recentEntries", recentEntries);
-		model.addAttribute("recentComments", recentComments);
+		model.addAttribute(
+                "userEntryPage",
+                this.userPostService.getAllUserPosts(page, false));
 
 		return "index";
 
@@ -84,7 +80,7 @@ public class UserPostController {
 
 
     @ResponseBody
-    @RequestMapping(value="/post/calendar/{year}/{month}", method = RequestMethod.GET)
+    @RequestMapping(value="/json/post/calendar/{year}/{month}", method = RequestMethod.GET)
     public DaysOfMonthEntries getPostedDaysList(@PathVariable int year, @PathVariable int month) {
         DaysOfMonthEntries daysOfMonthEntries = null;
         List<Integer> activeDays = null;

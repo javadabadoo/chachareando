@@ -12,7 +12,7 @@
                 currentDate.getMonth() + 1
         );
 
-        calendar.loadData('${pageContext.request.contextPath}/post/calendar');
+        calendar.loadData('${pageContext.request.contextPath}/json/post/calendar');
         calendar.populateCalendarGrid();
     });
 </script>
