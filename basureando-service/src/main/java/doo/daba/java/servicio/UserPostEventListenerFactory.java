@@ -10,9 +10,9 @@ import java.util.Properties;
  * User: Gerardo Aquino
  * Date: 10/07/13
  */
-public class UserEntriesEventListenerFactory extends CacheEventListenerFactory {
+public class UserPostEventListenerFactory extends CacheEventListenerFactory {
     @Override
     public CacheEventListener createCacheEventListener(Properties properties) {
-        return UserEntriesEventListener.getInstance();
+        return UserPostEventListener.getInstance();
     }
 }

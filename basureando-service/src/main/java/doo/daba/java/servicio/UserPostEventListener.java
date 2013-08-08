@@ -10,11 +10,11 @@ import net.sf.ehcache.event.CacheEventListener;
  * User: Gerardo Aquino
  * Date: 10/07/13
  */
-public class UserEntriesEventListener implements CacheEventListener {
+public class UserPostEventListener implements CacheEventListener {
 
-    private final static UserEntriesEventListener INSTANCE = new UserEntriesEventListener();
+    private final static UserPostEventListener INSTANCE = new UserPostEventListener();
 
-    public static UserEntriesEventListener getInstance() {
+    public static UserPostEventListener getInstance() {
         return INSTANCE;
     }
 
