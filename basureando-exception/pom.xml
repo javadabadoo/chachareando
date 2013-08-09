@@ -1,6 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>doo.daba.java</groupId>
+    <artifactId>basureando-beans</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>basureando-beans</name>
+    <url>http://maven.apache.org</url>
+
 
     <parent>
         <groupId>doo.daba.java</groupId>
@@ -8,14 +17,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>doo.daba.java</groupId>
-    <artifactId>basureando-web-touch</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
-    <packaging>war</packaging>
-    <name>basureando-web-touch Maven Webapp</name>
-    <url>http://maven.apache.org</url>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -25,9 +30,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>basureando-web-touch</finalName>
-    </build>
-
 </project>

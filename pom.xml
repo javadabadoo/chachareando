@@ -13,10 +13,10 @@
     </properties>
 
     <modules>
+        <module>basureando-exception</module>
         <module>basureando-beans</module>
-        <module>basureando-web</module>
-        <module>basureando-web-touch</module>
         <module>basureando-service</module>
+        <module>basureando-web</module>
         <module>basureando-persistence</module>
   </modules>
 
