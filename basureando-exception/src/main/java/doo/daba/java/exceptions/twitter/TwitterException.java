@@ -5,5 +5,5 @@ package doo.daba.java.exceptions.twitter;
  * User: Gerardo Aquino
  * Date: 9/08/13
  */
-public class TwitterException {
+public class TwitterException extends RuntimeException {
 }
