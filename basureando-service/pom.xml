@@ -53,6 +53,12 @@
         </dependency>
 
         <dependency>
+            <groupId>doo.daba.java</groupId>
+            <artifactId>basureando-exception</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
