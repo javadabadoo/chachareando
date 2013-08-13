@@ -1,6 +1,7 @@
 package doo.daba.java.servicio.interfaces;
 
 import org.springframework.stereotype.Service;
+import twitter4j.Twitter;
 import twitter4j.auth.RequestToken;
 
 /**
@@ -12,5 +13,7 @@ import twitter4j.auth.RequestToken;
 public interface TwitterService {
 
     RequestToken createRequestToken();
+
+    Twitter getTwitterInstance();
 
 }

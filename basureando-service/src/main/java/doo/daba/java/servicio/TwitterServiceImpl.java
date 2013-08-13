@@ -1,6 +1,7 @@
 package doo.daba.java.servicio;
 
 import doo.daba.java.servicio.interfaces.TwitterService;
+import doo.daba.java.util.PropertiesContainer;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -18,7 +19,7 @@ public class TwitterServiceImpl implements TwitterService {
 
     @Override
     public RequestToken createRequestToken() {
-        Twitter twitter = TwitterFactory.getSingleton();
+        Twitter twitter = getTwitterInstance();
         RequestToken requestToken = null;
 
         try {
@@ -30,5 +31,13 @@ public class TwitterServiceImpl implements TwitterService {
         }
 
         return requestToken;
+    }
+
+
+    @Override
+    public Twitter getTwitterInstance() {
+        Twitter twitter = TwitterFactory.getSingleton();
+
+        return twitter;
     }
 }

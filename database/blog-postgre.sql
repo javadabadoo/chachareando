@@ -82,7 +82,20 @@ CREATE TABLE comentarios
 
 
 
-º
+CREATE TABLE twitter_setting
+(
+  id_twitter_setting serial NOT NULL,
+  id_usuario integer not null references usuario(id),
+  id_twitter integer NOT NULL,
+  screen_name character varying(50) NOT NULL,
+  oAuthToken character varying(50) NOT NULL,
+  oAuthTokenSecret character varying(42) NOT NULL
+);
+
+alter table twitter_setting ADD CONSTRAINT twitter_setting_unique UNIQUE (id_twitter_setting, id_usuario);
+alter table twitter_setting ADD CONSTRAINT twitter_setting_unique_id_usr UNIQUE (id_usuario);
+
+
 
 
 

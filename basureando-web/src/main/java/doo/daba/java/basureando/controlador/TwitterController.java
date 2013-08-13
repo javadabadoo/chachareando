@@ -26,46 +26,43 @@ public class TwitterController {
 
 
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping(
             value="/json/twitter/autorizationURL",
             method = RequestMethod.GET
     )
-    public ModelAndView getAuthorizationURL(ModelMap modelMap) {
-        ModelAndView modelAndView = new ModelAndView(modelMap);
+    public String getAuthorizationURL(ModelMap modelMap) {
         TwitterSession twitterSession = new TwitterSession(this.twitterService.createRequestToken());
-        modelMap.put("twitterSession", twitterSession);
-        modelMap.put("url", twitterSession.getAuthorizationURL());
-        modelAndView.addObject("twitterSession", twitterSession);
+        modelMap.addAttribute("twitterSession", twitterSession);
+        modelMap.addAttribute("twitterAuthenticationURL", twitterSession.getAuthorizationURL());
 
-        return modelAndView;
+        return "twitter/twitter-authenticate";
     }
 
 
 
-//    @ResponseBody
+    @ResponseBody
     @RequestMapping(
-            value="/json/twitter/confirmation/{pin}",
-            method = RequestMethod.GET
+            value="/json/twitter/confirmation",
+            method = RequestMethod.POST
     )
-    public boolean setPin(
-            @PathVariable String pin,
+    public User setPin(
+            @RequestParam String pin,
             @ModelAttribute("twitterSession") TwitterSession twitterSession,
             ModelMap modelMap) {
-        Twitter twitter = TwitterFactory.getSingleton();
-        boolean isValid;
+        Twitter twitter = twitterService.getTwitterInstance();
+        User user = null;
 
         try {
             twitterSession.setAccessToken(twitter.getOAuthAccessToken(
                     twitterSession.getRequestToken(),
                     pin));
-            User user = twitter.verifyCredentials();
-            isValid = user != null;
+            user = twitter.verifyCredentials();
         } catch (TwitterException e) {
-            throw new doo.daba.java.exceptions.twitter.TwitterException(
-                    e.getMessage(),
-                    e.getCause()
-            );
+//            throw new doo.daba.java.exceptions.twitter.TwitterException(
+//                    e.getMessage(),
+//                    e.getCause()
+//            );
         }
 
         System.out.println("\t:: " + twitterSession.getAccessToken().getToken());
@@ -73,6 +70,6 @@ public class TwitterController {
 
         modelMap.put("twitterSession", twitterSession);
 
-        return isValid;
+        return user;
     }
 }

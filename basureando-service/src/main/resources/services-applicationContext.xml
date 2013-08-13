@@ -28,4 +28,14 @@
         <property name="configLocation" value="classpath:ehcache-configuration.xml" />
     </bean>
 
+
+
+    <bean id="BasureandoCustomProperties" class="doo.daba.java.util.PropertiesContainer">
+        <property name="locations">
+            <list>
+                <value>classpath:/twitter4j.properties</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
